@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Link, Routes, Route } from "react-router-dom";
 import { routesObject } from "./Routes";
 import Structure from "../layout/Structure";
+import ErrorPage from "../components/Common/ErrorPage";
 
 
-export default function RotesPath() {
+export default function RoutesPath() {
   return (
     <Routes>
       {routesObject.map((route, index) => (
@@ -33,6 +34,7 @@ export default function RotesPath() {
           </Route>
         </>
       ))}
+      <Route path="*" element={<ErrorPage/>} />
     </Routes>
   );
 }
