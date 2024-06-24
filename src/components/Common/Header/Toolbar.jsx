@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Header = () => {
+export default function Toolbar() {
   return (
-    <div className="container-fluid">
+      <div>
+          <div className="container-fluid">
     <div className="row bg-secondary py-1 px-xl-5">
       <div className="col-lg-6 d-none d-lg-block">
         <div className="d-inline-flex align-items-center h-100">
@@ -116,7 +117,6 @@ const Header = () => {
     </div>
   </div>
   
+    </div>
   )
 }
-
-export default Header
