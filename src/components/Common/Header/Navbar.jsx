@@ -97,7 +97,7 @@ export default function Navbar() {
                 id="navbarCollapse"
               >
                 <div className="navbar-nav mr-auto py-0">
-                  <a href="index.html" className="nav-item nav-link active">
+                  <a href="index.html" className="nav-item nav-link">
                     Home
                   </a>
                   <a href="shop.html" className="nav-item nav-link">
@@ -123,7 +123,7 @@ export default function Navbar() {
                       </a>
                     </div>
                   </div>
-                  <a href="contact.html" className="nav-item nav-link">
+                  <a href="contact.html" className="nav-item nav-link active">
                     Contact
                   </a>
                 </div>
@@ -148,7 +148,7 @@ export default function Navbar() {
                   </a>
                 </div>
               </div>
-            </nav>
+            </nav>  
           </div>
         </div>
       </div>
