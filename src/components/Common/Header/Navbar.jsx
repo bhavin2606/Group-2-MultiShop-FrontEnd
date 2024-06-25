@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -97,15 +98,16 @@ export default function Navbar() {
                 id="navbarCollapse"
               >
                 <div className="navbar-nav mr-auto py-0">
-                  <a href="index.html" className="nav-item nav-link">
+                  <Link to="/" className="nav-item nav-link active">
                     Home
-                  </a>
-                  <a href="shop.html" className="nav-item nav-link">
+                  </Link>
+
+                  <Link to="/shop" className="nav-item nav-link">
                     Shop
-                  </a>
-                  <a href="detail.html" className="nav-item nav-link">
+                  </Link>
+                  <Link to="/shop/:id" className="nav-item nav-link">
                     Shop Detail
-                  </a>
+                  </Link>
                   <div className="nav-item dropdown">
                     <a
                       href="#"
@@ -115,17 +117,17 @@ export default function Navbar() {
                       Pages <i className="fa fa-angle-down mt-1" />
                     </a>
                     <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                      <a href="cart.html" className="dropdown-item">
+                      <Link to="/cart" className="dropdown-item">
                         Shopping Cart
-                      </a>
-                      <a href="checkout.html" className="dropdown-item">
+                      </Link>
+                      <Link to="/checkout" className="dropdown-item">
                         Checkout
-                      </a>
+                      </Link>
                     </div>
                   </div>
-                  <a href="contact.html" className="nav-item nav-link active">
+                  <Link to="/contact" className="nav-item nav-link">
                     Contact
-                  </a>
+                  </Link>
                 </div>
                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
                   <a href="" className="btn px-0">
