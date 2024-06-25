@@ -5,7 +5,7 @@ import carousel3 from "../../../assets/img/carousel-3.jpg"
 
 export default function Carosel() {
   return (
-    <div className="container-fluid mb-3">
+    <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
         <div className="col-12">
           <div

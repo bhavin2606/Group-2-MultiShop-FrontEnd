@@ -4013,6 +4013,8 @@ input[type="button"].btn-block {
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl {
   display: flex;
   flex-wrap: wrap;
+  position: sticky;
+  top: 0;
   align-items: center;
   justify-content: space-between;
 }

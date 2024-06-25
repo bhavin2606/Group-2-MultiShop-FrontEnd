@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
-      <div className="container-fluid bg-dark mb-30">
-        <div className="row px-xl-5">
+      <div className="container-fluid bg-dark mb-30" >
+        <div className="row px-xl-5" >
           <div className="col-lg-3 d-none d-lg-block">
             <a
               className="btn d-flex align-items-center justify-content-between bg-primary w-100"
@@ -22,7 +22,7 @@ export default function Navbar() {
             <nav
               className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
               id="navbar-vertical"
-              style={{ width: "calc(100% - 30px)", zIndex: 999 }}
+              style={{ width: "calc(100% - 30px)", zIndex: 999, position: "sticky" }}
             >
               <div className="navbar-nav w-100">
                 <div className="nav-item dropdown dropright">
@@ -133,7 +133,7 @@ export default function Navbar() {
                   <a href="" className="btn px-0">
                     <i className="fas fa-heart text-primary" />
                     <span
-                      className="badge text-secondary border border-secondary rounded-circle"
+                      className="badge text-secondary border mx-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}
                     >
                       0
@@ -142,7 +142,7 @@ export default function Navbar() {
                   <a href="" className="btn px-0 ml-3">
                     <i className="fas fa-shopping-cart text-primary" />
                     <span
-                      className="badge text-secondary border border-secondary rounded-circle"
+                      className="badge text-secondary border ml-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}
                     >
                       0

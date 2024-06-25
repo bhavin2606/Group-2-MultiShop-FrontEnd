@@ -12,6 +12,7 @@ import ErrorPage from "../components/Common/ErrorPage";
 import Structure from "../layout/Structure";
 import SignIn from "../components/Auth/SignIn";
 import SignUp from "../components/Auth/SignUp";
+import ResetPassword from "../components/Auth/ResetPassword";
 
 export const routesObject = [
     {
@@ -117,6 +118,14 @@ export const routesObject = [
         path: 'signin',
         element: <SignIn />,
         name: 'SignIn',
+        topBar: true,
+        layout: false
+    },
+    {
+        id: 13,
+        path: 'resetpassword',
+        element: <ResetPassword />,
+        name: 'ResetPassword',
         topBar: true,
         layout: false
     },
