@@ -10,10 +10,9 @@ export default function Toolbar() {
             <div className="d-inline-flex align-items-center h-100">
               <Link className="text-body mr-3" to={"/about"}>
                 About
-              </a>
+              </Link>
               <Link className="text-body mr-3" to="/contact">
                 Contact
-              </Link>
               </Link>
               <a className="text-body mr-3" href="">
                 Help

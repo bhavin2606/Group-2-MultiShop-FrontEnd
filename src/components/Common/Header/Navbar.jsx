@@ -15,10 +15,8 @@ export default function Navbar() {
   }, []);
   return (
     <>
-      <div className="container-fluid bg-dark mb-30 ">
-        <div className="row px-xl-5 ">
-      <div className="container-fluid bg-dark mb-30" >
-        <div className="row px-xl-5" >
+      <div className="container-fluid bg-dark mb-30">
+        <div className="row px-xl-5">
           <div className="col-lg-3 d-none d-lg-block">
             <a
               className="btn d-flex align-items-center justify-content-between bg-primary w-100"
@@ -35,7 +33,11 @@ export default function Navbar() {
             <nav
               className="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
               id="navbar-vertical"
-              style={{ width: "calc(100% - 30px)", zIndex: 999, position: "sticky" }}
+              style={{
+                width: "calc(100% - 30px)",
+                zIndex: 999,
+                position: "sticky",
+              }}
             >
               <div className="navbar-nav w-100">
                 {categoryDropdown?.map((category, index) => (
