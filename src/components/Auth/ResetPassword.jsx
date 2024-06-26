@@ -3,6 +3,7 @@ import logo from "../../assets/img/logo.png";
 import { useFormik } from "formik";
 import { resetSchema } from "../validations/resetSchema";
 import { Link } from "react-router-dom";
+import BackToHome from "../Common/BackToHome";
 
 export default function ResetPassword() {
   const initialValues = {
@@ -36,10 +37,13 @@ export default function ResetPassword() {
                 className="col-12 col-md-6 text-bg-primary"
                 style={{ backgroundColor: "#F6C324" }}
               >
+                 <div className="mt-4 ml-4">
+                  <BackToHome/> 
+                  </div>
                 <div className="d-flex align-items-center justify-content-center h-100">
                   <div className="col-10 col-xl-8 py-3">
                     <img
-                      className="img-fluid rounded mb-4 shadow-lg"
+                      className="img-fluid rounded mb-4 mt-5 shadow-lg"
                       loading="lazy"
                       src={logo}
                       width={245}
@@ -61,7 +65,7 @@ export default function ResetPassword() {
                 className="col-12 col-md-6"
                 style={{ backgroundColor: "#E9E9E7" }}
               >
-                <div className="card-body p-3 p-md-4 p-xl-5">
+                <div className="card-body p-3 p-md-4 p-xl-5 m-sm-5 m-md-0 m-4">
                   <div className="row">
                     <div className="col-12">
                       <div className="mb-5">
@@ -150,7 +154,7 @@ export default function ResetPassword() {
                         </a>
                         <a
                           href="#!"
-                          className="btn bsb-btn-xl mx-1 btn-warning mr-2"
+                          className="btn bsb-btn-xl btn-warning mr-1"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +168,7 @@ export default function ResetPassword() {
                           </svg>
                           <span className="ms-2 mx-1 fs-6">Facebook</span>
                         </a>
-                        <a href="#!" className="btn bsb-btn-xl btn-warning">
+                        <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={16}

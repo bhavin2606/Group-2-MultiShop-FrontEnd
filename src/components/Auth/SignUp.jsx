@@ -45,11 +45,18 @@ export default function SignUp() {
         <div className="container">
           <div className="card border-light-subtle shadow-sm">
             <div className="row g-0">
-              <div className="col-12 col-md-6 text-bg-primary"
-              style={{ backgroundColor: "#F6C324" }}
+              <div
+                className="col-12 col-md-6 text-bg-primary"
+                style={{ backgroundColor: "#F6C324" }}
               >
-                <div className="d-flex justify-content-center h-100" style={{marginTop: "17%"}}>
-                  <div className="col-10 col-xl-8 py-3">
+                 <div className="mt-4 ml-4">
+                  <BackToHome />
+                </div>
+                <div
+                  className="d-flex justify-content-center my-sm-3 align-items-center h-100"
+                  // style={{ marginTop: "17%" }}
+                >
+                  <div className="col-10 col-xl-8 m-sm-4 m-md-0 m-4">
                     <img
                       className="img-fluid rounded mb-4 shadow-lg"
                       loading="lazy"
@@ -73,11 +80,12 @@ export default function SignUp() {
                 className="col-12 col-md-6"
                 style={{ backgroundColor: "#E9E9E7" }}
               >
-                <div className="card-body p-3 p-md-4 p-xl-5">
+                <div className="card-body p-3 p-md-4 p-xl-5 m-sm-5 m-md-0 m-4">
                   <div className="row">
                     <div className="col-12">
                       <div className="mb-5">
-                        <h2 className="h3">Sign In Now</h2>
+                        <h2 className="h3">Sign up Now</h2>
+
                         <h4
                           className="fs-6 fw-normal pt-4"
                           style={{ color: "#c89601" }}
@@ -90,46 +98,51 @@ export default function SignUp() {
                   <form onSubmit={handleSubmit}>
                     <div className="row gy-3 gy-md-4 overflow-hidden">
                       <div className="col-12 mt-3">
-                        <label htmlFor="firstName" className="form-label">
-                          First Name <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          name="firstName"
-                          id="firstName"
-                          placeholder="First Name"
-                          value={values.firstName}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                        />
-                        {errors.firstName && touched.firstName ? (
-                          <p className="form-error text-danger">
-                            {errors.firstName}
-                          </p>
-                        ) : null}
+                        <div className="row">
+                          <div className="col-md-6 form-group">
+                            <label htmlFor="firstName" className="form-label">
+                              First Name <span className="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="firstName"
+                              id="firstName"
+                              placeholder="First Name"
+                              value={values.firstName}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                            />
+                            {errors.firstName && touched.firstName ? (
+                              <p className="form-error text-danger">
+                                {errors.firstName}
+                              </p>
+                            ) : null}
+                          </div>
+                          <div className="col-md-6 form-group mt-md-0">
+                            <label htmlFor="lastName" className="form-label">
+                              Last Name <span className="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="lastName"
+                              id="lastName"
+                              placeholder="Last Name"
+                              value={values.lastName}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                            />
+                            {errors.lastName && touched.lastName ? (
+                              <p className="form-error text-danger">
+                                {errors.lastName}
+                              </p>
+                            ) : null}
+                          </div>
+                        </div>
                       </div>
-                      <div className="col-12 mt-3">
-                        <label htmlFor="lastName" className="form-label">
-                          Last Name <span className="text-danger">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          name="lastName"
-                          id="lastName"
-                          placeholder="Last Name"
-                          value={values.lastName}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                        />
-                        {errors.lastName && touched.lastName ? (
-                          <p className="form-error text-danger">
-                            {errors.lastName}
-                          </p>
-                        ) : null}
-                      </div>
-                      <div className="col-12 mt-3">
+
+                      <div className="col-12">
                         <label htmlFor="email" className="form-label">
                           Email <span className="text-danger">*</span>
                         </label>
@@ -158,7 +171,7 @@ export default function SignUp() {
                           className="form-control"
                           name="password"
                           id="password"
-                        placeholder="Enter Password"
+                          placeholder="Enter Password"
                           value={values.password}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -170,15 +183,19 @@ export default function SignUp() {
                         ) : null}
                       </div>
                       <div className="col-12 mt-3">
-                        <label htmlFor="password" className="form-label">
+                        <label
+                          htmlFor="Confirm password"
+                          className="form-label"
+                        >
                           Confirm Password{" "}
                           <span className="text-danger">*</span>
                         </label>
                         <input
-                          type="confirm password"
+                          type="password"
                           className="form-control"
-                          name="confirm password"
-                          id="confirm password"
+                          name="confirm_password"
+                          id="confirm_password"
+                          autoComplete="off"
                           placeholder="Confirm Password"
                           value={values.confirm_password}
                           onChange={handleChange}
@@ -202,21 +219,22 @@ export default function SignUp() {
                           />
                           <label className="form-check-label" htmlFor="iAgree">
                             I agree to the{" "}
-                            <a
-                              href="#!"
+                            <Link
+                              to="/about"
                               className="link-primary text-decoration-none"
                               style={{ color: "#c89601" }}
                             >
                               &nbsp;terms and conditions
-                            </a>
+                            </Link>
                           </label>
                         </div>
                       </div>
                       <div className="col-12 mt-3">
                         <div className="d-grid">
                           <button
-                            className="btn bsb-btn-xl btn-primary"
+                            className="btn bsb-btn-xl rounded text-dark"
                             type="submit"
+                            style={{ backgroundColor: "#f6c324" }}
                           >
                             Sign up
                           </button>
@@ -262,7 +280,7 @@ export default function SignUp() {
                         </a>
                         <a
                           href="#!"
-                          className="btn bsb-btn-xl btn-warning"
+                          className="btn bsb-btn-xl btn-warning mr-1"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

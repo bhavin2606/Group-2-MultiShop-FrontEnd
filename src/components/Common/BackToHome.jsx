@@ -1,14 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function BackToHome() {
   return (
-      <div>
-          <Link to={'/'}>
-          <button className="btn btn-primary mx-3">
-            Back to Home
-          </button>
-          </Link>
+    <div>
+      <Link to={"/"} className="mt-5 text-light" style={{ fontSize: "18px"}}>
+      <i className="bi bi-arrow-left-circle fs-1 mr-2"></i>
+        Back to Home
+      </Link>
     </div>
-  )
+  );
 }

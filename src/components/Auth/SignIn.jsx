@@ -47,63 +47,6 @@ export default function SignIn() {
     });
 
   return (
-    // <div className="container w-50 mt-5">
-    //   <h1>SignIn Now</h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <div className="input-block py-2">
-    //       <label htmlFor="name" className="form-label ">
-    //         Name
-    //       </label>
-    //       <input
-    //         type="name"
-    //         autoComplete="off"
-    //         name="name"
-    //         id="name"
-    //         className="form-control"
-    //         placeholder="Name"
-    //         value={values.name}
-    //         onChange={handleChange}
-    //         onBlur={handleBlur}
-    //       />
-    //       {touched.name && errors.name ? (
-    //         <p className="form-error text-danger">{errors.name}</p>
-    //       ) : null}
-    //     </div>
-    //     <div className="input-block py-2">
-    //       <label htmlFor="password" className="form-label">
-    //         Password
-    //       </label>
-    //       <input
-    //         type="password"
-    //         autoComplete="off"
-    //         name="password"
-    //         className="form-control"
-    //         id="password"
-    //         placeholder="Password"
-    //         value={values.password}
-    //         onChange={handleChange}
-    //         onBlur={handleBlur}
-    //       />
-    //       {errors.password && touched.password ? (
-    //         <p className="form-error text-danger">{errors.password}</p>
-    //       ) : null}
-    //     </div>
-
-    //     <div className="modal-buttons py-2 ">
-    //       <Link to="/signup" className="">
-    //         Are you Registered?
-    //       </Link>
-    //       <br />
-    //       <br />
-    //       <div className="d-flex">
-    //       <button className="btn btn-primary" type="submit">
-    //         LOGIN
-    //       </button>
-    //       <BackToHome/>
-    //       </div>
-    //     </div>
-    //   </form>
-    // </div>
     <>
       <div
         className="w-100 h-100"
@@ -117,10 +60,13 @@ export default function SignIn() {
                   className="col-12 col-md-6 text-bg-primary"
                   style={{ backgroundColor: "#F6C324" }}
                 >
+                  <div className="mt-4 ml-4">
+                  <BackToHome/> 
+                  </div>
                   <div className="d-flex align-items-center justify-content-center h-100">
-                    <div className="col-10 col-xl-8 py-3">
+                    <div className="col-10 col-xl-8 mb-5 mt-0">
                       <img
-                        className="img-fluid rounded mb-4 shadow-lg"
+                        className="img-fluid rounded mb-3 mt-5 shadow-lg"
                         loading="lazy"
                         src={logo}
                         width={245}
@@ -139,14 +85,14 @@ export default function SignIn() {
                   </div>
                 </div>
                 <div
-                  className="col-12 col-md-6"
+                  className="col-12 col-md-6 "
                   style={{ backgroundColor: "#E9E9E7" }}
                 >
-                  <div className="card-body p-3 p-md-4 p-xl-5">
+                  <div className="card-body p-3 p-md-4 p-xl-5 m-sm-5 m-md-0 m-4">
                     <div className="row">
                       <div className="col-12">
                         <div className="mb-5">
-                          <h2 className="h3">Password SignIn Now</h2>
+                          <h2 className="h3">Sign in Now</h2>
                           <h4
                             className="fs-6 fw-normal py-4"
                             style={{ color: "#c89601" }}
@@ -263,7 +209,7 @@ export default function SignIn() {
                             </svg>
                             <span className="ms-2 fs-6">Facebook</span>
                           </a>
-                          <a href="#!" className="btn bsb-btn-xl btn-warning">
+                          <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width={16}
