@@ -1,0 +1,14 @@
+.btn.btn-outline-warning.active {
+  background-color: #ffc107; /* Bootstrap warning background color */
+  color: #000; /* Text color for active state */
+}
+
+.Accordion{
+  width: 100%;
+  border-radius: 2%;
+  background-color: #ffc107;
+}
+
+/* Accordion.Header{
+  
+} */

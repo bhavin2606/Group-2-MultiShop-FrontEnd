@@ -250,7 +250,7 @@ input {
 
 button,
 select {
-  text-transform: none;
+  text-transform: none !important;
 }
 
 [role="button"] {
@@ -265,7 +265,7 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
+  -webkit-appearance: button !important;
 }
 
 button:not(:disabled),

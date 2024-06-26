@@ -14,12 +14,12 @@ export default function Toolbar() {
               <Link className="text-body mr-3" to="/contact">
                 Contact
               </Link>
-              <a className="text-body mr-3" href="">
+              <Link className="text-body mr-3" to="/help">
                 Help
-              </a>
-              <a className="text-body mr-3" href="">
+              </Link>
+              <Link className="text-body mr-3" to="/faqs">
                 FAQs
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-lg-6 text-center text-lg-right">
@@ -27,7 +27,7 @@ export default function Toolbar() {
               <div className="btn-group">
                 <button
                   type="button"
-                  className="btn btn-sm btn-light dropdown-toggle"
+                  className="btn btn-sm btn-light dropdown-toggle mx-1"
                   data-toggle="dropdown"
                 >
                   My Account
