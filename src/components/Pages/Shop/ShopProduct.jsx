@@ -1,14 +1,27 @@
-import React from "react";
-import image1 from "../../../assets/img/product-1.jpg"
-import image2 from "../../../assets/img/product-2.jpg"
-import image3 from "../../../assets/img/product-3.jpg"
-import image4 from "../../../assets/img/product-4.jpg"
-import image5 from "../../../assets/img/product-5.jpg"
-import image6 from "../../../assets/img/product-6.jpg"
-import image7 from "../../../assets/img/product-7.jpg"
-import image8 from "../../../assets/img/product-8.jpg"
-import image9 from "../../../assets/img/product-9.jpg"
+import React, { useEffect, useState } from "react";
+import image1 from "../../../assets/img/product-1.jpg";
+import image2 from "../../../assets/img/product-2.jpg";
+import image3 from "../../../assets/img/product-3.jpg";
+import image4 from "../../../assets/img/product-4.jpg";
+import image5 from "../../../assets/img/product-5.jpg";
+import image6 from "../../../assets/img/product-6.jpg";
+import image7 from "../../../assets/img/product-7.jpg";
+import image8 from "../../../assets/img/product-8.jpg";
+import image9 from "../../../assets/img/product-9.jpg";
+import { Link } from "react-router-dom";
+import axios from "axios";
 export default function ShopProduct() {
+  const [shopProduct, setShopProduct] = useState([]);
+  useEffect(() => {
+    async function collectData() {
+      axios
+        .get("./JSON/product.json")
+        .then((response) => setShopProduct(response.data.product))
+        .catch((error) => console.log(error));
+    }
+    collectData();
+  }, []);
+  console.log(shopProduct);
   return (
     <div className="col-lg-9 col-md-8">
       <div className="row pb-3">
@@ -66,366 +79,46 @@ export default function ShopProduct() {
             </div>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image1} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
+        {shopProduct.slice(0, 9).map((data, index) => (
+          <div className="col-lg-4 col-md-6 col-sm-6 pb-1" key={index}>
+            <div className="product-item bg-light mb-4">
+              <div className="product-img position-relative overflow-hidden">
+                <img className="img-fluid w-100" src={data.url[0]} alt="" />
+                <div className="product-action">
+                  <Link to={"/wishlist"}>
+                    <a className="btn btn-outline-dark btn-square" href="">
+                      <i className="far fa-heart" />
+                    </a>
+                  </Link>
+                  <Link to={`/shop/${data.id}`}>
+                    <a className="btn btn-outline-dark btn-square" href="">
+                      <i className="fa fa-search" />
+                    </a>
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image2} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
+              <div className="text-center py-4">
+                <a className="h6 text-decoration-none text-truncate" href="">
+                  {data.title}
                 </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star-half-alt text-primary mr-1" />
-                <small>(99)</small>
+                <div className="d-flex align-items-center justify-content-center mt-2">
+                  <h5>${data.price}</h5>
+                  <h6 className="text-muted ml-2">
+                    <del>${data.specialPrice}</del>
+                  </h6>
+                </div>
+                <div className="d-flex align-items-center justify-content-center mb-1">
+                  <small className="fa fa-star text-primary mr-1" />
+                  <small className="fa fa-star text-primary mr-1" />
+                  <small className="fa fa-star text-primary mr-1" />
+                  <small className="fa fa-star text-primary mr-1" />
+                  <small className="fa fa-star text-primary mr-1" />
+                  <small>({data.noOfRating})</small>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image3} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star-half-alt text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image4} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image5} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image6} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star-half-alt text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image7} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star-half-alt text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image8} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-md-6 col-sm-6 pb-1">
-          <div className="product-item bg-light mb-4">
-            <div className="product-img position-relative overflow-hidden">
-              <img className="img-fluid w-100" src={image9} alt="" />
-              <div className="product-action">
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-shopping-cart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="far fa-heart" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-sync-alt" />
-                </a>
-                <a className="btn btn-outline-dark btn-square" href="">
-                  <i className="fa fa-search" />
-                </a>
-              </div>
-            </div>
-            <div className="text-center py-4">
-              <a className="h6 text-decoration-none text-truncate" href="">
-                Product Name Goes Here
-              </a>
-              <div className="d-flex align-items-center justify-content-center mt-2">
-                <h5>$123.00</h5>
-                <h6 className="text-muted ml-2">
-                  <del>$123.00</del>
-                </h6>
-              </div>
-              <div className="d-flex align-items-center justify-content-center mb-1">
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="fa fa-star text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small className="far fa-star text-primary mr-1" />
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
         <div className="col-12">
           <nav>
             <ul className="pagination justify-content-center">

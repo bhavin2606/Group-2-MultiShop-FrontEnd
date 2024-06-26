@@ -8,11 +8,12 @@ export default function Toolbar() {
         <div className="row bg-secondary py-1 px-xl-5">
           <div className="col-lg-6 d-none d-lg-block">
             <div className="d-inline-flex align-items-center h-100">
-              <a className="text-body mr-3" href="">
+              <Link className="text-body mr-3" to={"/about"}>
                 About
               </a>
               <Link className="text-body mr-3" to="/contact">
                 Contact
+              </Link>
               </Link>
               <a className="text-body mr-3" href="">
                 Help
@@ -43,26 +44,6 @@ export default function Toolbar() {
                       Sign up
                     </button>
                   </Link>
-                </div>
-              </div>
-              <div className="btn-group mx-2">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-light dropdown-toggle"
-                  data-toggle="dropdown"
-                >
-                  USD
-                </button>
-                <div className="dropdown-menu dropdown-menu-right">
-                  <button className="dropdown-item" type="button">
-                    EUR
-                  </button>
-                  <button className="dropdown-item" type="button">
-                    GBP
-                  </button>
-                  <button className="dropdown-item" type="button">
-                    CAD
-                  </button>
                 </div>
               </div>
               <div className="btn-group">

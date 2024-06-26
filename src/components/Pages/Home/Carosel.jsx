@@ -1,9 +1,21 @@
-import React from "react";
-import carousel1 from "../../../assets/img/carousel-1.jpg"
-import carousel2 from "../../../assets/img/carousel-2.jpg"
-import carousel3 from "../../../assets/img/carousel-3.jpg"
+import React, { useEffect, useState } from "react";
+import carousel1 from "../../../assets/img/carousel-1.jpg";
+import carousel2 from "../../../assets/img/carousel-2.jpg";
+import carousel3 from "../../../assets/img/carousel-3.jpg";
+import axios from "axios";
 
 export default function Carosel() {
+  const [carosal,setcarosal] = useState([])
+  useEffect(() => {
+    async function collectData() {
+      axios
+        .get("./JSONDATA/carousal.json")
+        .then((response) => setcarosal(response.data.carousal))
+        .catch((error) => console.log(error));
+    }
+    collectData();
+  }, []);
+
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
