@@ -9,7 +9,6 @@ import Shop from "../components/Pages/Shop/Shop";
 import ShopDetails from "../components/Pages/ShopDetails/ShopDetails";
 import Wishlist from "../components/Pages/Wishlist/Wishlist";
 import ErrorPage from "../components/Common/ErrorPage";
-import Structure from "../layout/Structure";
 import SignIn from "../components/Auth/SignIn";
 import SignUp from "../components/Auth/SignUp";
 import ResetPassword from "../components/Auth/ResetPassword";
@@ -75,7 +74,6 @@ export const routesObject = [
         name: 'Help',
         topBar: true,
         layout: true
-
     },
     {
         id: 7,
@@ -93,7 +91,6 @@ export const routesObject = [
         name: 'Cart',
         topBar: true,
         layout: true
-
     },
     {
         id: 9,
@@ -102,7 +99,6 @@ export const routesObject = [
         name: 'wishlist',
         topBar: true,
         layout: true
-
     },
 
     {
