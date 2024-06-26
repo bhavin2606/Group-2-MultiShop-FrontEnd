@@ -1,11 +1,22 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const [categoryDropdown, setCategoryDropdown] = useState([]);
+  useEffect(() => {
+    async function collectData() {
+      axios
+        .get("./JSON/category.json")
+        .then((response) => setCategoryDropdown(response.data.category))
+        .catch((error) => console.log(error));
+    }
+    collectData();
+  }, []);
   return (
     <>
-      <div className="container-fluid bg-dark mb-30">
-        <div className="row px-xl-5">
+      <div className="container-fluid bg-dark mb-30 ">
+        <div className="row px-xl-5 ">
           <div className="col-lg-3 d-none d-lg-block">
             <a
               className="btn d-flex align-items-center justify-content-between bg-primary w-100"
@@ -25,53 +36,11 @@ export default function Navbar() {
               style={{ width: "calc(100% - 30px)", zIndex: 999 }}
             >
               <div className="navbar-nav w-100">
-                <div className="nav-item dropdown dropright">
-                  <a
-                    href="#"
-                    className="nav-link dropdown-toggle"
-                    data-toggle="dropdown"
-                  >
-                    Dresses <i className="fa fa-angle-right float-right mt-1" />
-                  </a>
-                  <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                    <a href="" className="dropdown-item">
-                      Men's Dresses
-                    </a>
-                    <a href="" className="dropdown-item">
-                      Women's Dresses
-                    </a>
-                    <a href="" className="dropdown-item">
-                      Baby's Dresses
-                    </a>
-                  </div>
-                </div>
-                <a href="" className="nav-item nav-link">
-                  Shirts
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Jeans
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Swimwear
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Sleepwear
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Sportswear
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Jumpsuits
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Blazers
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Jackets
-                </a>
-                <a href="" className="nav-item nav-link">
-                  Shoes
-                </a>
+                {categoryDropdown?.map((category, index) => (
+                  <Link to="/shop" className="nav-item nav-link" key={index}>
+                    {category.title}
+                  </Link>
+                ))}
               </div>
             </nav>
           </div>
@@ -108,29 +77,9 @@ export default function Navbar() {
                   <Link to="/shop/:id" className="nav-item nav-link">
                     Shop Detail
                   </Link>
-                  <div className="nav-item dropdown">
-                    <a
-                      href="#"
-                      className="nav-link dropdown-toggle"
-                      data-toggle="dropdown"
-                    >
-                      Pages <i className="fa fa-angle-down mt-1" />
-                    </a>
-                    <div className="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                      <Link to="/cart" className="dropdown-item">
-                        Shopping Cart
-                      </Link>
-                      <Link to="/checkout" className="dropdown-item">
-                        Checkout
-                      </Link>
-                    </div>
-                  </div>
-                  <Link to="/contact" className="nav-item nav-link">
-                    Contact
-                  </Link>
                 </div>
                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
-                  <a href="" className="btn px-0">
+                  <Link to="/wishlist" className="btn px-0">
                     <i className="fas fa-heart text-primary" />
                     <span
                       className="badge text-secondary border border-secondary rounded-circle"
@@ -138,8 +87,8 @@ export default function Navbar() {
                     >
                       0
                     </span>
-                  </a>
-                  <a href="" className="btn px-0 ml-3">
+                  </Link>
+                  <Link to="/cart" className="btn px-0 ml-3">
                     <i className="fas fa-shopping-cart text-primary" />
                     <span
                       className="badge text-secondary border border-secondary rounded-circle"
@@ -147,10 +96,10 @@ export default function Navbar() {
                     >
                       0
                     </span>
-                  </a>
+                  </Link>
                 </div>
               </div>
-            </nav>  
+            </nav>
           </div>
         </div>
       </div>

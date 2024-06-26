@@ -1,0 +1,64 @@
+{
+    "category": [
+        {
+            "url": "../img/cat-1.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-2.jpg",
+            "title": "Women Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-3.jpg",
+            "title": "Women Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-4.jpg",
+            "title": "Children Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-1.jpg",
+            "title": "Children Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-2.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-3.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-4.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-1.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-2.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-3.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        },
+        {
+            "url": "../img/cat-4.jpg",
+            "title": "Men Fashion",
+            "isView": true
+        }
+    ]
+}

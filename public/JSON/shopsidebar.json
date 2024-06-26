@@ -1,0 +1,98 @@
+{
+    "price": [
+        {
+            "price":"All Price",
+            "totalProduct":1000,
+            "id":"all-price"
+        },
+        {
+            "price":"$0 - $100",
+            "totalProduct":150,
+            "id":"price-1"
+        },
+        {
+            "price":"$100 - $200",
+            "totalProduct":295,
+            "id":"price-2"
+        },
+        {
+            "price":"$200 - $300",
+            "totalProduct":246,
+            "id":"price-3"
+        },
+        {
+            "price":"$300 - $400",
+            "totalProduct":145,
+            "id":"price-4"
+        },
+        {
+            "price":"$400 - $500",
+            "totalProduct":168,
+            "id":"price-5"
+        }
+    ],
+    "color": [
+        {
+            "colors":"All Colors",
+            "totalProduct":1000,
+            "id":"color-all"
+        },
+        {
+            "colors":"Black",
+            "totalProduct":150,
+            "id":"color-1"
+        },
+        {
+            "colors":"White",
+            "totalProduct":295,
+            "id":"color-2"
+        },
+        {
+            "colors":"Red",
+            "totalProduct":246,
+            "id":"color-3"
+        },
+        {
+            "colors":"Blue",
+            "totalProduct":145,
+            "id":"color-4"
+        },
+        {
+            "colors":"Green",
+            "totalProduct":168,
+            "id":"color-5"
+        }
+    ],
+    "size": [
+        {
+            "sizes":"All sizes",
+            "totalProduct":1000,
+            "id":"size-all"
+        },
+        {
+            "sizes":"XS",
+            "totalProduct":150,
+            "id":"size-1"
+        },
+        {
+            "sizes":"S",
+            "totalProduct":295,
+            "id":"size-2"
+        },
+        {
+            "sizes":"M",
+            "totalProduct":246,
+            "id":"size-3"
+        },
+        {
+            "sizes":"L",
+            "totalProduct":145,
+            "id":"size-4"
+        },
+        {
+            "sizes":"XL",
+            "totalProduct":168,
+            "id":"size-5"
+        }
+    ]
+}

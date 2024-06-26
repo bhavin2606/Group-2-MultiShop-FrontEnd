@@ -1,0 +1,1 @@
+import img from "../img/product-1.jpg"
