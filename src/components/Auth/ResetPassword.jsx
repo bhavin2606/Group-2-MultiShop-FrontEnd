@@ -34,14 +34,14 @@ export default function ResetPassword() {
           <div className="card border-light-subtle shadow-sm">
             <div className="row g-0 rounded">
               <div
-                className="col-12 col-md-6 text-bg-primary"
+                className="col-12 col-md-6"
                 style={{ backgroundColor: "#F6C324" }}
               >
                  <div className="mt-4 ml-4">
                   <BackToHome/> 
                   </div>
-                <div className="d-flex align-items-center justify-content-center h-100">
-                  <div className="col-10 col-xl-8 py-3">
+                <div className="d-flex align-items-center justify-content-center h-100 pb-5">
+                  <div className="col-10 col-xl-8 pb-4">
                     <img
                       className="img-fluid rounded mb-4 mt-5 shadow-lg"
                       loading="lazy"
@@ -106,7 +106,7 @@ export default function ResetPassword() {
                       <div className="col-12">
                         <div className="d-flex justify-content-between mt-3">
                           <button
-                            className="btn bsb-btn-xl rounded mt-4 text-dark"
+                            className="btn bsb-btn-xl mt-4 px-4 text-dark"
                             style={{ backgroundColor: "#f6c324" }}
                             type="submit"
                             onClick={handleSubmit}
@@ -116,7 +116,7 @@ export default function ResetPassword() {
                           <div>
                             <Link
                               to="/signin"
-                              className="link-secondary text-decoration-none mx-2"
+                              className="text-decoration-none mx-2"
                               style={{ color: "#c89601" }}
                             >
                              Back to Login?

@@ -46,14 +46,14 @@ export default function SignUp() {
           <div className="card border-light-subtle shadow-sm">
             <div className="row g-0">
               <div
-                className="col-12 col-md-6 text-bg-primary"
+                className="col-12 col-md-6"
                 style={{ backgroundColor: "#F6C324" }}
               >
                  <div className="mt-4 ml-4">
                   <BackToHome />
                 </div>
                 <div
-                  className="d-flex justify-content-center my-sm-3 align-items-center h-100"
+                  className="d-flex justify-content-center my-sm-3 align-items-center h-100 pb-5"
                   // style={{ marginTop: "17%" }}
                 >
                   <div className="col-10 col-xl-8 m-sm-4 m-md-0 m-4">
@@ -208,7 +208,7 @@ export default function SignUp() {
                         ) : null}
                       </div>
                       <div className="col-12 mt-3">
-                        <div className="form-check">
+                        <div className="form-check ms-1">
                           <input
                             className="form-check-input"
                             type="checkbox"
@@ -221,7 +221,7 @@ export default function SignUp() {
                             I agree to the{" "}
                             <Link
                               to="/about"
-                              className="link-primary text-decoration-none"
+                              className="text-decoration-none"
                               style={{ color: "#c89601" }}
                             >
                               &nbsp;terms and conditions
@@ -232,7 +232,7 @@ export default function SignUp() {
                       <div className="col-12 mt-3">
                         <div className="d-grid">
                           <button
-                            className="btn bsb-btn-xl rounded text-dark"
+                            className="btn bsb-btn-xl text-dark"
                             type="submit"
                             style={{ backgroundColor: "#f6c324" }}
                           >
@@ -304,7 +304,7 @@ export default function SignUp() {
                         Already have an account?{" "}
                         <Link
                           to="/signin"
-                          className="link-primary text-decoration-none"
+                          className="text-decoration-none"
                           style={{ color: "#c89601" }}
                         >
                           &nbsp;Sign in

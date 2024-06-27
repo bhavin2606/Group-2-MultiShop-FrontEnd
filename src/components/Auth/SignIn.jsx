@@ -57,13 +57,13 @@ export default function SignIn() {
             <div className="card border-light-subtle shadow-sm">
               <div className="row g-0 rounded">
                 <div
-                  className="col-12 col-md-6 text-bg-primary"
+                  className="col-12 col-md-6"
                   style={{ backgroundColor: "#F6C324" }}
                 >
                   <div className="mt-4 ml-4">
                   <BackToHome/> 
                   </div>
-                  <div className="d-flex align-items-center justify-content-center h-100">
+                  <div className="d-flex align-items-center justify-content-center h-100 pb-4">
                     <div className="col-10 col-xl-8 mb-5 mt-0">
                       <img
                         className="img-fluid rounded mb-3 mt-5 shadow-lg"
@@ -150,7 +150,7 @@ export default function SignIn() {
                         <div className="col-12">
                           <div className="d-flex justify-content-between mt-3">
                             <button
-                              className="btn bsb-btn-xl rounded mt-4 text-dark"
+                              className="btn bsb-btn-xl mt-4 px-5 text-dark"
                               style={{ backgroundColor: "#f6c324" }}
                               type="submit"
                             >
@@ -158,7 +158,7 @@ export default function SignIn() {
                             </button>
                             <Link
                               to="/resetpassword"
-                              className="link-secondary text-decoration-none"
+                              className="text-decoration-none"
                               style={{ color: "#c89601" }}
                             >
                               Forget Password?
@@ -227,12 +227,12 @@ export default function SignIn() {
                     </div>
                     <div className="row">
                       <div className="col-12">
-                        <hr className="mt-5 mb-4 border-secondary-subtle" />
+                        <hr className="mt-5 mb-4 text-dark border-2" />
                         <p className="m-0 text-center">
                           New to MultiShop?{" "}
                           <Link
                             to="/signup"
-                            className="link-primary text-decoration-none"
+                            className="link text-decoration-none"
                             style={{ color: "#c89601" }}
                           >
                            &nbsp;Sign Up
