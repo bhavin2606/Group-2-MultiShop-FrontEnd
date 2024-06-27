@@ -1,14 +1,16 @@
 import React from "react";
 import helpImg from "../../../assets/img/help.png";
 import Accordion from "react-bootstrap/Accordion";
+import Breadcrumbs from "../../../Routes/Breadcrumbs";
 
 export default function Help() {
   return (
     <>
-      <section className="bg-light py-3 py-md-5">
+      <Breadcrumbs/>
+      <section className="px-xl-5 py-3 py-md-5">
         <div className="container">
           <div className="row gy-5 gy-lg-0 align-items-lg-center">
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-6 ">
               <img
                 className="img-fluid rounded"
                 loading="lazy"

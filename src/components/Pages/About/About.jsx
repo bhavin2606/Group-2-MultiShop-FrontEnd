@@ -1,7 +1,10 @@
 import React from "react";
+import Breadcrumbs from "../../../Routes/Breadcrumbs";
 
 export default function About() {
   return (
+    <>
+    <Breadcrumbs/>
     <div className="container mt-5">
       <div className="text-center">
         <h1>MultiShop/About-us</h1>
@@ -65,5 +68,6 @@ export default function About() {
         </ul>
       </div>
     </div>
+    </>
   );
 }

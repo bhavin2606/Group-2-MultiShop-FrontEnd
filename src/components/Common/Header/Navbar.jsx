@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const location = useLocation();
   const [categoryDropdown, setCategoryDropdown] = useState([]);
   useEffect(() => {
     async function collectData() {
@@ -70,17 +71,37 @@ export default function Navbar() {
                 className="collapse navbar-collapse justify-content-between"
                 id="navbarCollapse"
               >
-                <div className="navbar-nav mr-auto py-0">
-                  <Link to="/" className="nav-item nav-link active">
+                <div
+                  className="navbar-nav mr-auto py-0"
+                
+                >
+                  <Link
+                    to="/"
+                    className={`nav-link ${
+                      location?.pathname === "/" && "active"
+                    }`}
+                    id="pills-home-tab"
+                    data-toggle="pill"
+                    role="tab"
+                    aria-controls="pills-home"
+                    aria-selected="true"
+                  >
                     Home
                   </Link>
 
-                  <Link to="/shop" className="nav-item nav-link">
+                  <Link
+                    to="/shop"
+                    className={`nav-link ${
+                      location?.pathname === "/shop" && "active"
+                    }`}
+                    id="pills-shop-tab"
+                    role="tab"
+                    aria-controls="pills-shop"
+                    aria-selected="false"
+                  >
                     Shop
                   </Link>
-                  <Link to="/shop/:id" className="nav-item nav-link">
-                    Shop Detail
-                  </Link>
+
                 </div>
                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
                   <Link to="/wishlist" className="btn px-0">

@@ -1,23 +1,63 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import SignOut from "../../Auth/SignOut";
 
 export default function Toolbar() {
+  const location = useLocation();
+  const [isLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+
+
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid ">
         <div className="row bg-secondary py-1 px-xl-5">
-          <div className="col-lg-6 d-none d-lg-block">
-            <div className="d-inline-flex align-items-center h-100">
-              <Link className="text-body mr-3" to={"/about"}>
+          <div
+            className="col-lg-6 d-none d-lg-block collapse"
+            id="navbarCollapse"
+          >
+            <div className="d-inline-flex align-items-center h-100 navbar p-0">
+              <Link
+                className={`px-2 nav-link ${
+                  location?.pathname === "/about" && "active text-warning"
+                }`}
+                to="/about"
+              >
                 About
               </Link>
-              <Link className="text-body mr-3" to="/contact">
+              <Link
+                className={`px-2 nav-link ${
+                  location?.pathname === "/contact" && "active text-warning"
+                }`}
+                to="/contact"
+                id="pills-shop-tab"
+                role="tab"
+                aria-controls="pills-shop"
+                aria-selected="false"
+              >
                 Contact
               </Link>
-              <Link className="text-body mr-3" to="/help">
+              <Link
+                className={`px-2 nav-link ${
+                  location?.pathname === "/help" && "active text-warning"
+                }`}
+                to="/help"
+                id="pills-help-tab"
+                role="tab"
+                aria-controls="pills-shop"
+                aria-selected="false"
+              >
                 Help
               </Link>
-              <Link className="text-body mr-3" to="/faqs">
+              <Link
+                className={`px-2 nav-link ${
+                  location?.pathname === "/faqs" && "active text-warning"
+                }`}
+                to="/faqs"
+                id="pills-help-tab"
+                role="tab"
+                aria-controls="pills-shop"
+                aria-selected="false"
+              >
                 FAQs
               </Link>
             </div>
@@ -27,23 +67,41 @@ export default function Toolbar() {
               <div className="btn-group">
                 <button
                   type="button"
-                  className="btn btn-sm btn-light dropdown-toggle mx-1"
+                  className="btn btn-sm btn-light dropdown-toggle m-1"
                   data-toggle="dropdown"
                 >
                   My Account
                 </button>
-                <div className="dropdown-menu dropdown-menu-right">
-                  <Link className="text-decoration-none" to="/signin">
-                    <button className="dropdown-item" type="button">
-                      Sign in
-                    </button>
-                  </Link>
-                  <Link className="text-decoration-none" to="/signup">
-                    <button className="dropdown-item" type="button">
-                      Sign up
-                    </button>
-                  </Link>
-                </div>
+                {isLoggedIn == false ? (
+                  <div className="dropdown-menu dropdown-menu-right">
+                    <Link className="text-decoration-none" to="/signin">
+                      <button className="dropdown-item" type="button">
+                        Sign in
+                      </button>
+                    </Link>
+                    <Link className="text-decoration-none" to="/signup">
+                      <button className="dropdown-item" type="button">
+                        Sign up
+                      </button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="dropdown-menu dropdown-menu-right">
+                    <Link className="text-decoration-none" to="/account">
+                      <button className="dropdown-item" type="button">
+                        My Profile
+                      </button>
+                    </Link>
+                    <Link className="text-decoration-none" to="/account">
+                      <button className="dropdown-item " type="button">
+                        Change Password
+                      </button>
+                      </Link>
+                      <Link className="text-decoration-none W-100">
+                        <SignOut />
+                        </Link>
+                  </div>
+                )}
               </div>
               <div className="btn-group">
                 <button

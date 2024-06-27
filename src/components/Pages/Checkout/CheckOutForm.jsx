@@ -77,18 +77,6 @@ export default function CheckOutForm() {
             <label>ZIP Code</label>
             <input className="form-control" type="text" placeholder={123} />
           </div>
-          <div className="col-md-12 form-group">
-            <div className="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                id="newaccount"
-              />
-              <label className="custom-control-label" htmlFor="newaccount">
-                Create an account
-              </label>
-            </div>
-          </div>
           <div className="col-md-12">
             <div className="custom-control custom-checkbox">
               <input

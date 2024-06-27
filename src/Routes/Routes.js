@@ -12,6 +12,7 @@ import ErrorPage from "../components/Common/ErrorPage";
 import SignIn from "../components/Auth/SignIn";
 import SignUp from "../components/Auth/SignUp";
 import ResetPassword from "../components/Auth/ResetPassword";
+import MyAccount from "../components/Pages/Account/MyAccount";
 
 export const routesObject = [
     {
@@ -19,7 +20,6 @@ export const routesObject = [
         path: '/',
         element:<Home />,
         name: 'Home',
-        topBar: false,
         layout: true
     },
     {
@@ -28,7 +28,6 @@ export const routesObject = [
         element: <Shop />,
         errorElement: <ErrorPage />,
         name: 'Shops',
-        topBar: true,
         layout: true,
     },
     {
@@ -37,7 +36,6 @@ export const routesObject = [
         element: <ShopDetails />,
         errorElement: <ErrorPage />,
         name: 'ShoppingDetails',
-        topBar: true,
         layout: true,
     },
     {
@@ -45,7 +43,6 @@ export const routesObject = [
         path: 'checkout',
         element: <Checkout />,
         name: 'Checkout',
-        topBar: true,
         layout: true
 
     },
@@ -54,7 +51,6 @@ export const routesObject = [
         path: 'contact',
         element: <Contact />,
         name: 'Contact',
-        topBar: true,
         layout: true
 
     },
@@ -63,7 +59,6 @@ export const routesObject = [
         path: 'about',
         element: <About />,
         name: 'About',
-        topBar: true,
         layout: true
 
     },
@@ -72,7 +67,6 @@ export const routesObject = [
         path: 'help',
         element: <Help />,
         name: 'Help',
-        topBar: true,
         layout: true
     },
     {
@@ -80,7 +74,6 @@ export const routesObject = [
         path: 'faqs',
         element: <FAQs />,
         name: 'Faqs',
-        topBar: true,
         layout: true
 
     },
@@ -89,7 +82,6 @@ export const routesObject = [
         path: 'cart',
         element: <Cart />,
         name: 'Cart',
-        topBar: true,
         layout: true
     },
     {
@@ -97,7 +89,6 @@ export const routesObject = [
         path: 'wishlist',
         element: <Wishlist />,
         name: 'wishlist',
-        topBar: true,
         layout: true
     },
 
@@ -106,7 +97,6 @@ export const routesObject = [
         path: 'signup',
         element: <SignUp />,
         name: 'SignUp',
-        topBar: true,
         layout: false
     },
     {
@@ -114,7 +104,6 @@ export const routesObject = [
         path: 'signin',
         element: <SignIn />,
         name: 'SignIn',
-        topBar: true,
         layout: false
     },
     {
@@ -122,7 +111,13 @@ export const routesObject = [
         path: 'resetpassword',
         element: <ResetPassword />,
         name: 'ResetPassword',
-        topBar: true,
         layout: false
+    },
+    {
+        id: 13,
+        path: 'account',
+        element: <MyAccount />,
+        name: 'MyAccount',
+        layout: true
     },
 ]

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './faqs.css'; // Import your CSS file for custom styles
 import Accordion from 'react-bootstrap/Accordion';
+import Breadcrumbs from "../../../Routes/Breadcrumbs";
 
 const FAQs = () => {
   const [faqsData, setFaqsData] = useState({});
@@ -34,6 +35,8 @@ const FAQs = () => {
   };
 
   return (
+    <>
+    <Breadcrumbs/>
     <div className="container mt-5">
       {/* Section title */}
       <div className="section-title" data-aos="fade-in">
@@ -73,6 +76,7 @@ const FAQs = () => {
         </div>
       </div>  
     </div>
+    </>
   );
 };
 

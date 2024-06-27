@@ -1,12 +1,4 @@
 import React, { useEffect, useState } from "react";
-import product1 from "../../../assets/img/product-1.jpg";
-import product2 from "../../../assets/img/product-2.jpg";
-import product3 from "../../../assets/img/product-3.jpg";
-import product4 from "../../../assets/img/product-4.jpg";
-import product5 from "../../../assets/img/product-5.jpg";
-import product6 from "../../../assets/img/product-6.jpg";
-import product7 from "../../../assets/img/product-7.jpg";
-import product8 from "../../../assets/img/product-8.jpg";
 import axios from "axios";
 import { Link } from "react-router-dom";
 export default function ProductFeatured() {
@@ -20,7 +12,7 @@ export default function ProductFeatured() {
     }
     collectData();
   }, []);
-  console.log(productFeatured);
+
   return (
     <div className="container-fluid pt-5 pb-3">
       <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">

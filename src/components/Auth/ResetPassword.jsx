@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { resetSchema } from "../validations/resetSchema";
 import { Link } from "react-router-dom";
 import BackToHome from "../Common/BackToHome";
+import { toast } from "react-toastify";
 
 export default function ResetPassword() {
   const initialValues = {
@@ -21,6 +22,17 @@ export default function ResetPassword() {
         // Post API call for Reset Password
         action.resetForm();
         alert("Email :", values.email);
+        toast.success("Password Reset Successfully!", {
+          position: "top-right",
+          marginTop: "2%",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       },
     });
 
@@ -71,7 +83,7 @@ export default function ResetPassword() {
                       <div className="mb-5">
                         <h2 className="h3">Password Reset</h2>
                         <h4
-                          className="fs-6 fw-normal py-4"
+                          className=" fw-normal py-4"
                           style={{ color: "#c89601" }}
                         >
                           Provide the email address associated with your account

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
 import BackToHome from "../Common/BackToHome";
 import backgroundImage from "../../assets/img/image.png";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
+
+  const location = useLocation()
+  console.log(location, "losdvfjkrb");
+
+
   let [isLoggedIn, setUserLoggedIn] = useState(
     JSON.parse(localStorage.getItem("isLoggedIn")) ? true : false
   );
@@ -42,6 +48,17 @@ export default function SignIn() {
           localStorage.setItem("isLoggedIn", true);
           action.resetForm();
           navigate("/");
+          toast.success("Logged In Successfully!", {
+            position: "top-right",
+            marginTop: "2%",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       },
     });
@@ -94,7 +111,7 @@ export default function SignIn() {
                         <div className="mb-5">
                           <h2 className="h3">Sign in Now</h2>
                           <h4
-                            className="fs-6 fw-normal py-4"
+                            className=" fw-normal py-4"
                             style={{ color: "#c89601" }}
                           >
                             Provide the email address and password for your

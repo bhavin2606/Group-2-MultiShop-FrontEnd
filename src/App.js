@@ -9,6 +9,8 @@ import RoutesPath from './Routes/RoutesPath';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   useEffect(() => {
@@ -16,7 +18,8 @@ function App() {
   }, [])
   return (
     <>
-      <RoutesPath/>
+      <ToastContainer />
+      <RoutesPath />
     </>
   );
 }
