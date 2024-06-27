@@ -14,7 +14,7 @@ export default function ShopProduct() {
   const [shopProduct, setShopProduct] = useState([]);
   useEffect(() => {
     async function collectData() {
-      axios
+     await axios
         .get("./JSON/product.json")
         .then((response) => setShopProduct(response.data.product))
         .catch((error) => console.log(error));

@@ -1,9 +1,28 @@
-import React from "react";
-import product1 from "../../../assets/img/product-1.jpg"
-import product2 from "../../../assets/img/product-2.jpg"
-import product3 from "../../../assets/img/product-3.jpg"
-import product4 from "../../../assets/img/product-4.jpg"
+import React, { useEffect, useState } from "react";
+import product1 from "../../../assets/img/product-1.jpg";
+import product2 from "../../../assets/img/product-2.jpg";
+import product3 from "../../../assets/img/product-3.jpg";
+import product4 from "../../../assets/img/product-4.jpg";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 export default function ShopProductById() {
+  const [productDetail, setProductDetail] = useState([]);
+  useEffect(() => {
+    async function collectData() {
+      await axios
+        .get("../JSON/product.json")
+        .then((response) =>
+          setProductDetail(
+            response.data.product.find((data) => data.id === Number(id))
+          )
+        )
+        .catch((error) => console.log(error));
+    }
+    collectData();
+  }, []);
+  const { id } = useParams();
+  console.log(id, "id mil gya");
+  console.log(productDetail, "productDetail");
   return (
     <div className="container-fluid pb-5">
       <div className="row px-xl-5">
@@ -14,34 +33,15 @@ export default function ShopProductById() {
             data-ride="carousel"
           >
             <div className="carousel-inner bg-light">
-              <div className="carousel-item active">
-                <img
-                  className="w-100 h-100"
-                  src={product1}
-                  alt="Image"
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  className="w-100 h-100"
-                  src={product2}
-                  alt="Image"
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  className="w-100 h-100"
-                  src={product3}
-                  alt="Image"
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  className="w-100 h-100"
-                  src={product4}
-                  alt="Image"
-                />
-              </div>
+              {productDetail?.url?.map((url, index) => (
+                <div
+                  className={
+                    index === 0 ? "carousel-item active" : "carousel-item"
+                  }
+                >
+                  <img className="w-100 h-100" src={url} alt="Image" />
+                </div>
+              ))}
             </div>
             <a
               className="carousel-control-prev"
@@ -70,132 +70,51 @@ export default function ShopProductById() {
                 <small className="fas fa-star-half-alt" />
                 <small className="far fa-star" />
               </div>
-              <small className="pt-1">(99 Reviews)</small>
+              <small className="pt-1">
+                ({productDetail.noOfRating} Reviews)
+              </small>
             </div>
-            <h3 className="font-weight-semi-bold mb-4">$150.00</h3>
-            <p className="mb-4">
-              Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat
-              diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna
-              duo dolor no sea Nonumy
-            </p>
+            <h3 className="font-weight-semi-bold mb-4">
+              ${productDetail.specialPrice}
+            </h3>
+            <p className="mb-4">{productDetail.detail}</p>
             <div className="d-flex mb-3">
               <strong className="text-dark mr-3">Sizes:</strong>
               <form>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="size-1"
-                    name="size"
-                  />
-                  <label className="custom-control-label" htmlFor="size-1">
-                    XS
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="size-2"
-                    name="size"
-                  />
-                  <label className="custom-control-label" htmlFor="size-2">
-                    S
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="size-3"
-                    name="size"
-                  />
-                  <label className="custom-control-label" htmlFor="size-3">
-                    M
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="size-4"
-                    name="size"
-                  />
-                  <label className="custom-control-label" htmlFor="size-4">
-                    L
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="size-5"
-                    name="size"
-                  />
-                  <label className="custom-control-label" htmlFor="size-5">
-                    XL
-                  </label>
-                </div>
+                {productDetail?.size?.map((data, index) => (
+                  <div
+                    className="custom-control custom-radio custom-control-inline"
+                    key={index}
+                  >
+                    <input
+                      type="radio"
+                      className="custom-control-input"
+                      id={data}
+                      name="size"
+                    />
+                    <label className="custom-control-label" htmlFor={data}>
+                      {data}
+                    </label>
+                  </div>
+                ))}
               </form>
             </div>
             <div className="d-flex mb-4">
               <strong className="text-dark mr-3">Colors:</strong>
               <form>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="color-1"
-                    name="color"
-                  />
-                  <label className="custom-control-label" htmlFor="color-1">
-                    Black
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="color-2"
-                    name="color"
-                  />
-                  <label className="custom-control-label" htmlFor="color-2">
-                    White
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="color-3"
-                    name="color"
-                  />
-                  <label className="custom-control-label" htmlFor="color-3">
-                    Red
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="color-4"
-                    name="color"
-                  />
-                  <label className="custom-control-label" htmlFor="color-4">
-                    Blue
-                  </label>
-                </div>
-                <div className="custom-control custom-radio custom-control-inline">
-                  <input
-                    type="radio"
-                    className="custom-control-input"
-                    id="color-5"
-                    name="color"
-                  />
-                  <label className="custom-control-label" htmlFor="color-5">
-                    Green
-                  </label>
-                </div>
+                {productDetail?.color?.map((data, index) => (
+                  <div className="custom-control custom-radio custom-control-inline" key={index}>
+                    <input
+                      type="radio"
+                      className="custom-control-input"
+                      id={data}
+                      name="color"
+                    />
+                    <label className="custom-control-label" htmlFor={data}>
+                      {data}
+                    </label>
+                  </div>
+                ))}
               </form>
             </div>
             <div className="d-flex align-items-center mb-4 pt-2">
@@ -208,7 +127,7 @@ export default function ShopProductById() {
                 <input
                   type="text"
                   className="form-control bg-secondary border-0 text-center"
-                  defaultValue={1}
+                  defaultValue={0}
                 />
                 <div className="input-group-btn">
                   <button className="btn btn-primary btn-plus">

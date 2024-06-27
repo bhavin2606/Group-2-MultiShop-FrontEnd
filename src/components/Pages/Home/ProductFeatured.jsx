@@ -13,14 +13,13 @@ export default function ProductFeatured() {
   const [productFeatured, setProductFeatured] = useState([]);
   useEffect(() => {
     async function collectData() {
-      axios
+     await axios
         .get("./JSON/product.json")
         .then((response) => setProductFeatured(response.data.product))
         .catch((error) => console.log(error));
     }
     collectData();
   }, []);
-  console.log(productFeatured);
   return (
     <div className="container-fluid pt-5 pb-3">
       <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
