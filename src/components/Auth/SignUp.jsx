@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { signUpSchema } from "../validations/signUpSchema";
 import BackToHome from "../Common/BackToHome";
 import logo from "../../assets/img/logo.png";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   let [isRegister, setRegistered] = useState(
@@ -36,6 +37,17 @@ export default function SignUp() {
         setRegistered([...isRegister, values]);
         action.resetForm();
         navigate("/signin");
+        toast.success("Account Has Created Successfully!", {
+          position: "top-right",
+          marginTop: "2%",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       },
     });
 
@@ -87,7 +99,7 @@ export default function SignUp() {
                         <h2 className="h3">Sign up Now</h2>
 
                         <h4
-                          className="fs-6 fw-normal pt-4"
+                          className="fw-normal pt-4"
                           style={{ color: "#c89601" }}
                         >
                           Enter your details to register in MultiShop

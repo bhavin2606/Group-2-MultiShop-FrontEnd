@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import product1 from "../../../assets/img/product-1.jpg";
-import product2 from "../../../assets/img/product-2.jpg";
-import product3 from "../../../assets/img/product-3.jpg";
-import product4 from "../../../assets/img/product-4.jpg";
+
+import avatar from "../../../assets/img/user.jpg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 export default function ShopProductById() {
@@ -103,7 +101,10 @@ export default function ShopProductById() {
               <strong className="text-dark mr-3">Colors:</strong>
               <form>
                 {productDetail?.color?.map((data, index) => (
-                  <div className="custom-control custom-radio custom-control-inline" key={index}>
+                  <div
+                    className="custom-control custom-radio custom-control-inline"
+                    key={index}
+                  >
                     <input
                       type="radio"
                       className="custom-control-input"
@@ -120,7 +121,10 @@ export default function ShopProductById() {
             <div className="d-flex align-items-center mb-4 pt-2">
               <div className="input-group quantity mr-3" style={{ width: 130 }}>
                 <div className="input-group-btn">
-                  <button className="btn btn-primary btn-minus">
+                  <button
+                    className="btn btn-primary btn-minus"
+                    style={{ zIndex: "1" }}
+                  >
                     <i className="fa fa-minus" />
                   </button>
                 </div>
@@ -272,7 +276,7 @@ export default function ShopProductById() {
                     <h4 className="mb-4">1 review for "Product Name"</h4>
                     <div className="media mb-4">
                       <img
-                        src="img/user.jpg"
+                        src={avatar}
                         alt="Image"
                         className="img-fluid mr-3 mt-1"
                         style={{ width: 45 }}
@@ -325,18 +329,6 @@ export default function ShopProductById() {
                           rows={5}
                           className="form-control"
                           defaultValue={""}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="name">Your Name *</label>
-                        <input type="text" className="form-control" id="name" />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="email">Your Email *</label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="email"
                         />
                       </div>
                       <div className="form-group mb-0">

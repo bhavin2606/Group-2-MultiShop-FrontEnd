@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CartSummary() {
   return (
@@ -22,9 +23,10 @@ export default function CartSummary() {
             <h5>Total</h5>
             <h5>$160</h5>
           </div>
-          <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">
+          <Link to="/checkout"><button className="btn btn-block btn-primary font-weight-bold my-3 py-3">
             Proceed To Checkout
           </button>
+          </Link>
         </div>
       </div>
     </div>

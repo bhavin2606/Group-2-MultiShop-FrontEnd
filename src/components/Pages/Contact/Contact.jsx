@@ -3,23 +3,12 @@ import ContactForm from "./ContactForm";
 import ContactMap from "./ContactMap";
 import ContactAddress from "./ContactAddress";
 import { Link } from "react-router-dom";
+import Breadcrumbs from "../../../Routes/Breadcrumbs";
 
 export default function Contact() {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row px-xl-5">
-          <div className="col-12">
-            <nav className="breadcrumb bg-light mb-30">
-              <Link className="breadcrumb-item text-dark" to="/">
-                Home
-              </Link>
-              <span className="breadcrumb-item active">Contact</span>
-            </nav>
-          </div>
-        </div>
-      </div>
-
+      <Breadcrumbs/>
       <div className="container-fluid">
         <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
           <span className="bg-secondary pr-3">Contact Us</span>

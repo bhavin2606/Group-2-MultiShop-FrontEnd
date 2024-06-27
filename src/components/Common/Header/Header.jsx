@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <>
       <Toolbar />
-      <div style={{position: 'sticky', top: 0, zIndex: "2"}}> 
+      <div style={{position: 'sticky', top: 0, zIndex: "10"}}> 
       <Searchbar/>
       <Navbar />
       </div>
