@@ -13,9 +13,7 @@ export default function ShopSidebar() {
     collectData();
   }, []);
   return (
-    <div className="col-lg-3 col-md-4 shop-sidebar" style={{
-      
-    }}>
+    <div className="col-lg-3 col-md-4 shop-sidebar">
       {/* Price Start */}
       <h5 className="section-title position-relative text-uppercase mb-3 ">
         <span className="bg-secondary pr-3">Filter by price</span>
@@ -36,7 +34,7 @@ export default function ShopSidebar() {
               <label className="custom-control-label" htmlFor={price.id}>
                 {price.price}
               </label>
-              <span className="border px-1" style={{fontSize: "12px"}}>
+              <span className="border px-1" style={{ fontSize: "12px" }}>
                 {price.totalProduct}
               </span>
             </div>
