@@ -6,8 +6,8 @@ export default function Navbar() {
   const [categoryDropdown, setCategoryDropdown] = useState([]);
   useEffect(() => {
     async function collectData() {
-      axios
-        .get("./JSON/category.json")
+    await  axios
+        .get("../JSON/category.json")
         .then((response) => setCategoryDropdown(response.data.category))
         .catch((error) => console.log(error));
     }
@@ -78,9 +78,7 @@ export default function Navbar() {
                   <Link to="/shop" className="nav-item nav-link">
                     Shop
                   </Link>
-                  <Link to="/shop/:id" className="nav-item nav-link">
-                    Shop Detail
-                  </Link>
+                  
                 </div>
                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
                   <Link to="/wishlist" className="btn px-0">

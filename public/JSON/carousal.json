@@ -4,17 +4,17 @@
         {
             "title":"Men Fashion",
             "content":"Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam",
-            "url":"../../src/assets/img/carousel-1.jpg"
+            "url":"../img/carousel-1.jpg"
         },
         {
-            "title":"Men Fashion",
+            "title":"Women Fashion",
             "content":"Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam",
-            "url":"../../src/assets/img/carousel-2.jpg"
+            "url":"../img/carousel-2.jpg"
         },
         {
-            "title":"Men Fashion",
+            "title":"Children Fashion",
             "content":"Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam",
-            "url":"../../src/assets/img/carousel-3.jpg"
+            "url":"../img/carousel-3.jpg"
         }
     ]
 }
