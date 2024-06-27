@@ -13,12 +13,14 @@ export default function ShopSidebar() {
     collectData();
   }, []);
   return (
-    <div className="col-lg-3 col-md-4">
+    <div className="col-lg-3 col-md-4 shop-sidebar" style={{
+      
+    }}>
       {/* Price Start */}
-      <h5 className="section-title position-relative text-uppercase mb-3">
+      <h5 className="section-title position-relative text-uppercase mb-3 ">
         <span className="bg-secondary pr-3">Filter by price</span>
       </h5>
-      <div className="bg-light p-4 mb-30">
+      <div className="bg-light p-4 mb-30 ">
         <form>
           {shopSideBar?.price?.map((price, index) => (
             <div
@@ -43,53 +45,65 @@ export default function ShopSidebar() {
       </div>
       {/* Price End */}
       {/* Color Start */}
-      <h5 className="section-title position-relative text-uppercase mb-3">
-        <span className="bg-secondary pr-3">Filter by color</span>
-      </h5>
-      <div className="bg-light p-4 mb-30">
-        <form>
-          {shopSideBar?.color?.map((color, index) => (
-            <div key={index} className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                defaultChecked=""
-                id={color.id}
-              />
-              <label className="custom-control-label" htmlFor={color.id}>
-                {color.colors}
-              </label>
-              <span className="badge border font-weight-normal">
-                {color.totalProduct}
-              </span>
-            </div>
-          ))}
-        </form>
+      <div className="color-stick">
+        <h5 className="section-title position-relative text-uppercase mb-3 ">
+          <span className="bg-secondary pr-3">Filter by color</span>
+        </h5>
+        <div className="bg-light p-4 mb-30">
+          <form>
+            {shopSideBar?.color?.map((color, index) => (
+              <div
+                key={index}
+                className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+              >
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  defaultChecked=""
+                  id={color.id}
+                />
+                <label className="custom-control-label" htmlFor={color.id}>
+                  {color.colors}
+                </label>
+                <span className="badge border font-weight-normal">
+                  {color.totalProduct}
+                </span>
+              </div>
+            ))}
+          </form>
+        </div>
       </div>
       {/* Color End */}
       {/* Size Start */}
-      <h5 className="section-title position-relative text-uppercase mb-3">
-        <span className="bg-secondary pr-3">Filter by size</span>
-      </h5>
-      <div className="bg-light p-4 mb-30">
-        <form>
-          {shopSideBar?.size?.map((size, index) => (
-            <div key={index} className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                defaultChecked=""
-                id={size.id}
-              />
-              <label className="custom-control-label" htmlFor={size.id}>
-                {size.sizes}
-              </label>
-              <span className="badge border font-weight-normal">{size.totalProduct}</span>
-            </div>
-          ))}
-        </form>
+      <div className="size-stick">
+        <h5 className="section-title position-relative text-uppercase mb-3">
+          <span className="bg-secondary pr-3">Filter by size</span>
+        </h5>
+        <div className="bg-light p-4 mb-30">
+          <form>
+            {shopSideBar?.size?.map((size, index) => (
+              <div
+                key={index}
+                className="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+              >
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  defaultChecked=""
+                  id={size.id}
+                />
+                <label className="custom-control-label" htmlFor={size.id}>
+                  {size.sizes}
+                </label>
+                <span className="badge border font-weight-normal">
+                  {size.totalProduct}
+                </span>
+              </div>
+            ))}
+          </form>
+        </div>
+        {/* Size End */}
       </div>
-      {/* Size End */}
     </div>
   );
 }

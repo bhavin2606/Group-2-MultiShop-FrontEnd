@@ -5,6 +5,7 @@ import product3 from "../../../assets/img/product-3.jpg";
 import product4 from "../../../assets/img/product-4.jpg";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import RatingIntegration from "../../Common/RatingIntegration";
 export default function ShopProductById() {
   const [productDetail, setProductDetail] = useState([]);
   useEffect(() => {
@@ -20,12 +21,15 @@ export default function ShopProductById() {
     }
     collectData();
   }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams();
   console.log(id, "id mil gya");
   console.log(productDetail, "productDetail");
   return (
     <div className="container-fluid pb-5">
-      <div className="row px-xl-5">
+      <div className="row px-xl-5   position-static">
         <div className="col-lg-5 mb-30">
           <div
             id="product-carousel"
@@ -35,6 +39,7 @@ export default function ShopProductById() {
             <div className="carousel-inner bg-light">
               {productDetail?.url?.map((url, index) => (
                 <div
+                  key={index}
                   className={
                     index === 0 ? "carousel-item active" : "carousel-item"
                   }
@@ -64,11 +69,12 @@ export default function ShopProductById() {
             <h3>Product Name Goes Here</h3>
             <div className="d-flex mb-3">
               <div className="text-primary mr-2">
-                <small className="fas fa-star" />
+                <RatingIntegration star={productDetail?.rating} />
+                {/* <small className="fas fa-star" />
                 <small className="fas fa-star" />
                 <small className="fas fa-star" />
                 <small className="fas fa-star-half-alt" />
-                <small className="far fa-star" />
+                <small className="far fa-star" /> */}
               </div>
               <small className="pt-1">
                 ({productDetail.noOfRating} Reviews)
