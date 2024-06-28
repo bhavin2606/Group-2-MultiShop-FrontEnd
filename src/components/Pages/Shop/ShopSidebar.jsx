@@ -63,7 +63,7 @@ export default function ShopSidebar() {
                 <label className="custom-control-label" htmlFor={color.id}>
                   {color.colors}
                 </label>
-                <span className="badge border font-weight-normal">
+                <span className="border px-1" style={{ fontSize: "12px" }}>
                   {color.totalProduct}
                 </span>
               </div>
@@ -93,7 +93,7 @@ export default function ShopSidebar() {
                 <label className="custom-control-label" htmlFor={size.id}>
                   {size.sizes}
                 </label>
-                <span className="badge border font-weight-normal">
+                <span className="border px-1" style={{ fontSize: "12px" }}>
                   {size.totalProduct}
                 </span>
               </div>
