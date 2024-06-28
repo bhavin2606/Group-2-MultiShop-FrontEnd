@@ -3,8 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const Breadcrumbs = () => {
   const location = useLocation();
-  console.log(location);
-  console.log(location.pathname);
 
   return (
     <div className="container-fluid">

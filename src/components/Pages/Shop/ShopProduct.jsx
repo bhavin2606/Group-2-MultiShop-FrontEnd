@@ -101,7 +101,7 @@ export default function ShopProduct() {
                   </div>
                   <div className="col-md-8" style={{ marginTop: "100px" }}>
                     <div className="card-body">
-                      <h5 className="card-title">{data.title}</h5>s
+                      <h5 className="card-title">{data.title}</h5>
                       <p className="card-text">{data.detail}</p>
                       <p className="card-text">
                         <div className="d-flex mt-2">
@@ -141,15 +141,17 @@ export default function ShopProduct() {
                   <div className="product-img position-relative overflow-hidden">
                     <img className="img-fluid w-100" src={data.url[0]} alt="" />
                     <div className="product-action">
-                      <Link to={"/wishlist"}>
-                        <a className="btn btn-outline-dark btn-square" href="">
-                          <i className="far fa-heart" />
-                        </a>
+                      <Link
+                        to={"/wishlist"}
+                        className="btn btn-outline-dark btn-square"
+                      >
+                        <i className="far fa-heart" />
                       </Link>
-                      <Link to={`/shop/${data.id}`}>
-                        <a className="btn btn-outline-dark btn-square" href="">
-                          <i className="fa fa-search" />
-                        </a>
+                      <Link
+                        to={`/shop/${data.id}`}
+                        className="btn btn-outline-dark btn-square"
+                      >
+                        <i className="fa fa-search" />
                       </Link>
                     </div>
                   </div>

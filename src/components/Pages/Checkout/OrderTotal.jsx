@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function OrderTotal() {
+export default function OrderTotal({formik}) {
   return (
     <div className="col-lg-4">
       <h5 className="section-title position-relative text-uppercase mb-3">
@@ -51,6 +51,8 @@ export default function OrderTotal() {
                 className="custom-control-input"
                 name="payment"
                 id="paypal"
+                value="Paypal"
+                onChange={formik.handleChange}
               />
               <label className="custom-control-label" htmlFor="paypal">
                 Paypal
@@ -64,6 +66,8 @@ export default function OrderTotal() {
                 className="custom-control-input"
                 name="payment"
                 id="directcheck"
+                value="Direct Check"
+                onChange={formik.handleChange}
               />
               <label className="custom-control-label" htmlFor="directcheck">
                 Direct Check
@@ -77,13 +81,16 @@ export default function OrderTotal() {
                 className="custom-control-input"
                 name="payment"
                 id="banktransfer"
+                value="Bank Transfer"
+                onChange={formik.handleChange}
               />
               <label className="custom-control-label" htmlFor="banktransfer">
                 Bank Transfer
               </label>
             </div>
           </div>
-          <button className="btn btn-block btn-primary font-weight-bold py-3">
+
+          <button className="btn btn-block btn-primary font-weight-bold py-3" type="submit">
             Place Order
           </button>
         </div>
