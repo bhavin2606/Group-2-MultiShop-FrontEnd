@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SignOut from "../../Auth/SignOut";
 
 export default function Toolbar() {
   const location = useLocation();
-  const [isLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem("isLoggedIn") === "true";
+  });
 
-
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+    };
+  
+    window.addEventListener("storage", handleStorageChange);
+  
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
   return (
     <>
       <div className="container-fluid ">
@@ -72,7 +84,23 @@ export default function Toolbar() {
                 >
                   My Account
                 </button>
-                {isLoggedIn == false ? (
+                {isLoggedIn ? (
+                  <div className="dropdown-menu dropdown-menu-right">
+                    <Link className="text-decoration-none" to="/account">
+                      <button className="dropdown-item" type="button">
+                        My Profile
+                      </button>
+                    </Link>
+                    <Link className="text-decoration-none" to="/account">
+                      <button className="dropdown-item " type="button">
+                        Change Password
+                      </button>
+                    </Link>
+                    <Link className="text-decoration-none">
+                      <SignOut />
+                    </Link>
+                  </div>
+                ) : (
                   <div className="dropdown-menu dropdown-menu-right">
                     <Link className="text-decoration-none" to="/signin">
                       <button className="dropdown-item" type="button">
@@ -84,22 +112,6 @@ export default function Toolbar() {
                         Sign up
                       </button>
                     </Link>
-                  </div>
-                ) : (
-                  <div className="dropdown-menu dropdown-menu-right">
-                    <Link className="text-decoration-none" to="/account">
-                      <button className="dropdown-item" type="button">
-                        My Profile
-                      </button>
-                    </Link>
-                    <Link className="text-decoration-none" to="/account">
-                      <button className="dropdown-item " type="button">
-                        Change Password
-                      </button>
-                      </Link>
-                      <Link className="text-decoration-none W-100">
-                        <SignOut />
-                        </Link>
                   </div>
                 )}
               </div>
