@@ -4,11 +4,12 @@ import Breadcrumbs from "../../../Routes/Breadcrumbs";
 export default function About() {
   return (
     <>
-    <Breadcrumbs/>
+      <Breadcrumbs />
+      <div className="container-fluid">
+      <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
+          <span className="bg-secondary pr-3">About US</span>
+        </h2>
     <div className="container mt-5">
-      <div className="text-center">
-        <h1>MultiShop/About-us</h1>
-      </div>
       <div className="row mt-4">
         <h4>Introduction</h4>
         <p>
@@ -67,6 +68,7 @@ export default function About() {
           </li>
         </ul>
       </div>
+    </div>
     </div>
     </>
   );

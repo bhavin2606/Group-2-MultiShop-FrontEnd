@@ -4,14 +4,11 @@ import logo from "../../assets/img/logo.png";
 import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
 import BackToHome from "../Common/BackToHome";
-import backgroundImage from "../../assets/img/image.png";
 import { toast } from "react-toastify";
 
 export default function SignIn() {
-
-  const location = useLocation()
+  const location = useLocation();
   console.log(location, "losdvfjkrb");
-
 
   let [isLoggedIn, setUserLoggedIn] = useState(
     JSON.parse(localStorage.getItem("isLoggedIn")) ? true : false
@@ -73,34 +70,6 @@ export default function SignIn() {
           <div className="container ">
             <div className="card border-light-subtle shadow-sm">
               <div className="row g-0 rounded">
-                <div
-                  className="col-12 col-md-6"
-                  style={{ backgroundColor: "#F6C324" }}
-                >
-                  <div className="mt-4 ml-4">
-                  <BackToHome/> 
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center h-100 pb-4">
-                    <div className="col-10 col-xl-8 mb-5 mt-0">
-                      <img
-                        className="img-fluid rounded mb-3 mt-5 shadow-lg"
-                        loading="lazy"
-                        src={logo}
-                        width={245}
-                        height={80}
-                        alt="Logo"
-                      />
-                      <hr className="border-primary-subtle mb-4" />
-                      <h2 className="h1 mb-4">
-                        We make digital products that drive you to stand out.
-                      </h2>
-                      <p className="lead m-0">
-                        We write words, take photos, make videos, and interact
-                        with artificial intelligence.
-                      </p>
-                    </div>
-                  </div>
-                </div>
                 <div
                   className="col-12 col-md-6 "
                   style={{ backgroundColor: "#E9E9E7" }}
@@ -226,7 +195,10 @@ export default function SignIn() {
                             </svg>
                             <span className="ms-2 fs-6">Facebook</span>
                           </a>
-                          <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
+                          <a
+                            href="#!"
+                            className="btn bsb-btn-xl btn-warning mr-1"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width={16}
@@ -252,10 +224,38 @@ export default function SignIn() {
                             className="link text-decoration-none"
                             style={{ color: "#c89601" }}
                           >
-                           &nbsp;Sign Up
+                            &nbsp;Sign Up
                           </Link>
                         </p>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="col-12 col-md-6"
+                  style={{ backgroundColor: "#F6C324" }}
+                >
+                  <div className="mt-4 ml-4">
+                    <BackToHome />
+                  </div>
+                  <div className="d-flex align-items-center justify-content-center h-100 pb-4">
+                    <div className="col-10 col-xl-8 mb-5 mt-0">
+                      <img
+                        className="img-fluid rounded mb-3 mt-5 shadow-lg"
+                        loading="lazy"
+                        src={logo}
+                        width={245}
+                        height={80}
+                        alt="Logo"
+                      />
+                      <hr className="border-primary-subtle mb-4" />
+                      <h2 className="h1 mb-4">
+                        We make digital products that drive you to stand out.
+                      </h2>
+                      <p className="lead m-0">
+                        We write words, take photos, make videos, and interact
+                        with artificial intelligence.
+                      </p>
                     </div>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ export default function Searchbar() {
             <Link to="/" className="text-decoration-none">
               <span className="h1 text-uppercase text-primary bg-dark px-2">
                 MULTI 
-              </span>
+              </span> 
               <span className="h1 text-uppercase text-dark bg-primary px-2 ml-n1">
                 Shop
               </span>

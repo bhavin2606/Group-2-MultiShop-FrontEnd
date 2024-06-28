@@ -5,7 +5,7 @@ export default function ProductFeatured() {
   const [productFeatured, setProductFeatured] = useState([]);
   useEffect(() => {
     async function collectData() {
-     await axios
+      await axios
         .get("./JSON/product.json")
         .then((response) => setProductFeatured(response.data.product))
         .catch((error) => console.log(error));
@@ -25,21 +25,23 @@ export default function ProductFeatured() {
               <div className="product-img position-relative overflow-hidden">
                 <img className="img-fluid w-100" src={data.url[0]} alt="" />
                 <div className="product-action">
-                  <Link to={"/wishlist"}>
-                    <a className="btn btn-outline-dark btn-square" href="">
-                      <i className="far fa-heart" />
-                    </a>
+                  <Link
+                    to={"/wishlist"}
+                    className="btn btn-outline-dark btn-square"
+                  >
+                    <i className="far fa-heart" />
                   </Link>
-                  <Link to={`/shop/${data.id}`}>
-                    <a className="btn btn-outline-dark btn-square" href="">
-                      <i className="fa fa-search" />
-                    </a>
+                  <Link
+                    to={`/shop/${data.id}`}
+                    className="btn btn-outline-dark btn-square"
+                  >
+                    <i className="fa fa-search" />
                   </Link>
                 </div>
               </div>
               <div className="text-center py-4">
                 <a className="h6 text-decoration-none text-truncate" href="">
-                 {data.title}
+                  {data.title}
                 </a>
                 <div className="d-flex align-items-center justify-content-center mt-2">
                   <h5>${data.price}</h5>

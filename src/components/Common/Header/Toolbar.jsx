@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SignOut from "../../Auth/SignOut";
 
 export default function Toolbar() {
@@ -7,14 +7,13 @@ export default function Toolbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem("isLoggedIn") === "true";
   });
-
   useEffect(() => {
     const handleStorageChange = () => {
       setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
     };
-  
+
     window.addEventListener("storage", handleStorageChange);
-  
+
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
@@ -91,7 +90,7 @@ export default function Toolbar() {
                         My Profile
                       </button>
                     </Link>
-                    <Link className="text-decoration-none" to="/account">
+                    <Link className="text-decoration-none" to="/changepassword">
                       <button className="dropdown-item " type="button">
                         Change Password
                       </button>

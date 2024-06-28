@@ -59,37 +59,6 @@ export default function SignUp() {
             <div className="row g-0">
               <div
                 className="col-12 col-md-6"
-                style={{ backgroundColor: "#F6C324" }}
-              >
-                 <div className="mt-4 ml-4">
-                  <BackToHome />
-                </div>
-                <div
-                  className="d-flex justify-content-center my-sm-3 align-items-center h-100 pb-5"
-                  // style={{ marginTop: "17%" }}
-                >
-                  <div className="col-10 col-xl-8 m-sm-4 m-md-0 m-4">
-                    <img
-                      className="img-fluid rounded mb-4 shadow-lg"
-                      loading="lazy"
-                      src={logo}
-                      width={245}
-                      height={80}
-                      alt="BootstrapBrain Logo"
-                    />
-                    <hr className="border-primary-subtle mb-4" />
-                    <h2 className="h1 mb-4">
-                      We make digital products that drive you to stand out.
-                    </h2>
-                    <p className="lead m-0">
-                      We write words, take photos, make videos, and interact
-                      with artificial intelligence.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="col-12 col-md-6"
                 style={{ backgroundColor: "#E9E9E7" }}
               >
                 <div className="card-body p-3 p-md-4 p-xl-5 m-sm-5 m-md-0 m-4">
@@ -326,105 +295,42 @@ export default function SignUp() {
                   </div>
                 </div>
               </div>
+              <div
+                className="col-12 col-md-6"
+                style={{ backgroundColor: "#F6C324" }}
+              >
+                 <div className="mt-4 ml-4">
+                  <BackToHome />
+                </div>
+                <div
+                  className="d-flex justify-content-center my-sm-3 align-items-center h-100 pb-5"
+                  // style={{ marginTop: "17%" }}
+                >
+                  <div className="col-10 col-xl-8 m-sm-4 m-md-0 m-4">
+                    <img
+                      className="img-fluid rounded mb-4 shadow-lg"
+                      loading="lazy"
+                      src={logo}
+                      width={245}
+                      height={80}
+                      alt="BootstrapBrain Logo"
+                    />
+                    <hr className="border-primary-subtle mb-4" />
+                    <h2 className="h1 mb-4">
+                      We make digital products that drive you to stand out.
+                    </h2>
+                    <p className="lead m-0">
+                      We write words, take photos, make videos, and interact
+                      with artificial intelligence.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
     </>
 
-    // <div className="container w-50 mt-5">
-    //   <h1>SignUp Now</h1>
-    //   <form className="py-2" onSubmit={handleSubmit}>
-    //     <div className="input-block py-2">
-    //       <label htmlFor="name" className="form-label">
-    //         Name
-    //       </label>
-    //       <input
-    //         type="name"
-    //         autoComplete="off"
-    //         name="name"
-    //         id="name"
-    //         className="form-control"
-    //         placeholder="Name"
-    //         value={values.name}
-    //         onChange={handleChange}
-    //         onBlur={handleBlur}
-    //       />
-    //       {touched.name && errors.name ? (
-    //         <p className="form-error text-danger">{errors.name}</p>
-    //       ) : null}
-    //     </div>
-    //     <div className="input-block py-2">
-    //       <label htmlFor="email" className="form-label">
-    //         Email
-    //       </label>
-    //       <input
-    //         type="email"
-    //         autoComplete="off"
-    //         name="email"
-    //         className="form-control"
-    //         id="email"
-    //         placeholder="Email"
-    //         value={values.email}
-    //         onChange={handleChange}
-    //         onBlur={handleBlur}
-    //       />
-    //       {errors.email && touched.email ? (
-    //         <p className="form-error text-danger">{errors.email}</p>
-    //       ) : null}
-    //     </div>
-    //     <div className="input-block py-2">
-    //       <label htmlFor="password" className="form-label">
-    //         Password
-    //       </label>
-    //       <input
-    //         type="password"
-    //         autoComplete="off"
-    //         name="password"
-    //         className="form-control"
-    //         id="password"
-    //         placeholder="Password"
-    //         value={values.password}
-    //         onChange={handleChange}
-    //         onBlur={handleBlur}
-    //       />
-    //       {errors.password && touched.password ? (
-    //         <p className="form-error text-danger">{errors.password}</p>
-    //       ) : null}
-    //     </div>
-    //     <div className="input-block py-2">
-    //       <label htmlFor="confirm_password" className="form-label">
-    //         Password
-    //       </label>
-    //       <input
-    //         className="form-control"
-    //         type="password"
-    //         autoComplete="off"
-    //         name="confirm_password"
-    //         id="confirm_password"
-    //         placeholder="Confirm Password"
-    //         value={values.confirm_password}
-    //         onChange={handleChange}
-    //         onBlur={handleBlur}
-    //       />
-    //       {errors.confirm_password && touched.confirm_password ? (
-    //         <p className="form-error text-danger">{errors.confirm_password}</p>
-    //       ) : null}
-    //     </div>
-    //     <div className="modal-buttons py-2">
-    //       <Link to="/signin" className="">
-    //         Already logged In?
-    //       </Link>
-    //       <br />
-    //       <br />
-    //       <div className="d-flex">
-    //       <button className="input-button btn btn-primary" type="submit">
-    //         SIGN UP
-    //         </button>
-    //         <BackToHome/>
-    //       </div>
-    //     </div>
-    //   </form>
-    // </div>
   );
 }

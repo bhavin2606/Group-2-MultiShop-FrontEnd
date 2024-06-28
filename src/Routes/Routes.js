@@ -13,6 +13,7 @@ import SignIn from "../components/Auth/SignIn";
 import SignUp from "../components/Auth/SignUp";
 import ResetPassword from "../components/Auth/ResetPassword";
 import MyAccount from "../components/Pages/Account/MyAccount";
+import ChangePassword from "../components/Auth/ChangePassword";
 
 export const routesObject = [
     {
@@ -31,7 +32,7 @@ export const routesObject = [
         layout: true,
     },
     {
-        id: 12,
+        id: 3,
         path: 'shop/:id',
         element: <ShopDetails />,
         errorElement: <ErrorPage />,
@@ -39,7 +40,7 @@ export const routesObject = [
         layout: true,
     },
     {
-        id: 3,
+        id: 4,
         path: 'checkout',
         element: <Checkout />,
         name: 'Checkout',
@@ -47,7 +48,7 @@ export const routesObject = [
 
     },
     {
-        id: 4,
+        id: 5,
         path: 'contact',
         element: <Contact />,
         name: 'Contact',
@@ -55,7 +56,7 @@ export const routesObject = [
 
     },
     {
-        id: 5,
+        id: 6,
         path: 'about',
         element: <About />,
         name: 'About',
@@ -63,14 +64,14 @@ export const routesObject = [
 
     },
     {
-        id: 6,
+        id: 7,
         path: 'help',
         element: <Help />,
         name: 'Help',
         layout: true
     },
     {
-        id: 7,
+        id: 8,
         path: 'faqs',
         element: <FAQs />,
         name: 'Faqs',
@@ -78,14 +79,14 @@ export const routesObject = [
 
     },
     {
-        id: 8,
+        id: 9,
         path: 'cart',
         element: <Cart />,
         name: 'Cart',
         layout: true
     },
     {
-        id: 9,
+        id: 10,
         path: 'wishlist',
         element: <Wishlist />,
         name: 'wishlist',
@@ -93,30 +94,37 @@ export const routesObject = [
     },
 
     {
-        id: 10,
+        id: 11,
         path: 'signup',
         element: <SignUp />,
         name: 'SignUp',
-        layout: false
+        layout: true
     },
     {
-        id: 11,
+        id: 12,
         path: 'signin',
         element: <SignIn />,
         name: 'SignIn',
-        layout: false
+        layout: true
     },
     {
         id: 13,
         path: 'resetpassword',
         element: <ResetPassword />,
         name: 'ResetPassword',
-        layout: false
+        layout: true
     },
     {
-        id: 13,
+        id: 14,
         path: 'account',
         element: <MyAccount />,
+        name: 'MyAccount',
+        layout: true
+    },
+    {
+        id: 15,
+        path: 'changepassword',
+        element: <ChangePassword />,
         name: 'MyAccount',
         layout: true
     },
