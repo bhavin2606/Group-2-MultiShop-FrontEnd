@@ -4,6 +4,7 @@ import SignOut from "../../Auth/SignOut";
 
 export default function Toolbar() {
   const location = useLocation();
+  
   const [isLoggedIn] = useState(localStorage.getItem("isLoggedIn"));
 
 
@@ -72,7 +73,7 @@ export default function Toolbar() {
                 >
                   My Account
                 </button>
-                {isLoggedIn == false ? (
+                {isLoggedIn === "false" ? (
                   <div className="dropdown-menu dropdown-menu-right">
                     <Link className="text-decoration-none" to="/signin">
                       <button className="dropdown-item" type="button">

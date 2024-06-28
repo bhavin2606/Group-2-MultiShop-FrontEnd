@@ -101,7 +101,7 @@ export default function ShopProduct() {
                   </div>
                   <div className="col-md-8" style={{ marginTop: "100px" }}>
                     <div className="card-body">
-                      <h5 className="card-title">{data.title}</h5>
+                      <h5 className="card-title">{data.title}</h5>s
                       <p className="card-text">{data.detail}</p>
                       <p className="card-text">
                         <div className="d-flex mt-2">
@@ -118,12 +118,15 @@ export default function ShopProduct() {
                         <small className="fa fa-star text-primary mr-1" />
                         <small className="fa fa-star text-primary mr-1" />
                         <small>({data.noOfRating})</small>
-                    </div>
-                    <Link to={`/shop/${data.id}`}>
-                      <button className="btn btn-secondary px-3 mt-5 mx-3" style={{backgroundColor:"#E9E9E7"}}>
-                        <i className="fa fa-info-circle mr-1" /> View Detail
-                    </button>
-                    </Link>
+                      </div>
+                      <Link to={`/shop/${data.id}`}>
+                        <button
+                          className="btn btn-secondary px-3 mt-5 mx-3"
+                          style={{ backgroundColor: "#E9E9E7" }}
+                        >
+                          <i className="fa fa-info-circle mr-1" /> View Detail
+                        </button>
+                      </Link>
                       <button className="btn btn-primary px-3 mt-5">
                         <i className="fa fa-star mr-1" /> Add To WishList
                       </button>
@@ -153,7 +156,9 @@ export default function ShopProduct() {
                   <div className="text-center py-4">
                     <a
                       className="h6 text-decoration-none text-truncate"
-                      href=""
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title={data.title}
                     >
                       {data.title}
                     </a>
