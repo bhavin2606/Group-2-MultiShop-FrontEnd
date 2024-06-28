@@ -64,7 +64,7 @@ export default function ShopProductById() {
         </div>
         <div className="col-lg-7 h-auto mb-30">
           <div className="h-100 bg-light p-30">
-            <h3>Product Name Goes Here</h3>
+            <h3>{productDetail?.title}</h3>
             <div className="d-flex mb-3">
               <div className="text-primary mr-2">
                 <RatingIntegration star={productDetail?.rating} />

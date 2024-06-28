@@ -10,6 +10,7 @@ import image8 from "../../../assets/img/product-8.jpg";
 import image9 from "../../../assets/img/product-9.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import RatingIntegration from "../../Common/RatingIntegration";
 export default function ShopProduct() {
   const [toggleGrid, setToggleGrid] = useState(false);
   const [shopProduct, setShopProduct] = useState([]);
@@ -101,7 +102,7 @@ export default function ShopProduct() {
                   </div>
                   <div className="col-md-8" style={{ marginTop: "100px" }}>
                     <div className="card-body">
-                      <h5 className="card-title">{data.title}</h5>s
+                      <h5 className="card-title">{data.title}</h5>
                       <p className="card-text">{data.detail}</p>
                       <p className="card-text">
                         <div className="d-flex mt-2">
@@ -112,11 +113,7 @@ export default function ShopProduct() {
                         </div>
                       </p>
                       <div className="d-flex ">
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
+                       <RatingIntegration star={data.rating}/>
                         <small>({data.noOfRating})</small>
                       </div>
                       <Link to={`/shop/${data.id}`}>
@@ -141,27 +138,29 @@ export default function ShopProduct() {
                   <div className="product-img position-relative overflow-hidden">
                     <img className="img-fluid w-100" src={data.url[0]} alt="" />
                     <div className="product-action">
-                      <Link to={"/wishlist"}>
-                        <a className="btn btn-outline-dark btn-square" href="">
-                          <i className="far fa-heart" />
-                        </a>
+                      <Link
+                        to={"/wishlist"}
+                        className="btn btn-outline-dark btn-square"
+                      >
+                        <i className="far fa-heart" />
                       </Link>
-                      <Link to={`/shop/${data.id}`}>
-                        <a className="btn btn-outline-dark btn-square" href="">
-                          <i className="fa fa-search" />
-                        </a>
+                      <Link
+                        to={`/shop/${data.id}`}
+                        className="btn btn-outline-dark btn-square"
+                      >
+                        <i className="fa fa-search" />
                       </Link>
                     </div>
                   </div>
-                  <div className="text-center py-4">
-                    <a
+                  <div className="text-center py-4 p-4">
+                    <Link
                       className="h6 text-decoration-none text-truncate"
                       data-toggle="tooltip"
                       data-placement="top"
                       title={data.title}
                     >
                       {data.title}
-                    </a>
+                    </Link>
                     <div className="d-flex align-items-center justify-content-center mt-2">
                       <h5>${data.price}</h5>
                       <h6 className="text-muted ml-2">
@@ -169,11 +168,7 @@ export default function ShopProduct() {
                       </h6>
                     </div>
                     <div className="d-flex align-items-center justify-content-center mb-1">
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
+                    <RatingIntegration star={data.rating}/>
                       <small>({data.noOfRating})</small>
                     </div>
                   </div>
