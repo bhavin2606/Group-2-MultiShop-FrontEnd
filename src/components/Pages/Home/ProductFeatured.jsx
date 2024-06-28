@@ -6,7 +6,7 @@ export default function ProductFeatured() {
   const [productFeatured, setProductFeatured] = useState([]);
   useEffect(() => {
     async function collectData() {
-      await axios
+      await axios;
       await axios
         .get("./JSON/product.json")
         .then((response) => setProductFeatured(response.data.product))
@@ -32,17 +32,8 @@ export default function ProductFeatured() {
                     className="btn btn-outline-dark btn-square"
                   >
                     <i className="far fa-heart" />
-                  <Link
-                    to={"/wishlist"}
-                    className="btn btn-outline-dark btn-square"
-                  >
-                    <i className="far fa-heart" />
                   </Link>
-                  <Link
-                    className="btn btn-outline-dark btn-square"
-                    to={`/shop/${data.id}`}
-                  >
-                    <i className="fa fa-search" />
+
                   <Link
                     to={`/shop/${data.id}`}
                     className="btn btn-outline-dark btn-square"
@@ -52,17 +43,14 @@ export default function ProductFeatured() {
                 </div>
               </div>
               <div className="text-center py-4">
-                <a
+                <Link
                   className="h6 text-decoration-none text-truncate"
                   href=""
                   data-toggle="tooltip"
                   data-placement="top"
                   title={data.title}
-                >
-                  {data.title}
-                <a className="h6 text-decoration-none text-truncate" href="">
-                  {data.title}
-                </a>
+                ></Link>
+
                 <div className="d-flex align-items-center justify-content-center mt-2">
                   <h5>${data.price}</h5>
                   <h6 className="text-muted ml-2">
