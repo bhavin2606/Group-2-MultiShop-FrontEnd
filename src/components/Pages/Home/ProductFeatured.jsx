@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import RatingIntegration from "../../Common/RatingIntegration";
 export default function ProductFeatured() {
   const [productFeatured, setProductFeatured] = useState([]);
   useEffect(() => {
@@ -40,7 +41,13 @@ export default function ProductFeatured() {
                 </div>
               </div>
               <div className="text-center py-4">
-                <a className="h6 text-decoration-none text-truncate" href="">
+                <a
+                  className="h6 text-decoration-none text-truncate"
+                  href=""
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title={data.title}
+                >
                   {data.title}
                 </a>
                 <div className="d-flex align-items-center justify-content-center mt-2">
@@ -50,11 +57,7 @@ export default function ProductFeatured() {
                   </h6>
                 </div>
                 <div className="d-flex align-items-center justify-content-center mb-1">
-                  <small className="fa fa-star text-primary mr-1" />
-                  <small className="fa fa-star text-primary mr-1" />
-                  <small className="fa fa-star text-primary mr-1" />
-                  <small className="fa fa-star text-primary mr-1" />
-                  <small className="fa fa-star text-primary mr-1" />
+                  <RatingIntegration star={data.rating} />
                   <small>({data.noOfRating})</small>
                 </div>
               </div>

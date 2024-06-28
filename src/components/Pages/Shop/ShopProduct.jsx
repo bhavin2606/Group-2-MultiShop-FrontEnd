@@ -10,6 +10,7 @@ import image8 from "../../../assets/img/product-8.jpg";
 import image9 from "../../../assets/img/product-9.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import RatingIntegration from "../../Common/RatingIntegration";
 export default function ShopProduct() {
   const [toggleGrid, setToggleGrid] = useState(false);
   const [shopProduct, setShopProduct] = useState([]);
@@ -112,11 +113,7 @@ export default function ShopProduct() {
                         </div>
                       </p>
                       <div className="d-flex ">
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
-                        <small className="fa fa-star text-primary mr-1" />
+                       <RatingIntegration star={data.rating}/>
                         <small>({data.noOfRating})</small>
                       </div>
                       <Link to={`/shop/${data.id}`}>
@@ -155,15 +152,15 @@ export default function ShopProduct() {
                       </Link>
                     </div>
                   </div>
-                  <div className="text-center py-4">
-                    <a
+                  <div className="text-center py-4 p-4">
+                    <Link
                       className="h6 text-decoration-none text-truncate"
                       data-toggle="tooltip"
                       data-placement="top"
                       title={data.title}
                     >
                       {data.title}
-                    </a>
+                    </Link>
                     <div className="d-flex align-items-center justify-content-center mt-2">
                       <h5>${data.price}</h5>
                       <h6 className="text-muted ml-2">
@@ -171,11 +168,7 @@ export default function ShopProduct() {
                       </h6>
                     </div>
                     <div className="d-flex align-items-center justify-content-center mb-1">
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
-                      <small className="fa fa-star text-primary mr-1" />
+                    <RatingIntegration star={data.rating}/>
                       <small>({data.noOfRating})</small>
                     </div>
                   </div>

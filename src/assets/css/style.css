@@ -9561,9 +9561,9 @@ button.bg-dark:focus {
 }
 
 .text-truncate {
-  /* margin-left: 5vw; */
+  margin-left: 10rm;
   display: block;
-  width: 20vw;
+  width: 12rm;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
