@@ -17,7 +17,7 @@ export default function ContactForm() {
       validateOnBlur: false,
 
       onSubmit: (values, action) => {
-        alert(values.name);
+        alert("Name" + values.name);
         action.resetForm();
       },
     });

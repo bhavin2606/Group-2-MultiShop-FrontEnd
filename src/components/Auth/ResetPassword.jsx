@@ -21,7 +21,7 @@ export default function ResetPassword() {
       onSubmit: (values, action) => {
         // Post API call for Reset Password
         action.resetForm();
-        alert("Email :", values.email);
+        alert("Email :" + values.email);
         toast.success("Password Reset Successfully!", {
           position: "top-right",
           marginTop: "2%",

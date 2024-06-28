@@ -7,5 +7,5 @@ export const changePasswordSchema = Yup.object({
     newPassword: Yup.string().matches(passwordRules, { message: "Please create Password must contain 8 or more characters with at least one of each: uppercase, lowercase, number and special'" }) ,
     confirmPassword:Yup.string()
     .required()
-    .oneOf([Yup.ref("password"), null], "Password must match"),
+    .oneOf([Yup.ref("confirmPassword"), null], "Password must match"),
 });

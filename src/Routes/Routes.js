@@ -12,8 +12,8 @@ import ErrorPage from "../components/Common/ErrorPage";
 import SignIn from "../components/Auth/SignIn";
 import SignUp from "../components/Auth/SignUp";
 import ResetPassword from "../components/Auth/ResetPassword";
-import MyAccount from "../components/Pages/Account/MyAccount";
 import ChangePassword from "../components/Auth/ChangePassword";
+import UserAccount from "../components/Pages/Account/UserAccount";
 
 export const routesObject = [
     {
@@ -117,7 +117,7 @@ export const routesObject = [
     {
         id: 14,
         path: 'account',
-        element: <MyAccount />,
+        element: <UserAccount />,
         name: 'MyAccount',
         layout: true
     },

@@ -57,7 +57,7 @@ export default function SignIn() {
             theme: "light",
           });
         }
-      },
+      },  
     });
 
   return (

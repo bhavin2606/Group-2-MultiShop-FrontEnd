@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./account.css";
+import { useFormik } from "formik";
+import { userAccountSchema } from "../../validations/userAccountSchema";
 
-export default function MyAccount() {
+export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);
   console.log(editButton);
   const [profile, setProfile] = useState(
     "https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
   );
 
-  function handleChange(e) {
+  function handleProfileChange(e) {
     // Call the Api
     // Set Image URl to Profile
     setProfile(e.target.files[0]);
@@ -23,7 +25,27 @@ export default function MyAccount() {
     setEditButton(true);
   }
 
-  // console.log(profile);
+  const initialValues = {
+    firstName: "Smit",
+    lastName: "Patel",
+    phoneNumber: "9157596767",
+    birthday: "09/04/2002",
+  };
+
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues,
+      validationSchema: userAccountSchema,
+      validateOnChange: true,
+      validateOnBlur: false,
+
+      onSubmit: (values, action) => {
+        action.resetForm();
+        alert("your name " + values.firstName);
+        // Post API will call from here
+      },
+    });
+
   return (
     <div className="container-xl px-4 mt-4">
       {/* Account page navigation*/}
@@ -44,7 +66,7 @@ export default function MyAccount() {
                 <input
                   id="file"
                   type="file"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleProfileChange(e)}
                 />
                 <img src={profile} id="output" width="200" />
               </div>
@@ -79,22 +101,6 @@ export default function MyAccount() {
             </div>
             <div className="card-body">
               <form>
-                {/* Form Group (username)*/}
-                {/* <div className="mb-3">
-                  <label className="small mb-1" htmlFor="inputUsername">
-                    Username (how your name will appear to other users on the
-                    site)
-                  </label>
-                  <input
-                    className="form-control"
-                    id="inputUsername"
-                    type="text"
-                    placeholder="Enter your username"
-                    defaultValue="username"
-                    disabled={editButton ? false : true}
-                  />
-                </div> */}
-                {/* Form Row*/}
                 <div className="row gx-3 mb-3">
                   {/* Form Group (first name)*/}
                   <div className="col-md-6">
@@ -106,9 +112,17 @@ export default function MyAccount() {
                       id="inputFirstName"
                       type="text"
                       placeholder="Enter your first name"
-                      defaultValue="Valerie"
                       disabled={editButton ? false : true}
+                      name="firstName"
+                      value={values.firstName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
+                    {errors.firstName && touched.firstName ? (
+                      <p className="form-error text-danger">
+                        {errors.firstName}
+                      </p>
+                    ) : null}
                   </div>
                   {/* Form Group (last name)*/}
                   <div className="col-md-6">
@@ -120,43 +134,19 @@ export default function MyAccount() {
                       id="inputLastName"
                       type="text"
                       placeholder="Enter your last name"
-                      defaultValue="Luna"
                       disabled={editButton ? false : true}
+                      name="lastName"
+                      value={values.lastName}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
+                    {errors.lastName && touched.lastName ? (
+                      <p className="form-error text-danger">
+                        {errors.lastName}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
-                {/* Form Row        */}
-                {/* <div className="row gx-3 mb-3"> */}
-                {/* Form Group (organization name)*/}
-                {/* <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputOrgName">
-                      Organization name
-                    </label>
-                    <input
-                      className="form-control"
-                      id="inputOrgName"
-                      type="text"
-                      placeholder="Enter your organization name"
-                      defaultValue="Start Bootstrap"
-                      disabled={editButton ? false : true}
-                    />
-                  </div> */}
-                {/* Form Group (location)*/}
-                {/* <div className="col-md-6">
-                    <label className="small mb-1" htmlFor="inputLocation">
-                      Location
-                    </label>
-                    <input
-                      className="form-control"
-                      id="inputLocation"
-                      type="text"
-                      placeholder="Enter your location"
-                      defaultValue="San Francisco, CA"
-                      disabled={editButton ? false : true}
-                    />
-                  </div>
-                </div> */}
-                {/* Form Group (email address)*/}
                 <div className="mb-3">
                   <label className="small mb-1" htmlFor="inputEmailAddress">
                     Email address
@@ -170,9 +160,7 @@ export default function MyAccount() {
                     disabled
                   />
                 </div>
-                {/* Form Row*/}
                 <div className="row gx-3 mb-3">
-                  {/* Form Group (phone number)*/}
                   <div className="col-md-6">
                     <label className="small mb-1" htmlFor="inputPhone">
                       Phone number
@@ -182,9 +170,16 @@ export default function MyAccount() {
                       id="inputPhone"
                       type="tel"
                       placeholder="Enter your phone number"
-                      defaultValue="555-123-4567"
                       disabled={editButton ? false : true}
+                      value={values.phoneNumber}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
+                    {errors.phoneNumber && touched.phoneNumber ? (
+                      <p className="form-error text-danger">
+                        {errors.phoneNumber}
+                      </p>
+                    ) : null}
                   </div>
                   {/* Form Group (birthday)*/}
                   <div className="col-md-6">
@@ -194,12 +189,19 @@ export default function MyAccount() {
                     <input
                       className="form-control"
                       id="inputBirthday"
-                      type="text"
+                      type="date"
                       name="birthday"
                       placeholder="Enter your birthday"
-                      defaultValue="06/10/1988"
                       disabled={editButton ? false : true}
+                      value={values.birthday}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
+                    {errors.birthday && touched.birthday ? (
+                      <p className="form-error text-danger">
+                        {errors.birthday}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
                 {/* Save changes button*/}

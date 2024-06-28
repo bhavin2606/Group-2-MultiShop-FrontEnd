@@ -17,7 +17,9 @@ export default function ChangePassword() {
       validateOnBlur: false,
 
       onSubmit: (values, action) => {
-        action.resetForm();
+          action.resetForm();
+          alert("your new password " + values.newPassword)
+          // Post API will call from here
       },
     });
 
