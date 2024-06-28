@@ -18,7 +18,7 @@ function LogoutModal() {
 
   function handleLogout() {
     // Update localStorage
-    localStorage.setItem("isLoggedIn", "false");
+    localStorage.removeItem("isLoggedIn", "false");
 
     // Show success toast
     toast.success("Logged Out Successfully!", {
