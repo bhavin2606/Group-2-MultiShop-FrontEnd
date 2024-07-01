@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
 import BackToHome from "../Common/BackToHome";
 import { toast } from "react-toastify";
+import { AuthContext } from "./AuthContext";
 
 export default function SignIn() {
   const location = useLocation();
   console.log(location, "losdvfjkrb");
 
-  let [isLoggedIn, setUserLoggedIn] = useState(
-    JSON.parse(localStorage.getItem("isLoggedIn")) ? true : false
-  );
-
-  useEffect(() => {
-    localStorage.setItem("isLoggedIn", isLoggedIn);
-  }, [isLoggedIn]);
+  const { login } = useContext(AuthContext);
 
   const initialValues = {
     email: "",
@@ -40,9 +35,7 @@ export default function SignIn() {
             (e) => e.email === values.email && e.password === values.password
           )
         ) {
-          setUserLoggedIn(true);
-          alert("email", values.email);
-          localStorage.setItem("isLoggedIn", true);
+          login();
           action.resetForm();
           navigate("/");
           toast.success("Logged In Successfully!", {
@@ -57,7 +50,7 @@ export default function SignIn() {
             theme: "light",
           });
         }
-      },  
+      },
     });
 
   return (
