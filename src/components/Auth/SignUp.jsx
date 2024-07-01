@@ -21,6 +21,7 @@ export default function SignUp() {
     password: "",
     confirm_password: "",
   };
+  
   let navigate = useNavigate();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
@@ -55,10 +56,10 @@ export default function SignUp() {
     <>
       <section className="p-3 p-md-4 p-xl-5">
         <div className="container">
-          <div className="card border-light-subtle shadow-sm">
-            <div className="row g-0">
+          {/* <div className="card border-light-subtle shadow-sm"> */}
+            <div className="row g-0 justify-content-center">
               <div
-                className="col-12 col-md-6"
+                className="col-xl-8 col-sm-12 col-12"
                 style={{ backgroundColor: "#E9E9E7" }}
               >
                 <div className="card-body p-3 p-md-4 p-xl-5 m-sm-5 m-md-0 m-4">
@@ -295,7 +296,7 @@ export default function SignUp() {
                   </div>
                 </div>
               </div>
-              <div
+              {/* <div
                 className="col-12 col-md-6"
                 style={{ backgroundColor: "#F6C324" }}
               >
@@ -325,9 +326,9 @@ export default function SignUp() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
-          </div>
+          {/* </div> */}
         </div>
       </section>
     </>

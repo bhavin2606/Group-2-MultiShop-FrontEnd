@@ -1,6 +1,38 @@
 import React from "react";
+import { newsLetterSchema } from "../validations/newsLetterSchema";
+import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 export default function Footer() {
+const initialValues = {
+  email: "",
+};
+
+const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+useFormik({
+  initialValues,
+  validationSchema: newsLetterSchema,
+  validateOnChange: true,
+  validateOnBlur: false,
+
+  onSubmit: (values, action) => {
+    {
+      action.resetForm();
+      toast.success("Subscribed Successfully!", {
+        position: "top-right",
+        marginTop: "2%",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  },
+}); 
+
   return (
     <div>
       <div className="container-fluid bg-dark text-secondary mt-5 pt-5">
@@ -91,9 +123,18 @@ export default function Footer() {
                       type="text"
                       className="form-control"
                       placeholder="Your Email Address"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                     />
+                    {errors.email && touched.email ? (
+                      <p className="form-error text-danger">
+                        {errors.email}
+                      </p>
+                    ) : null}
                     <div className="input-group-append">
-                      <button className="btn btn-primary">Sign Up</button>
+                      <button onClick={handleSubmit} className="btn btn-primary">Sign Up</button>
                     </div>
                   </div>
                 </form>

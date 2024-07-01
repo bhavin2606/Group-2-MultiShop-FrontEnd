@@ -1,56 +1,36 @@
-import { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useContext, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../Auth/AuthContext';
 
 function LogoutModal() {
   const [show, setShow] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Separate state for toolbar
-
-  useEffect(() => {
-    setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
-  }, []); // Initialize toolbar state from localStorage
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  let navigate = useNavigate();
 
-  function handleLogout() {
-    // Update localStorage
-    localStorage.removeItem("isLoggedIn", "false");
+  const handleLogout = () => {
+    logout();
 
-    // Show success toast
-    toast.success("Logged Out Successfully!", {
-      position: "top-right",
-      marginTop: "2%",
+    toast.success('Logged Out Successfully!', {
+      position: 'top-right',
+      marginTop: '2%',
       autoClose: 4000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "light",
+      theme: 'light',
     });
 
-    // Close modal
     handleClose();
-
-    // Navigate to home page after logout
-    navigate("/", { replace: true });
-
-    // Inform user to refresh for toolbar update (optional)
-    toast.info("Please refresh the page for toolbar update.", {
-      position: "top-right",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  }
+    navigate('/', { replace: true });
+  };
 
   return (
     <>

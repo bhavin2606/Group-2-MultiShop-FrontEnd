@@ -1,106 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import SignOut from "../../Auth/SignOut";
+import React, { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import LogoutModal from '../../Modal/LogoutModal';
+import { AuthContext } from '../../Auth/AuthContext';
 
 export default function Toolbar() {
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return localStorage.getItem("isLoggedIn") === "true";
-  });
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
-    };
+  const { isLoggedIn } = useContext(AuthContext);
 
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
   return (
-    <>
-      <div className="container-fluid ">
-        <div className="row bg-secondary py-1 px-xl-5">
-          <div
-            className="col-lg-6 d-none d-lg-block collapse"
-            id="navbarCollapse"
-          >
-            <div className="d-inline-flex align-items-center h-100 navbar p-0">
-              <Link
-                className={`px-2 nav-link ${
-                  location?.pathname === "/about" && "active text-warning"
-                }`}
-                to="/about"
-              >
-                About
-              </Link>
-              <Link
-                className={`px-2 nav-link ${
-                  location?.pathname === "/contact" && "active text-warning"
-                }`}
-                to="/contact"
-                id="pills-shop-tab"
-                role="tab"
-                aria-controls="pills-shop"
-                aria-selected="false"
-              >
-                Contact
-              </Link>
-              <Link
-                className={`px-2 nav-link ${
-                  location?.pathname === "/help" && "active text-warning"
-                }`}
-                to="/help"
-                id="pills-help-tab"
-                role="tab"
-                aria-controls="pills-shop"
-                aria-selected="false"
-              >
-                Help
-              </Link>
-              <Link
-                className={`px-2 nav-link ${
-                  location?.pathname === "/faqs" && "active text-warning"
-                }`}
-                to="/faqs"
-                id="pills-help-tab"
-                role="tab"
-                aria-controls="pills-shop"
-                aria-selected="false"
-              >
-                FAQs
-              </Link>
-            </div>
+    <div className="container-fluid">
+      <div className="row bg-secondary py-1 px-xl-5">
+        <div className="col-lg-6 d-none d-lg-block collapse" id="navbarCollapse">
+          <div className="d-inline-flex align-items-center h-100 navbar p-0">
+            <Link className={`px-2 nav-link ${location.pathname === "/about" && "active text-warning"}`} to="/about">
+              About
+            </Link>
+            <Link className={`px-2 nav-link ${location.pathname === "/contact" && "active text-warning"}`} to="/contact">
+              Contact
+            </Link>
+            <Link className={`px-2 nav-link ${location.pathname === "/help" && "active text-warning"}`} to="/help">
+              Help
+            </Link>
+            <Link className={`px-2 nav-link ${location.pathname === "/faqs" && "active text-warning"}`} to="/faqs">
+              FAQs
+            </Link>
           </div>
-          <div className="col-lg-6 text-center text-lg-right">
-            <div className="d-inline-flex align-items-center">
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-light dropdown-toggle m-1"
-                  data-toggle="dropdown"
-                >
-                  My Account
-                </button>
+        </div>
+        <div className="col-lg-6 text-center text-lg-right">
+          <div className="d-inline-flex align-items-center">
+            <div className="btn-group">
+              <button type="button" className="btn btn-sm btn-light dropdown-toggle m-1" data-toggle="dropdown">
+                My Account
+              </button>
+              <div className="dropdown-menu dropdown-menu-right">
                 {isLoggedIn ? (
-                  <div className="dropdown-menu dropdown-menu-right">
+                  <>
                     <Link className="text-decoration-none" to="/account">
                       <button className="dropdown-item" type="button">
                         My Profile
                       </button>
                     </Link>
                     <Link className="text-decoration-none" to="/changepassword">
-                      <button className="dropdown-item " type="button">
+                      <button className="dropdown-item" type="button">
                         Change Password
                       </button>
                     </Link>
-                    <Link className="text-decoration-none">
-                      <SignOut />
-                    </Link>
-                  </div>
+                    <LogoutModal />
+                  </>
                 ) : (
-                  <div className="dropdown-menu dropdown-menu-right">
+                  <>
                     <Link className="text-decoration-none" to="/signin">
                       <button className="dropdown-item" type="button">
                         Sign in
@@ -111,53 +59,33 @@ export default function Toolbar() {
                         Sign up
                       </button>
                     </Link>
-                  </div>
+                  </>
                 )}
               </div>
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-light dropdown-toggle"
-                  data-toggle="dropdown"
-                >
-                  EN
-                </button>
-                <div className="dropdown-menu dropdown-menu-right">
-                  <button className="dropdown-item" type="button">
-                    FR
-                  </button>
-                  <button className="dropdown-item" type="button">
-                    AR
-                  </button>
-                  <button className="dropdown-item" type="button">
-                    RU
-                  </button>
-                </div>
+            </div>
+            <div className="btn-group">
+              <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                EN
+              </button>
+              <div className="dropdown-menu dropdown-menu-right">
+                <button className="dropdown-item" type="button">FR</button>
+                <button className="dropdown-item" type="button">AR</button>
+                <button className="dropdown-item" type="button">RU</button>
               </div>
             </div>
-            <div className="d-inline-flex align-items-center d-block d-lg-none">
-              <a href="" className="btn px-0 ml-2">
-                <i className="fas fa-heart text-dark" />
-                <span
-                  className="badge text-dark border border-dark rounded-circle"
-                  style={{ paddingBottom: 2 }}
-                >
-                  0
-                </span>
-              </a>
-              <a href="" className="btn px-0 ml-2">
-                <i className="fas fa-shopping-cart text-dark" />
-                <span
-                  className="badge text-dark border border-dark rounded-circle"
-                  style={{ paddingBottom: 2 }}
-                >
-                  0
-                </span>
-              </a>
-            </div>
+          </div>
+          <div className="d-inline-flex align-items-center d-block d-lg-none">
+            <a href="" className="btn px-0 ml-2">
+              <i className="fas fa-heart text-dark" />
+              <span className="badge text-dark border border-dark rounded-circle" style={{ paddingBottom: 2 }}>0</span>
+            </a>
+            <a href="" className="btn px-0 ml-2">
+              <i className="fas fa-shopping-cart text-dark" />
+              <span className="badge text-dark border border-dark rounded-circle" style={{ paddingBottom: 2 }}>0</span>
+            </a>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

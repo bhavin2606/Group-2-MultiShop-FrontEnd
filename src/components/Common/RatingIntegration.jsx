@@ -4,10 +4,10 @@ export default function RatingIntegration({ star = 0 }) {
   const filledArray = Array(star).fill(0);
   // [1,2,3,0.5]
   const halfFilledArray = [1];
-  console.log("calc ", halfFilledArray?.length + filledArray?.length);
+  // console.log("calc ", halfFilledArray?.length + filledArray?.length);
   const NonFilled = Array(5 - star).fill(0);
-  console.log(filledArray, "filledArray");
-  console.log(halfFilledArray, "halfFilledArray");
+  // console.log(filledArray, "filledArray");
+  // console.log(halfFilledArray, "halfFilledArray");
   return (
     <div>
       {filledArray.map((filled, index) => {
