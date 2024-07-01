@@ -3,15 +3,14 @@ import carousel1 from "../../../assets/img/carousel-1.jpg";
 import carousel2 from "../../../assets/img/carousel-2.jpg";
 import carousel3 from "../../../assets/img/carousel-3.jpg";
 import axios from "axios";
+import { getBannerData } from "../../../Redux/Actions/getApiData";
 
 export default function Carosel() {
   const [carosal, setcarosal] = useState([]);
   useEffect(() => {
     async function collectData() {
-      axios
-        .get("./JSON/carousal.json")
-        .then((response) => setcarosal(response.data.carousal))
-        .catch((error) => console.log(error));
+      let data = await getBannerData();
+      setcarosal(data);
     }
     collectData();
   }, []);
@@ -47,16 +46,16 @@ export default function Carosel() {
                 >
                   <img
                     className="position-absolute w-100 h-100"
-                    src={data.url}
+                    src={data.banner_image}
                     style={{ objectFit: "cover" }}
                   />
                   <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div className="p-3" style={{ maxWidth: 700 }}>
                       <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                        {data.title}
+                        {data.banner_title}
                       </h1>
                       <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                        {data.content}
+                        {data.banner_desc}
                       </p>
                       <a
                         className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
