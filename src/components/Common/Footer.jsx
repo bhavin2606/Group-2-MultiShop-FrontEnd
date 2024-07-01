@@ -18,17 +18,7 @@ useFormik({
   onSubmit: (values, action) => {
     {
       action.resetForm();
-      toast.success("Subscribed Successfully!", {
-        position: "top-right",
-        marginTop: "2%",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.success("Subscribed Successfully!");
     }
   },
 }); 

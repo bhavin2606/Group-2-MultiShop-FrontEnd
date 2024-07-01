@@ -5,6 +5,7 @@ import { signUpSchema } from "../validations/signUpSchema";
 import BackToHome from "../Common/BackToHome";
 import logo from "../../assets/img/logo.png";
 import { toast } from "react-toastify";
+import { postSignUpData } from "../../Redux/Actions/postApiData";
 
 export default function SignUp() {
   let [isRegister, setRegistered] = useState(
@@ -19,9 +20,9 @@ export default function SignUp() {
     lastName: "",
     email: "",
     password: "",
-    confirm_password: "",
+    confirmPassword: "",
   };
-  
+
   let navigate = useNavigate();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
@@ -30,28 +31,15 @@ export default function SignUp() {
       validateOnChange: true,
       validateOnBlur: false,
 
-      onSubmit: (values, action) => {
-        localStorage.setItem(
-          "isRegistered",
-          JSON.stringify([...isRegister, values])
-        );
-        setRegistered([...isRegister, values]);
+      onSubmit: async (values, action) => {
+       
+        await postSignUpData(values)
         action.resetForm();
         navigate("/signin");
-        toast.success("Account Has Created Successfully!", {
-          position: "top-right",
-          marginTop: "2%",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        // toast.success("Account Has Created Successfully!");
       },
     });
-
+  
   return (
     <>
       <section className="p-3 p-md-4 p-xl-5">

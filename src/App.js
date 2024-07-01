@@ -13,30 +13,20 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-//   useEffect(() => {
-//     AOS.init();
-//   }, [])
-//   useEffect(() => {
-//     const addScript = document.createElement('script');
-//     addScript.setAttribute(
-//         'src',
-//         '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
-//     );
-//     document.body.appendChild(addScript);
-//     // debugger
-//     window.googleTranslateElementInit = () => {
-//         new window.google.translate.TranslateElement(
-//             {
-//                 pageLanguage: 'en',
-//                 autoDisplay: true,
-//             },
-//             'google_translate_element'
-//         );
-//     };
-// }, []);
   return (
     <>
-      <ToastContainer />
+      <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
       <RoutesPath />
     </>
   );

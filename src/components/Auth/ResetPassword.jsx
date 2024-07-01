@@ -22,17 +22,7 @@ export default function ResetPassword() {
         // Post API call for Reset Password
         action.resetForm();
         alert("Email :" + values.email);
-        toast.success("Password Reset Successfully!", {
-          position: "top-right",
-          marginTop: "2%",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.success("Password Reset Successfully!");
       },
     });
 

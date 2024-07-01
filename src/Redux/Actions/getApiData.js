@@ -11,3 +11,4 @@ export const getBannerData = async () => {
         console.log(error);
     }
 }
+

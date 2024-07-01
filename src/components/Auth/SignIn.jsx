@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../../assets/img/logo.png";
 import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
-import BackToHome from "../Common/BackToHome";
 import { toast } from "react-toastify";
 import { AuthContext } from "./AuthContext";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getUserName } from "../../Redux/Slices/AuthSlice";
+import { postLoginData } from "../../Redux/Actions/postApiData";
 
 export default function SignIn() {
   const location = useLocation();
-  // console.log(location, "losdvfjkrb");
-
   const { login } = useContext(AuthContext);
+  const dispatch = useDispatch()
 
   const initialValues = {
     email: "",
@@ -20,7 +19,6 @@ export default function SignIn() {
   };
 
   let loginDetails = JSON.parse(localStorage.getItem("isRegistered"));
-  // console.log("sdfsdfgsdfg", loginDetails);
 
   let navigate = useNavigate();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
@@ -29,41 +27,18 @@ export default function SignIn() {
       validationSchema: signInSchema,
       validateOnChange: true,
       validateOnBlur: false,
-
-      onSubmit: (values, action) => {
+      onSubmit: async (values, action) => {
         {
           console.log("Valuessss", values);
+          let data = await postLoginData(values)
+          console.log(data);
+          dispatch(getUserName(data));
           login();
-          postLoginData(values);
           action.resetForm();
           navigate("/");
-          toast.success("Logged In Successfully!", {
-            position: "top-right",
-            marginTop: "2%",
-            autoClose: 4000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
         }
       },
     }); 
-
-  const postLoginData = async (values, resetForm) => {
-    let data = new FormData();
-    console.log(values, "valuesvaluesvaluesvalues");
-    data.append("email", values.email);
-    data.append("password", values.password);
-    await axios
-      .post("http://192.168.1.188:8000/api/login", data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  };
 
   return (
     <>

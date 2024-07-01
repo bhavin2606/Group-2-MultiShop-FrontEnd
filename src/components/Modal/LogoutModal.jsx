@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { AuthContext } from '../Auth/AuthContext';
+import React, { useContext, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../Auth/AuthContext";
 
 function LogoutModal() {
   const [show, setShow] = useState(false);
@@ -15,26 +15,17 @@ function LogoutModal() {
 
   const handleLogout = () => {
     logout();
-
-    toast.success('Logged Out Successfully!', {
-      position: 'top-right',
-      marginTop: '2%',
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
-
+    toast.success("Logged Out Successfully!");
     handleClose();
-    navigate('/', { replace: true });
+    navigate("/", { replace: true });
   };
 
   return (
     <>
-      <Button className="px-4 w-100 text-start border-0 bg-light" onClick={handleShow}>
+      <Button
+        className="px-4 w-100 text-start border-0 bg-light"
+        onClick={handleShow}
+      >
         Logout
       </Button>
 

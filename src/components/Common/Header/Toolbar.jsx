@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import LogoutModal from '../../Modal/LogoutModal';
 import { AuthContext } from '../../Auth/AuthContext';
+import SignOut from '../../Auth/SignOut';
 
 export default function Toolbar() {
   const location = useLocation();
@@ -45,7 +46,7 @@ export default function Toolbar() {
                         Change Password
                       </button>
                     </Link>
-                    <LogoutModal />
+                    <SignOut/>
                   </>
                 ) : (
                   <>
