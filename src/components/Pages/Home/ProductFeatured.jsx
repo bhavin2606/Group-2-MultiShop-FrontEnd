@@ -49,7 +49,9 @@ export default function ProductFeatured() {
                   data-toggle="tooltip"
                   data-placement="top"
                   title={data.title}
-                ></Link>
+                >
+                  {data.title}
+                </Link>
 
                 <div className="d-flex align-items-center justify-content-center mt-2">
                   <h5>${data.price}</h5>

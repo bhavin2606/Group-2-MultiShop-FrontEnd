@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SignOut from "../../Auth/SignOut";
+import GoogleLanguage from "../GoogleLanguage";
 
 export default function Toolbar() {
   const location = useLocation();
@@ -114,6 +115,7 @@ export default function Toolbar() {
                   </div>
                 )}
               </div>
+              <GoogleLanguage/>
               <div className="btn-group">
                 <button
                   type="button"
