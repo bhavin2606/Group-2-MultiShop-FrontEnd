@@ -12,13 +12,13 @@ export default function RatingIntegration({ star = 0 }) {
   return (
     <div>
       {filledArray.map((filled, index) => {
-        return <small className="fas fa-star text-primary mr-1" />;
+        return <small className="fas fa-star text-primary mr-1" key={index}/>;
       })}
       {/* {halfFilledArray?.length > 0 && (
         <small className="fas fa-star-half-alt" />
       )} */}
       {NonFilled.map((filled, index) => {
-        return <small className="far fa-star text-primary mr-1" />;
+        return <small className="far fa-star text-primary mr-1"  key={index}/>;
       })}
     </div>
   );

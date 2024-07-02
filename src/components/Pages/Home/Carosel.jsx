@@ -11,8 +11,7 @@ export default function Carosel() {
     async function collectData() {
       setLoading(true);
       let data = await getBannerData();
-      setcarosal(data);
-      setLoading(false);
+      setcarosal(data.carousal);
     }
     collectData();
   }, []);
@@ -49,44 +48,39 @@ export default function Carosel() {
               )}
             </ol>
             <div className="carousel-inner">
-              {loading ? (
-                <Skeleton />
-              ) : (
-                carosal?.length > 0 &&
-                carosal?.map((data, index) => (
-                  <div
-                    key={index}
-                    className={
-                      index === 0
-                        ? "carousel-item position-relative active"
-                        : "carousel-item position-relative"
-                    }
-                    style={{ height: 430 }}
-                  >
-                    <img
-                      className="position-absolute w-100 h-100"
-                      src={data.banner_image}
-                      style={{ objectFit: "cover" }}
-                    />
-                    <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                      <div className="p-3" style={{ maxWidth: 700 }}>
-                        <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                          {data.banner_title}
-                        </h1>
-                        <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                          {data.banner_desc}
-                        </p>
-                        <a
-                          className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                          href="#"
-                        >
-                          Shop Now
-                        </a>
-                      </div>
+              {carosal.map((data, index) => (
+                <div
+                  key={index}
+                  className={
+                    index === 0
+                      ? "carousel-item position-relative active"
+                      : "carousel-item position-relative"
+                  }
+                  style={{ height: 430 }}
+                >
+                  <img
+                    className="position-absolute w-100 h-100"
+                    src={data.url}
+                    style={{ objectFit: "cover" }}
+                  />
+                  <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div className="p-3" style={{ maxWidth: 700 }}>
+                      <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
+                        {data.title}
+                      </h1>
+                      <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
+                        {data.content}
+                      </p>
+                      <a
+                        className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
+                        href="#"
+                      >
+                        Shop Now
+                      </a>
                     </div>
                   </div>
-                ))
-              )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
