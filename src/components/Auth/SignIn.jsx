@@ -125,7 +125,7 @@ export default function SignIn() {
                             Sign In
                           </button>
                           <Link
-                            to="/resetpassword"
+                            to="/reset-password"
                             className="text-decoration-none"
                             style={{ color: "#c89601" }}
                           >

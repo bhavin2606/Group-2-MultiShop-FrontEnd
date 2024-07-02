@@ -2,6 +2,7 @@ import React from "react";
 import { newsLetterSchema } from "../validations/newsLetterSchema";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { postNewsLetterData } from "../../Redux/Actions/postApiData";
 
 export default function Footer() {
 const initialValues = {
@@ -15,10 +16,11 @@ useFormik({
   validateOnChange: true,
   validateOnBlur: false,
 
-  onSubmit: (values, action) => {
+  onSubmit: async (values, action) => {
     {
+      await postNewsLetterData(values)
       action.resetForm();
-      toast.success("Subscribed Successfully!");
+      // toast.success("Subscribed Successfully!");
     }
   },
 }); 

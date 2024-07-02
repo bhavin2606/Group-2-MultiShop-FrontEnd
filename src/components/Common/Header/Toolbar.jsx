@@ -41,7 +41,7 @@ export default function Toolbar() {
                         My Profile
                       </button>
                     </Link>
-                    <Link className="text-decoration-none" to="/changepassword">
+                    <Link className="text-decoration-none" to="/change-password">
                       <button className="dropdown-item" type="button">
                         Change Password
                       </button>

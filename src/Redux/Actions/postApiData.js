@@ -54,3 +54,25 @@ export const postSignUpData = async (values) => {
     toast.error("Invalid Credentials")
   }
 };
+
+
+export const postNewsLetterData = async (values) => {
+  let responseData = "";
+  try {
+    await axios
+      .post("http://192.168.1.188:8000/api/newsletter", values)
+      .then((res) => {
+        console.log(res);
+        responseData = res.data
+        toast.success("Subscribed successfully")
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Invalid email")
+      });
+    return responseData
+  }
+  catch (error) {
+    toast.error("Invalid")
+  }
+};

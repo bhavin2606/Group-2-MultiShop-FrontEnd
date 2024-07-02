@@ -1,6 +1,7 @@
 import axios from "axios"
 
-export const getBannerData = async () => {
+export const getBannerData = async (loading) => {
+    loading = true
     let responseData = ""
     try {
         await axios.get("../JSON/carousal.json").then((response) => {

@@ -9,7 +9,7 @@ import RoutesPath from './Routes/RoutesPath';
 import 'aos/dist/aos.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import "react-loading-skeleton/dist/skeleton.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function App() {
   return (

@@ -109,7 +109,7 @@ export const routesObject = [
     },
     {
         id: 13,
-        path: 'resetpassword',
+        path: 'reset-password',
         element: <ResetPassword />,
         name: 'ResetPassword',
         layout: true
@@ -123,7 +123,7 @@ export const routesObject = [
     },
     {
         id: 15,
-        path: 'changepassword',
+        path: 'change-password',
         element: <ChangePassword />,
         name: 'MyAccount',
         layout: true
