@@ -1,24 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
-import { toast } from "react-toastify";
 import { AuthContext } from "./AuthContext";
 import { useDispatch } from "react-redux";
 import { getUserName } from "../../Redux/Slices/AuthSlice";
 import { postLoginData } from "../../Redux/Actions/postApiData";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function SignIn() {
+  const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const { login } = useContext(AuthContext);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: "",
     password: "",
   };
 
-  let loginDetails = JSON.parse(localStorage.getItem("isRegistered"));
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   let navigate = useNavigate();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
@@ -28,17 +32,13 @@ export default function SignIn() {
       validateOnChange: true,
       validateOnBlur: false,
       onSubmit: async (values, action) => {
-        {
-          console.log("Valuessss", values);
-          let data = await postLoginData(values)
-          console.log(data);
-          dispatch(getUserName(data));
-          login();
-          action.resetForm();
-          navigate("/");
-        }
+        let data = await postLoginData(values);
+        dispatch(getUserName(data));
+        login();
+        action.resetForm();
+        navigate("/");
       },
-    }); 
+    });
 
   return (
     <>
@@ -48,7 +48,6 @@ export default function SignIn() {
       >
         <section className="p-3 p-md-4 p-xl-5">
           <div className="container">
-            {/* <div className="card border-light-subtle  shadow-sm"> */}
             <div className="row justify-content-center g-0 rounded">
               <div
                 className="col-xl-8 col-sm-12 col-12"
@@ -60,11 +59,10 @@ export default function SignIn() {
                       <div className="mb-5">
                         <h2 className="h3">Sign in Now</h2>
                         <h4
-                          className=" fw-normal py-4"
+                          className="fw-normal py-4"
                           style={{ color: "#c89601" }}
                         >
-                          Provide the email address and password for your
-                          Authentication.
+                          Provide the email address and password for your Authentication.
                         </h4>
                       </div>
                     </div>
@@ -81,36 +79,40 @@ export default function SignIn() {
                           name="email"
                           id="email"
                           placeholder="name@example.com"
-                          required=""
                           value={values.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
                         {errors.email && touched.email ? (
-                          <p className="form-error text-danger">
-                            {errors.email}
-                          </p>
+                          <p className="form-error text-danger">{errors.email}</p>
                         ) : null}
                       </div>
                       <div className="col-12 mt-3">
-                        <label htmlFor="email" className="form-label">
+                        <label htmlFor="password" className="form-label">
                           Password <span className="text-danger">*</span>
                         </label>
-                        <input
-                          type="password"
-                          className="form-control"
-                          name="password"
-                          id="password"
-                          placeholder="password"
-                          required=""
-                          value={values.password}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                        />
+                        <div className="input-group">
+                          <input
+                            type={showPassword ? "text" : "password"}
+                            className="form-control"
+                            name="password"
+                            id="password"
+                            placeholder="password"
+                            value={values.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                          <span
+                            className="input-group-text"
+                            onClick={togglePasswordVisibility}
+                          >
+                            <FontAwesomeIcon
+                              icon={showPassword ? faEyeSlash : faEye}
+                            />
+                          </span>
+                        </div>
                         {errors.password && touched.password ? (
-                          <p className="form-error text-danger">
-                            {errors.password}
-                          </p>
+                          <p className="form-error text-danger">{errors.password}</p>
                         ) : null}
                       </div>
                       <div className="col-12">
@@ -136,17 +138,9 @@ export default function SignIn() {
                   <div className="row">
                     <div className="col-12">
                       <hr className="mt-4 border-secondary-subtle" />
-                      <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end"></div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-12">
                       <p className="mt-5 mb-4">Or sign in with</p>
                       <div className="d-flex gap-3 flex-column flex-xl-row">
-                        <a
-                          href="#!"
-                          className="btn bsb-btn-xl btn-warning mr-1"
-                        >
+                        <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={16}
@@ -159,10 +153,7 @@ export default function SignIn() {
                           </svg>
                           <span className="ms-2 fs-6">Google</span>
                         </a>
-                        <a
-                          href="#!"
-                          className="btn bsb-btn-xl btn-warning mr-1"
-                        >
+                        <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={16}
@@ -175,10 +166,7 @@ export default function SignIn() {
                           </svg>
                           <span className="ms-2 fs-6">Facebook</span>
                         </a>
-                        <a
-                          href="#!"
-                          className="btn bsb-btn-xl btn-warning mr-1"
-                        >
+                        <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={16}
@@ -211,36 +199,7 @@ export default function SignIn() {
                   </div>
                 </div>
               </div>
-              {/* <div
-                  className="col-12 col-md-6"
-                  style={{ backgroundColor: "#F6C324" }}
-                >
-                  <div className="mt-4 ml-4">
-                    <BackToHome />
-                  </div>
-                  <div className="d-flex align-items-center justify-content-center h-100 pb-4">
-                    <div className="col-10 col-xl-8 mb-5 mt-0">
-                      <img
-                        className="img-fluid rounded mb-3 mt-5 shadow-lg"
-                        loading="lazy"
-                        src={logo}
-                        width={245}
-                        height={80}
-                        alt="Logo"
-                      />
-                      <hr className="border-primary-subtle mb-4" />
-                      <h2 className="h1 mb-4">
-                        We make digital products that drive you to stand out.
-                      </h2>
-                      <p className="lead m-0">
-                        We write words, take photos, make videos, and interact
-                        with artificial intelligence.
-                      </p>
-                    </div>
-                  </div>
-                </div> */}
             </div>
-            {/* </div> */}
           </div>
         </section>
       </div>

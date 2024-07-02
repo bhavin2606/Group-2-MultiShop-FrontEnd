@@ -1,8 +1,25 @@
+import React, { useState } from "react";
 import { useFormik } from "formik";
-import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { changePasswordSchema } from "../validations/changePasswordShema";
 
 export default function ChangePassword() {
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const toggleCurrentPasswordVisibility = () => {
+    setShowCurrentPassword(!showCurrentPassword);
+  };
+
+  const toggleNewPasswordVisibility = () => {
+    setShowNewPassword(!showNewPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
   const initialValues = {
     currentPassword: "",
     newPassword: "",
@@ -17,9 +34,9 @@ export default function ChangePassword() {
       validateOnBlur: false,
 
       onSubmit: (values, action) => {
-          action.resetForm();
-          alert("your new password " + values.newPassword)
-          // Post API will call from here
+        action.resetForm();
+        alert("your new password " + values.newPassword);
+        // Post API will call from here
       },
     });
 
@@ -35,44 +52,66 @@ export default function ChangePassword() {
           </span>
         </div>
         <div className="card-body">
-          <form onSubmit={handleSubmit}> 
+          <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label className="small mb-1" htmlFor="inputCurrentPassword">
                 Current Password
               </label>
-              <input
-                className="form-control"
-                id="inputCurrentPassword"
-                type="password"
-                name="currentPassword"
-                placeholder="Enter Current Password"
-                value={values.currentPassword}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
+              <div className="input-group">
+                <input
+                  className="form-control"
+                  id="inputCurrentPassword"
+                  type={showCurrentPassword ? "text" : "password"}
+                  name="currentPassword"
+                  placeholder="Enter Current Password"
+                  value={values.currentPassword}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  style={{ cursor: "pointer" }}
+                />
+                <span
+                  className="input-group-text"
+                  onClick={toggleCurrentPasswordVisibility}
+                >
+                  <FontAwesomeIcon
+                    icon={showCurrentPassword ? faEyeSlash : faEye}
+                  />
+                </span>
+              </div>
               {errors.currentPassword && touched.currentPassword ? (
                 <p className="form-error text-danger">
                   {errors.currentPassword}
                 </p>
               ) : null}
             </div>
-            {/* Form Row*/}
+            {/* Form Row */}
             <div className="row gx-3 mb-3">
-              {/* Form Group (phone number)*/}
+              {/* Form Group (new password) */}
               <div className="col-md-6">
                 <label className="small mb-1" htmlFor="inputNewPassword">
                   New Password
                 </label>
-                <input
-                  className="form-control"
-                  id="inputPhone"
-                  type="password"
-                  placeholder="Enter New Password"
-                  name="newPassword"
-                  value={values.newPassword}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+                <div className="input-group">
+                  <input
+                    className="form-control"
+                    id="inputNewPassword"
+                    type={showNewPassword ? "text" : "password"}
+                    name="newPassword"
+                    placeholder="Enter New Password"
+                    value={values.newPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <span
+                    className="input-group-text"
+                    onClick={toggleNewPasswordVisibility}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <FontAwesomeIcon
+                      icon={showNewPassword ? faEyeSlash : faEye}
+                    />
+                  </span>
+                </div>
                 {errors.newPassword && touched.newPassword ? (
                   <p className="form-error text-danger">{errors.newPassword}</p>
                 ) : null}
@@ -81,16 +120,27 @@ export default function ChangePassword() {
                 <label className="small mb-1" htmlFor="inputConfirmPassword">
                   Confirm Password
                 </label>
-                <input
-                  className="form-control"
-                  id="inputBirthday"
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Enter New Password"
-                  value={values.confirmPassword}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+                <div className="input-group">
+                  <input
+                    className="form-control"
+                    id="inputConfirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    placeholder="Enter New Password"
+                    value={values.confirmPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <span
+                    className="input-group-text"
+                    onClick={toggleConfirmPasswordVisibility}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <FontAwesomeIcon
+                      icon={showConfirmPassword ? faEyeSlash : faEye}
+                    />
+                  </span>
+                </div>
                 {errors.confirmPassword && touched.confirmPassword ? (
                   <p className="form-error text-danger">
                     {errors.confirmPassword}
@@ -98,8 +148,7 @@ export default function ChangePassword() {
                 ) : null}
               </div>
             </div>
-            {/* Save changes button*/}
-
+            {/* Save changes button */}
             <button className="btn btn-primary" type="submit">
               Save changes
             </button>
