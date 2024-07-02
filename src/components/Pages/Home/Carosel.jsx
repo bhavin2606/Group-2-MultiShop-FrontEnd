@@ -10,7 +10,7 @@ export default function Carosel() {
   useEffect(() => {
     async function collectData() {
       let data = await getBannerData();
-      setcarosal(data);
+      setcarosal(data.carousal);
     }
     collectData();
   }, []);
@@ -46,16 +46,16 @@ export default function Carosel() {
                 >
                   <img
                     className="position-absolute w-100 h-100"
-                    src={data.banner_image}
+                    src={data.url}
                     style={{ objectFit: "cover" }}
                   />
                   <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div className="p-3" style={{ maxWidth: 700 }}>
                       <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                        {data.banner_title}
+                        {data.title}
                       </h1>
                       <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                        {data.banner_desc}
+                        {data.content}
                       </p>
                       <a
                         className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"

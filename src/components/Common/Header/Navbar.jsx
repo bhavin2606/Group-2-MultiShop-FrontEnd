@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
@@ -7,7 +7,7 @@ export default function Navbar() {
   const [categoryDropdown, setCategoryDropdown] = useState([]);
   useEffect(() => {
     async function collectData() {
-    await  axios
+      await axios
         .get("../JSON/category.json")
         .then((response) => setCategoryDropdown(response.data.category))
         .catch((error) => console.log(error));
@@ -41,24 +41,46 @@ export default function Navbar() {
               }}
             >
               <div className="navbar-nav w-100">
-                {categoryDropdown?.map((category, index) => (
-                  <Link to="/shop" className="nav-item nav-link" key={index}>
-                    {category.title}
-                  </Link>
+                {categoryDropdown?.map((data, index) => (
+                  <Fragment key={index}>
+                    {data.subCategory ? (
+                    <div className="nav-item dropdown dropright">
+                      <Link
+                        href="#"
+                        className="nav-link dropdown-toggle"
+                        data-toggle="dropdown"
+                      >
+                        {data.title}{" "}
+                        <i className="fa fa-angle-right float-right mt-1"></i>
+                      </Link>
+                      <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                        {data?.subCategory?.map((data, index) => (
+                          <Link href="" className="dropdown-item" key={index}>
+                            {data}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    ) : (
+                    <Link to="/shop" className="nav-item nav-link">
+                      {data.title}
+                    </Link>
+                    )}
+                  </Fragment>
                 ))}
               </div>
             </nav>
           </div>
           <div className="col-lg-9">
             <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-              <a href="" className="text-decoration-none d-block d-lg-none">
+              <Link href="" className="text-decoration-none d-block d-lg-none">
                 <span className="h1 text-uppercase text-dark bg-light px-2">
                   Multi
                 </span>
                 <span className="h1 text-uppercase text-light bg-primary px-2 ml-n1">
                   Shop
                 </span>
-              </a>
+              </Link>
               <button
                 type="button"
                 className="navbar-toggler"
@@ -71,10 +93,7 @@ export default function Navbar() {
                 className="collapse navbar-collapse justify-content-between"
                 id="navbarCollapse"
               >
-                <div
-                  className="navbar-nav mr-auto py-0"
-                
-                >
+                <div className="navbar-nav mr-auto py-0">
                   <Link
                     to="/"
                     className={`nav-link ${
@@ -101,7 +120,6 @@ export default function Navbar() {
                   >
                     Shop
                   </Link>
-
                 </div>
                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
                   <Link to="/wishlist" className="btn px-0">

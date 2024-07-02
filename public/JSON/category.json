@@ -3,7 +3,12 @@
         {
             "url": "../img/cat-1.jpg",
             "title": "Men Fashion",
-            "isView": true
+            "isView": true,
+            "subCategory": [
+                "shirt",
+                "t-shirt",
+                "Jeans"
+            ]
         },
         {
             "url": "../img/cat-2.jpg",
@@ -18,7 +23,12 @@
         {
             "url": "../img/cat-4.jpg",
             "title": "Children Fashion",
-            "isView": true
+            "isView": true,
+            "subCategory": [
+                "shirt",
+                "t-shirt",
+                "Jeans"
+            ]
         },
         {
             "url": "../img/cat-1.jpg",
@@ -38,7 +48,12 @@
         {
             "url": "../img/cat-4.jpg",
             "title": "Men Fashion",
-            "isView": true
+            "isView": true,
+            "subCategory": [
+                "shirt",
+                "t-shirt",
+                "Jeans"
+            ]
         },
         {
             "url": "../img/cat-1.jpg",
