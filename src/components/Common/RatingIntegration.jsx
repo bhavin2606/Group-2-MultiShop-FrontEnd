@@ -8,6 +8,7 @@ export default function RatingIntegration({ star = 0 }) {
   const NonFilled = Array(5 - star).fill(0);
   // console.log(filledArray, "filledArray");
   // console.log(halfFilledArray, "halfFilledArray");
+
   return (
     <div>
       {filledArray.map((filled, index) => {
@@ -23,5 +24,3 @@ export default function RatingIntegration({ star = 0 }) {
   );
 }
 
-// 5
-// 3
