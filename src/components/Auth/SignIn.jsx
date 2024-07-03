@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
@@ -6,15 +6,13 @@ import { AuthContext } from "./AuthContext";
 import { useDispatch } from "react-redux";
 import { getUserName } from "../../Redux/Slices/AuthSlice";
 import { postLoginData } from "../../Redux/Actions/postApiData";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
-  const location = useLocation();
-  const { login } = useContext(AuthContext);
   const dispatch = useDispatch();
-
+  const [userData,setUserData] = useState([])
   const initialValues = {
     email: "",
     password: "",
@@ -34,9 +32,13 @@ export default function SignIn() {
       onSubmit: async (values, action) => {
         let data = await postLoginData(values);
         dispatch(getUserName(data));
-        login();
         action.resetForm();
-        navigate("/");
+        if (data) {
+          localStorage.setItem("isLoggedIn", JSON.stringify(data.token));
+          navigate("/");
+        } else {
+          navigate("/signin");
+        }
       },
     });
 
@@ -62,7 +64,8 @@ export default function SignIn() {
                           className="fw-normal py-4"
                           style={{ color: "#c89601" }}
                         >
-                          Provide the email address and password for your Authentication.
+                          Provide the email address and password for your
+                          Authentication.
                         </h4>
                       </div>
                     </div>
@@ -84,7 +87,9 @@ export default function SignIn() {
                           onBlur={handleBlur}
                         />
                         {errors.email && touched.email ? (
-                          <p className="form-error text-danger">{errors.email}</p>
+                          <p className="form-error text-danger">
+                            {errors.email}
+                          </p>
                         ) : null}
                       </div>
                       <div className="col-12 mt-3">
@@ -112,7 +117,9 @@ export default function SignIn() {
                           </span>
                         </div>
                         {errors.password && touched.password ? (
-                          <p className="form-error text-danger">{errors.password}</p>
+                          <p className="form-error text-danger">
+                            {errors.password}
+                          </p>
                         ) : null}
                       </div>
                       <div className="col-12">
@@ -140,7 +147,10 @@ export default function SignIn() {
                       <hr className="mt-4 border-secondary-subtle" />
                       <p className="mt-5 mb-4">Or sign in with</p>
                       <div className="d-flex gap-3 flex-column flex-xl-row">
-                        <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
+                        <a
+                          href="#!"
+                          className="btn bsb-btn-xl btn-warning mr-1"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={16}
@@ -153,7 +163,10 @@ export default function SignIn() {
                           </svg>
                           <span className="ms-2 fs-6">Google</span>
                         </a>
-                        <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
+                        <a
+                          href="#!"
+                          className="btn bsb-btn-xl btn-warning mr-1"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={16}
@@ -166,7 +179,10 @@ export default function SignIn() {
                           </svg>
                           <span className="ms-2 fs-6">Facebook</span>
                         </a>
-                        <a href="#!" className="btn bsb-btn-xl btn-warning mr-1">
+                        <a
+                          href="#!"
+                          className="btn bsb-btn-xl btn-warning mr-1"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={16}

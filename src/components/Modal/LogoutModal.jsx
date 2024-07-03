@@ -14,7 +14,8 @@ function LogoutModal() {
   const handleShow = () => setShow(true);
 
   const handleLogout = () => {
-    logout();
+    // logout();
+    localStorage.removeItem("isLoggedIn")
     toast.success("Logged Out Successfully!");
     handleClose();
     navigate("/", { replace: true });

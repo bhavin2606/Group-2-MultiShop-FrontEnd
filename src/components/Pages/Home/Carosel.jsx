@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getBannerData } from "../../../Redux/Actions/getApiData";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { useSelector } from "react-redux";
 
 export default function Carosel(props) {
   const [carosal, setcarosal] = useState([]);

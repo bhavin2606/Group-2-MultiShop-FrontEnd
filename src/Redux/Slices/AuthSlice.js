@@ -13,7 +13,7 @@ export const authSlice = createSlice({
         getUserName(state, actions) {
             console.log(actions.payload, "Payloadddddddddddddddddd");
             state.name = actions.payload.name;
-            state.token = actions.payload.token
+            state.token = actions.payload.token;
         },
     }
 })
