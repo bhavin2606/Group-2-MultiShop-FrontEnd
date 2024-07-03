@@ -19,18 +19,18 @@ export const AuthProvider = ({ children }) => {
 //     };
 //   }, []);
 
-  const login = () => {
-    localStorage.setItem('isLoggedIn', true);
-    setIsLoggedIn(true);
-  };
+  // const login = () => {
+  //   localStorage.setItem('isLoggedIn', true);
+  //   setIsLoggedIn(true);
+  // };
 
-  const logout = () => {
-    localStorage.removeItem('isLoggedIn');
-    setIsLoggedIn(false);
-  };
+  // const logout = () => {
+  //   localStorage.removeItem('isLoggedIn');
+  //   // setIsLoggedIn(false);
+  // };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

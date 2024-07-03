@@ -1,17 +1,17 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { date } from "yup";
 
 export const postLoginData = async (values) => {
   let data = new FormData();
   let responseData = "";
-
   data.append("email", values.email);
   data.append("password", values.password);
   try {
     await axios
-      .post("http://192.168.1.188:8000/api/login", data)
+      .post("http://192.168.1.188:8000/api/login", values)
       .then((res) => {
-        console.log(res);
+        console.log(res,"login reesu");
         responseData = res.data
         toast.success("Logged in successfully")
       })
@@ -26,6 +26,31 @@ export const postLoginData = async (values) => {
   }
 };
 
+export const contactUSData = async (values) => {
+  try {
+    let config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: 'http://192.168.1.188:8000/api/addcontact',
+      headers: { 
+        'Content-Type': 'application/json', 
+        'X-API-Key': '{{token}}'
+      },
+      data : values
+    };
+    
+    axios.request(config)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 export const postSignUpData = async (values) => {
   let data = new FormData();
@@ -38,7 +63,7 @@ export const postSignUpData = async (values) => {
 
   try {
     await axios
-      .post("http://192.168.1.188:8000/api/signup", data)
+      .post("http://192.168.1.188:8000/api/userProfile", data)
       .then((res) => {
         console.log(res);
         responseData = res.data

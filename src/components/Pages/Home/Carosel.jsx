@@ -4,6 +4,7 @@ import carousel2 from "../../../assets/img/carousel-2.jpg";
 import carousel3 from "../../../assets/img/carousel-3.jpg";
 import axios from "axios";
 import { getBannerData } from "../../../Redux/Actions/getApiData";
+import { useSelector } from "react-redux";
 
 export default function Carosel() {
   const [carosal, setcarosal] = useState([]);

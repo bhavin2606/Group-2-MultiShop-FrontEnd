@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
+import { contactUSData } from "../../../Redux/Actions/postApiData";
 
 export default function ContactForm() {
   const initialValues = {
@@ -16,8 +17,9 @@ export default function ContactForm() {
       validateOnChange: true,
       validateOnBlur: false,
 
-      onSubmit: (values, action) => {
-        alert("Name" + values.name);
+      onSubmit: async(values, action) => {
+        console.log(values);
+        await contactUSData(JSON.stringify(values));
         action.resetForm();
       },
     });

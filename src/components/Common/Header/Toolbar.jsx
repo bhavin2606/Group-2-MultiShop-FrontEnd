@@ -1,42 +1,77 @@
-import React, { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import LogoutModal from '../../Modal/LogoutModal';
-import { AuthContext } from '../../Auth/AuthContext';
-import SignOut from '../../Auth/SignOut';
+import React, { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import LogoutModal from "../../Modal/LogoutModal";
+import { AuthContext } from "../../Auth/AuthContext";
+import SignOut from "../../Auth/SignOut";
+import { useSelector } from "react-redux";
 
 export default function Toolbar() {
   const location = useLocation();
-  const { isLoggedIn } = useContext(AuthContext);
+  // const { isLoggedIn } = useContext(AuthContext);
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const { name, token } = useSelector(state => state.auth)
 
+  console.log(name,token,"name");
   return (
     <div className="container-fluid">
       <div className="row bg-secondary py-1 px-xl-5">
-        <div className="col-lg-6 d-none d-lg-block collapse" id="navbarCollapse">
+        <div
+          className="col-lg-6 d-none d-lg-block collapse"
+          id="navbarCollapse"
+        >
           <div className="d-inline-flex align-items-center h-100 navbar p-0">
-            <Link className={`px-2 nav-link ${location.pathname === "/about" && "active text-warning"}`} to="/about">
+            <Link
+              className={`px-2 nav-link ${
+                location.pathname === "/about" && "active text-warning"
+              }`}
+              to="/about"
+            >
               About
             </Link>
-            <Link className={`px-2 nav-link ${location.pathname === "/contact" && "active text-warning"}`} to="/contact">
+            <Link
+              className={`px-2 nav-link ${
+                location.pathname === "/contact" && "active text-warning"
+              }`}
+              to="/contact"
+            >
               Contact
             </Link>
-            <Link className={`px-2 nav-link ${location.pathname === "/help" && "active text-warning"}`} to="/help">
+            <Link
+              className={`px-2 nav-link ${
+                location.pathname === "/help" && "active text-warning"
+              }`}
+              to="/help"
+            >
               Help
             </Link>
-            <Link className={`px-2 nav-link ${location.pathname === "/faqs" && "active text-warning"}`} to="/faqs">
+            <Link
+              className={`px-2 nav-link ${
+                location.pathname === "/faqs" && "active text-warning"
+              }`}
+              to="/faqs"
+            >
               FAQs
             </Link>
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
+            Welcome {name}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
-              <button type="button" className="btn btn-sm btn-light dropdown-toggle m-1" data-toggle="dropdown">
+              <button
+                type="button"
+                className="btn btn-sm btn-light dropdown-toggle m-1"
+                data-toggle="dropdown"
+              >
                 My Account
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 {isLoggedIn ? (
                   <>
-                    <Link className="text-decoration-none" to="/account">
+                    <Link
+                      className="text-decoration-none"
+                      to="/account"
+                    >
                       <button className="dropdown-item" type="button">
                         My Profile
                       </button>
@@ -46,7 +81,7 @@ export default function Toolbar() {
                         Change Password
                       </button>
                     </Link>
-                    <SignOut/>
+                    <SignOut />
                   </>
                 ) : (
                   <>
@@ -65,24 +100,44 @@ export default function Toolbar() {
               </div>
             </div>
             <div className="btn-group">
-              <button type="button" className="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+              <button
+                type="button"
+                className="btn btn-sm btn-light dropdown-toggle"
+                data-toggle="dropdown"
+              >
                 EN
               </button>
               <div className="dropdown-menu dropdown-menu-right">
-                <button className="dropdown-item" type="button">FR</button>
-                <button className="dropdown-item" type="button">AR</button>
-                <button className="dropdown-item" type="button">RU</button>
+                <button className="dropdown-item" type="button">
+                  FR
+                </button>
+                <button className="dropdown-item" type="button">
+                  AR
+                </button>
+                <button className="dropdown-item" type="button">
+                  RU
+                </button>
               </div>
             </div>
           </div>
           <div className="d-inline-flex align-items-center d-block d-lg-none">
             <a href="" className="btn px-0 ml-2">
               <i className="fas fa-heart text-dark" />
-              <span className="badge text-dark border border-dark rounded-circle" style={{ paddingBottom: 2 }}>0</span>
+              <span
+                className="badge text-dark border border-dark rounded-circle"
+                style={{ paddingBottom: 2 }}
+              >
+                0
+              </span>
             </a>
             <a href="" className="btn px-0 ml-2">
               <i className="fas fa-shopping-cart text-dark" />
-              <span className="badge text-dark border border-dark rounded-circle" style={{ paddingBottom: 2 }}>0</span>
+              <span
+                className="badge text-dark border border-dark rounded-circle"
+                style={{ paddingBottom: 2 }}
+              >
+                0
+              </span>
             </a>
           </div>
         </div>
