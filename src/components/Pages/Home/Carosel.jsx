@@ -14,18 +14,17 @@ export default function Carosel(props) {
     async function collectData() {
       // setLoading(true);
       let data = await getBannerData(loading);
-      setcarosal(data);
+      setcarosal(data.carousal);
       // setLoading(false);
-      console.log(carosal
-      );
     }
     collectData();
   }, []);
+  console.log(carosal);
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
         <div className="col-12">
-          {carosal?.length == 0 ? (
+          {carosal?.length === 0 ? (
             <Skeleton height={500} />
           ) : (
             <div
@@ -34,14 +33,15 @@ export default function Carosel(props) {
               data-ride="carousel"
             >
               <ol className="carousel-indicators">
-                {carosal.length > 0 && carosal?.map((data, index) => (
-                  <li
-                    key={index}
-                    data-target="#header-carousel"
-                    data-slide-to={index}
-                    className={index === 0 ? "active" : ""}
-                  />
-                ))}
+                {carosal.length > 0 &&
+                  carosal?.map((data, index) => (
+                    <li
+                      key={index}
+                      data-target="#header-carousel"
+                      data-slide-to={index}
+                      className={index === 0 ? "active" : ""}
+                    />
+                  ))}
               </ol>
               <div className="carousel-inner">
                 {carosal?.length > 0 &&
@@ -57,16 +57,16 @@ export default function Carosel(props) {
                     >
                       <img
                         className="position-absolute w-100 h-100"
-                        src={data.banner_image}
+                        src={data.url}
                         style={{ objectFit: "cover" }}
                       />
                       <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div className="p-3" style={{ maxWidth: 700 }}>
                           <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                            {data.banner_title}
+                            {data.title}
                           </h1>
                           <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                            {data.banner_desc}
+                            {data.content}
                           </p>
                           <a
                             className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
