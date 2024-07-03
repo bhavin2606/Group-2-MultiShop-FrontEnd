@@ -7,7 +7,7 @@ export default function Carosel(props) {
   const [carosal, setcarosal] = useState([]);
   // const [loading, setLoading] = useState(false);
 
-  const { loading = false } = props;
+  const { loading = true } = props;
 
   useEffect(() => {
     async function collectData() {

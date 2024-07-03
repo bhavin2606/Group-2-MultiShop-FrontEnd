@@ -56,6 +56,35 @@ export const postSignUpData = async (values) => {
 };
 
 
+export const postUpdateProfileData = async (values) => {
+  let data = new FormData();
+  let responseData = "";
+  data.append("firstName", values.firstName);
+  data.append("lastName", values.lastName);
+  data.append("phoneNumber", values.phoneNumber);
+  data.append("birthday", values.birthday);
+  data.append("avatar", values.avatar)
+
+  try {
+    await axios
+      .post("http://192.168.1.188:8000/api/updateprofile/1", data)
+      .then((res) => {
+        console.log(res);
+        responseData = res.data
+        toast.success("SignUp successfully")
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Email already registered")
+      });
+    return responseData
+  }
+  catch (error) {
+    toast.error("Invalid Credentials")
+  }
+};
+
+
 export const postNewsLetterData = async (values) => {
   let responseData = "";
   try {

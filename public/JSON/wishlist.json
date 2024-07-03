@@ -1,0 +1,84 @@
+[
+    {
+      "id": 1,
+      "name": "Product Name 1",
+      "price": 123.00,
+      "discountPrice": 100.00,
+      "rating": 5,
+      "reviews": 99,
+      "image": "img/product-1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Product Name 2",
+      "price": 123.00,
+      "discountPrice": 110.00,
+      "rating": 4.5,
+      "reviews": 99,
+      "image": "img/product-2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Product Name 3",
+      "price": 123.00,
+      "discountPrice": 105.00,
+      "rating": 4,
+      "reviews": 99,
+      "image": "img/product-3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Product Name 4",
+      "price": 123.00,
+      "discountPrice": null,
+      "rating": 3.5,
+      "reviews": 99,
+      "image": "img/product-4.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Product Name 5",
+      "price": 123.00,
+      "discountPrice": 110.00,
+      "rating": 5,
+      "reviews": 99,
+      "image": "img/product-5.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Product Name 6",
+      "price": 123.00,
+      "discountPrice": 115.00,
+      "rating": 4.5,
+      "reviews": 99,
+      "image": "img/product-6.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Product Name 7",
+      "price": 123.00,
+      "discountPrice": 120.00,
+      "rating": 4,
+      "reviews": 99,
+      "image": "img/product-7.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Product Name 8",
+      "price": 123.00,
+      "discountPrice": 118.00,
+      "rating": 3.5,
+      "reviews": 99,
+      "image": "img/product-8.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Product Name 9",
+      "price": 123.00,
+      "discountPrice": 117.00,
+      "rating": 3,
+      "reviews": 99,
+      "image": "img/product-9.jpg"
+    }
+  ]
+  
