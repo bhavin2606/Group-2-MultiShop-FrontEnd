@@ -7,18 +7,6 @@ export const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('isLoggedIn')) || false
   );
 
-//   useEffect(() => {
-//     const handleStorageChange = () => {
-//       setIsLoggedIn(JSON.parse(localStorage.getItem('isLoggedIn')));
-//     };
-
-//     window.addEventListener('storage', handleStorageChange);
-
-//     return () => {
-//       window.removeEventListener('storage', handleStorageChange);
-//     };
-//   }, []);
-
   const login = () => {
     localStorage.setItem('isLoggedIn', true);
     setIsLoggedIn(true);

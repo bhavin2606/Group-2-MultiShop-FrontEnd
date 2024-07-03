@@ -2,21 +2,24 @@ import { createSlice } from "@reduxjs/toolkit";
 import { postLoginData } from "../Actions/postApiData";
 
 const initialState = {
-    name: "",
-    token: ""
+    token: "",
+    userData: {}
 }
 
 export const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        getUserName(state, actions) {
+        getUserDetails(state, actions) {
             console.log(actions.payload, "Payloadddddddddddddddddd");
-            state.name = actions.payload.name;
-            state.token = actions.payload.token
+            // state.name = actions.payload.name;
+            state.userData = actions.payload;
         },
+        getUserToken(state, actions) {
+            state.token = actions.payload.token
+        }
     }
 })
 
 export default authSlice.reducer;
-export const { getUserName } = authSlice.actions;
+export const { getUserDetails, getUserToken } = authSlice.actions;

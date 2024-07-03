@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { changePasswordSchema } from "../validations/changePasswordShema";
+import { postChangePasswordData } from "../../Redux/Actions/postApiData";
 
 export default function ChangePassword() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
@@ -22,7 +23,7 @@ export default function ChangePassword() {
   };
   const initialValues = {
     currentPassword: "",
-    newPassword: "",
+    password: "",
     confirmPassword: "",
   };
 
@@ -33,9 +34,10 @@ export default function ChangePassword() {
       validateOnChange: true,
       validateOnBlur: false,
 
-      onSubmit: (values, action) => {
+      onSubmit: async (values, action) => {
+        await postChangePasswordData(values)
         action.resetForm();
-        alert("your new password " + values.newPassword);
+        // alert("your new password " + values.Password);
         // Post API will call from here
       },
     });
@@ -96,9 +98,9 @@ export default function ChangePassword() {
                     className="form-control"
                     id="inputNewPassword"
                     type={showNewPassword ? "text" : "password"}
-                    name="newPassword"
+                    name="password"
                     placeholder="Enter New Password"
-                    value={values.newPassword}
+                    value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -112,8 +114,8 @@ export default function ChangePassword() {
                     />
                   </span>
                 </div>
-                {errors.newPassword && touched.newPassword ? (
-                  <p className="form-error text-danger">{errors.newPassword}</p>
+                {errors.password && touched.password ? (
+                  <p className="form-error text-danger">{errors.password}</p>
                 ) : null}
               </div>
               <div className="col-md-6">

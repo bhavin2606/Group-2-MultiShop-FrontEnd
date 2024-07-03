@@ -3,20 +3,18 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../Auth/AuthContext";
+
 
 function LogoutModal() {
   const [show, setShow] = useState(false);
-  const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleLogout = () => {
-    logout();
     toast.success("Logged Out Successfully!");
     handleClose();
+    localStorage.clear("token")
     navigate("/", { replace: true });
   };
 

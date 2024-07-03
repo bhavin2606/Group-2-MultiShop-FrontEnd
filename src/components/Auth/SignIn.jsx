@@ -4,15 +4,15 @@ import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
 import { AuthContext } from "./AuthContext";
 import { useDispatch } from "react-redux";
-import { getUserName } from "../../Redux/Slices/AuthSlice";
+import { getUserDetails, getUserToken } from "../../Redux/Slices/AuthSlice";
 import { postLoginData } from "../../Redux/Actions/postApiData";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
-  const location = useLocation();
-  const { login } = useContext(AuthContext);
+  // const location = useLocation();
+  // const { login } = useContext(AuthContext);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -33,10 +33,13 @@ export default function SignIn() {
       validateOnBlur: false,
       onSubmit: async (values, action) => {
         let data = await postLoginData(values);
-        dispatch(getUserName(data));
-        login();
+        dispatch(getUserToken(data));
         action.resetForm();
-        navigate("/");
+        // login();
+        if (data.message) {
+          localStorage.setItem("token" , data.token)
+          navigate("/");
+        }
       },
     });
 

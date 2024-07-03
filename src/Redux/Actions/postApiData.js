@@ -40,7 +40,7 @@ export const postSignUpData = async (values) => {
     await axios
       .post("http://192.168.1.188:8000/api/signup", data)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         responseData = res.data
         toast.success("SignUp successfully")
       })
@@ -57,17 +57,23 @@ export const postSignUpData = async (values) => {
 
 
 export const postUpdateProfileData = async (values) => {
+  let token = localStorage.getItem("token")
+  let responseData = ""
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  };
+  console.log(values, "valuessssssssssss");
   let data = new FormData();
-  let responseData = "";
   data.append("firstName", values.firstName);
   data.append("lastName", values.lastName);
   data.append("phoneNumber", values.phoneNumber);
-  data.append("birthday", values.birthday);
-  data.append("avatar", values.avatar)
+  data.append("dob", values.birthday);
+  data.append("image", values.image)
+  data.append("_method", "put");
 
   try {
     await axios
-      .post("http://192.168.1.188:8000/api/updateprofile/1", data)
+      .post("http://192.168.1.188:8000/api/update-profile", data, config)
       .then((res) => {
         console.log(res);
         responseData = res.data
@@ -75,7 +81,7 @@ export const postUpdateProfileData = async (values) => {
       })
       .catch((err) => {
         console.log(err)
-        toast.error("Email already registered")
+        toast.error("")
       });
     return responseData
   }
@@ -105,3 +111,31 @@ export const postNewsLetterData = async (values) => {
     toast.error("Invalid")
   }
 };
+
+
+export const postChangePasswordData = async (values) => {
+  let token = localStorage.getItem("token")
+  let responseData = ""
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  };
+  try {
+    await axios
+      .post("http://192.168.1.188:8000/api/change-password", values, config)
+      .then((res) => {
+        console.log(res);
+        responseData = res.data
+        toast.success("Subscribed successfully")
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Invalid email")
+      });
+    return responseData
+  }
+  catch (error) {
+    toast.error("Invalid")
+  }
+};
+
+
