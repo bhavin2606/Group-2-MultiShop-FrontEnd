@@ -100,18 +100,15 @@ export const postUpdateProfileData = async (values) => {
 
   try {
     await axios
-      .post(`${process.env.REACT_APP_BASE_URL}/userProfile`, data)
-      .post("http://192.168.1.188:8000/api/update-profile", data, config)
+      .post(`${process.env.REACT_APP_BASE_URL}/update-profile`, data, config)
       .then((res) => {
         console.log(res);
         responseData = res.data
         toast.success("Profile Updated successfully")
-        toast.success("Profile Updated successfully!")
       })
       .catch((err) => {
         console.log(err)
         toast.error("Something Wrong....")
-        toast.error("")
       });
     return responseData
   }
@@ -151,7 +148,7 @@ export const postChangePasswordData = async (values) => {
   };
   try {
     await axios
-      .post("http://192.168.1.188:8000/api/change-password", values, config)
+      .post(`${process.env.REACT_APP_BASE_URL}/change-password`, values, config)
       .then((res) => {
         console.log(res);
         responseData = res.data
