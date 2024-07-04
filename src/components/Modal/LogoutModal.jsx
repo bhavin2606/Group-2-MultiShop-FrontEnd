@@ -3,28 +3,25 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../Auth/AuthContext";
+
 
 function LogoutModal() {
   const [show, setShow] = useState(false);
-  const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleLogout = () => {
-    // logout();
-    localStorage.removeItem("isLoggedIn")
     toast.success("Logged Out Successfully!");
     handleClose();
+    localStorage.clear("token")
     navigate("/", { replace: true });
   };
 
   return (
     <>
       <Button
-        className="px-4 w-100 text-start border-0 bg-light"
+        className="px-4 w-100 text-start border-0 bg-light btn-danger"
         onClick={handleShow}
       >
         Logout

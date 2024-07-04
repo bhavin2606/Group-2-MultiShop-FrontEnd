@@ -19,7 +19,8 @@ export default function Carosel(props) {
     }
     collectData();
   }, []);
-  console.log(carosal);
+
+  
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">

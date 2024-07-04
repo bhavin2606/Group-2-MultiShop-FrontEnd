@@ -1,15 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LogoutModal from "../../Modal/LogoutModal";
 import { AuthContext } from "../../Auth/AuthContext";
 import SignOut from "../../Auth/SignOut";
-import { useSelector } from "react-redux";
+import { getUserData } from "../../../Redux/Actions/getApiData";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDetails } from "../../../Redux/Slices/AuthSlice";
 
 export default function Toolbar() {
+  console.log("inn");
   const location = useLocation();
-  // const { isLoggedIn } = useContext(AuthContext);
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  const { name, token } = useSelector(state => state.auth)
+  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("lllll");
+    async function collectData() {
+      let data = await getUserData();
+      dispatch(getUserDetails(data));
+      console.log("datadatadatadata", data);
+    }
+    collectData();
+  }, [token]);  
 
   console.log(name,token,"name");
   return (
@@ -66,7 +78,7 @@ export default function Toolbar() {
                 My Account
               </button>
               <div className="dropdown-menu dropdown-menu-right">
-                {isLoggedIn ? (
+                {token ? (
                   <>
                     <Link
                       className="text-decoration-none"
@@ -76,7 +88,10 @@ export default function Toolbar() {
                         My Profile
                       </button>
                     </Link>
-                    <Link className="text-decoration-none" to="/change-password">
+                    <Link
+                      className="text-decoration-none"
+                      to="/change-password"
+                    >
                       <button className="dropdown-item" type="button">
                         Change Password
                       </button>

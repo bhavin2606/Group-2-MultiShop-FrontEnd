@@ -15,7 +15,7 @@ export default function SignUp() {
     lastName: "",
     email: "",
     password: "",
-    confirm_password: "",
+    confirmPassword: "",
   };
 
   const navigate = useNavigate();
@@ -26,8 +26,9 @@ export default function SignUp() {
       validateOnChange: true,
       validateOnBlur: false,
       onSubmit: async (values, action) => {
-        await postSignUpData(values);
+       let data = await postSignUpData(values);
         action.resetForm();
+        console.log(data.response.data , "datatatatatatattatatatat");
         navigate("/signin");
       },
     });
@@ -154,11 +155,11 @@ export default function SignUp() {
                         <input
                           type={showConfirmPassword ? "text" : "password"}
                           className="form-control"
-                          name="confirm_password"
+                          name="confirmPassword"
                           id="confirm_password"
                           autoComplete="off"
                           placeholder="Confirm Password"
-                          value={values.confirm_password}
+                          value={values.confirmPassword}
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
@@ -171,8 +172,8 @@ export default function SignUp() {
                           />
                         </span>
                       </div>
-                      {errors.confirm_password && touched.confirm_password ? (
-                        <p className="form-error text-danger">{errors.confirm_password}</p>
+                      {errors.confirmPassword && touched.confirmPassword ? (
+                        <p className="form-error text-danger">{errors.confirmPassword}</p>
                       ) : null}
                     </div>
 
