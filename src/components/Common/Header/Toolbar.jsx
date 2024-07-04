@@ -8,10 +8,7 @@ import { useSelector } from "react-redux";
 export default function Toolbar() {
   const location = useLocation();
   // const { isLoggedIn } = useContext(AuthContext);
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  const { name, token } = useSelector(state => state.auth)
-
-  console.log(name,token,"name");
+  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
   return (
     <div className="container-fluid">
       <div className="row bg-secondary py-1 px-xl-5">
@@ -55,7 +52,7 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-            Welcome {name}
+            {isLoggedIn && `Welcome ${isLoggedIn.name}`}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button

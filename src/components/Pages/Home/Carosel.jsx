@@ -14,17 +14,17 @@ export default function Carosel(props) {
     async function collectData() {
       // setLoading(true);
       let data = await getBannerData(loading);
-      setcarosal(data.carousal);
+      console.log(data?.Data?.data,"dataaaa");
+      setcarosal(data?.Data?.data);
       // setLoading(false);
     }
     collectData();
   }, []);
-  console.log(carosal);
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
         <div className="col-12">
-          {carosal?.length === 0 ? (
+          {carosal && carosal?.length === 0 ? (
             <Skeleton height={500} />
           ) : (
             <div
@@ -57,16 +57,16 @@ export default function Carosel(props) {
                     >
                       <img
                         className="position-absolute w-100 h-100"
-                        src={data.url}
+                        src={data.banner_image}
                         style={{ objectFit: "cover" }}
                       />
                       <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div className="p-3" style={{ maxWidth: 700 }}>
                           <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                            {data.title}
+                            {data.banner_title}
                           </h1>
                           <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                            {data.content}
+                            {data.banner_desc}
                           </p>
                           <a
                             className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"

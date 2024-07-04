@@ -1,19 +1,27 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { getCategoryData } from "../../../Redux/Actions/getApiData";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategorys } from "../../../Redux/Slices/CategorySlice";
 
 export default function Navbar() {
   const location = useLocation();
-  const [categoryDropdown, setCategoryDropdown] = useState([]);
+  const dispatch = useDispatch()
+  const { category}=useSelector((state)=>state.category)
   useEffect(() => {
     async function collectData() {
       await axios
-        .get("../JSON/category.json")
-        .then((response) => setCategoryDropdown(response.data.category))
-        .catch((error) => console.log(error));
+      async function collectData() {
+        // setLoading(true);
+        let data = await getCategoryData();
+        dispatch(getCategorys(data?.data))
+      }
+      collectData();
     }
     collectData();
   }, []);
+  
   return (
     <>
       <div className="container-fluid bg-dark mb-30">
@@ -41,29 +49,29 @@ export default function Navbar() {
               }}
             >
               <div className="navbar-nav w-100">
-                {categoryDropdown?.map((data, index) => (
+                {category?.data?.map((data, index) => (
                   <Fragment key={index}>
-                    {data.subCategory ? (
+                    {data?.subcategories?.length>0 ? (
                     <div className="nav-item dropdown dropright">
                       <Link
                         href="#"
                         className="nav-link dropdown-toggle"
                         data-toggle="dropdown"
                       >
-                        {data.title}{" "}
+                        {data.category_name}{" "}
                         <i className="fa fa-angle-right float-right mt-1"></i>
                       </Link>
                       <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                        {data?.subCategory?.map((data, index) => (
+                        {data?.subcategories?.map((data, index) => (
                           <Link href="" className="dropdown-item" key={index}>
-                            {data}
+                            {data.categoryName}
                           </Link>
                         ))}
                       </div>
                     </div>
                     ) : (
                     <Link to="/shop" className="nav-item nav-link">
-                      {data.title}
+                      {data.category_name}
                     </Link>
                     )}
                   </Fragment>

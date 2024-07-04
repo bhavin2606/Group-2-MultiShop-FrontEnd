@@ -34,7 +34,7 @@ export default function SignIn() {
         dispatch(getUserName(data));
         action.resetForm();
         if (data) {
-          localStorage.setItem("isLoggedIn", JSON.stringify(data.token));
+          localStorage.setItem("isLoggedIn", JSON.stringify(data));
           navigate("/");
         } else {
           navigate("/signin");
