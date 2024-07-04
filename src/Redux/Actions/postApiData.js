@@ -77,7 +77,7 @@ export const postUpdateProfileData = async (values) => {
       .then((res) => {
         console.log(res);
         responseData = res.data
-        toast.success("SignUp successfully")
+        toast.success("Profile Updated successfully!")
       })
       .catch((err) => {
         console.log(err)
@@ -86,7 +86,7 @@ export const postUpdateProfileData = async (values) => {
     return responseData
   }
   catch (error) {
-    toast.error("Invalid Credentials")
+    toast.error("Something Went Wrong!")
   }
 };
 

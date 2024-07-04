@@ -10,17 +10,6 @@ export default function UserAccount() {
   const { userData } = useSelector((state) => state.auth);
   const [file, setFile] = useState(userData?.detail?.image);
 
-  // function handleProfileChange(e) {
-  //   // Call the Api
-  //   // Set Image URl to Profile
-  //   setFile(e.target.files[0]);
-  //   console.log(URL.createObjectURL(e.target.files[0]));
-  // }
-
-  function handleClick() {
-    alert("Image Uploaded Successfully");
-  }
-
   function handleAccountEdit() {
     setEditButton(true);
   }
@@ -84,7 +73,7 @@ export default function UserAccount() {
                     }}
                     disabled={editButton ? false : true}
                   />
-                  <img src={file} id="output" width="200" />
+                  <img src={file} id="output" alt="profile" width="200" />
                 </div>
                 {/* Profile picture help block*/}
                 <div className="small font-italic text-muted mb-4">

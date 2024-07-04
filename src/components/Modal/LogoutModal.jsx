@@ -21,7 +21,7 @@ function LogoutModal() {
   return (
     <>
       <Button
-        className="px-4 w-100 text-start border-0 bg-light"
+        className="px-4 w-100 text-start border-0 bg-light btn-danger"
         onClick={handleShow}
       >
         Logout
