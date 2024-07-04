@@ -12,6 +12,8 @@ export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.auth)
+  console.log("userDatauserDatauserData", userData);
 
   useEffect(() => {
     console.log("lllll");
@@ -67,7 +69,7 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-            {token && `Welcome`}
+          {token &&  userData?.detail?.firstName !== undefined && `Welcome ${userData?.detail?.firstName}, `}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button

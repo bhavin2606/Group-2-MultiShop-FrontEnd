@@ -20,6 +20,7 @@ export default function Carosel(props) {
     }
     collectData();
   }, []);
+  console.log(carosal,"carosallllllllllllllllll");
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
@@ -33,7 +34,7 @@ export default function Carosel(props) {
               data-ride="carousel"
             >
               <ol className="carousel-indicators">
-                {carosal.length > 0 &&
+                {carosal && carosal.length > 0 &&
                   carosal?.map((data, index) => (
                     <li
                       key={index}

@@ -1,5 +1,10 @@
 import * as Yup from "yup";
 
-export const resetSchema = Yup.object({
-    email: Yup.string().email().required("Please enter your email"),
+const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
+
+export const resetPasswordSchema = Yup.object({
+    password: Yup.string().matches(passwordRules, { message: "Please create Password must contain 8 or more characters with at least one of each: uppercase, lowercase, number and special'" }) ,
+    confirmPassword:Yup.string()
+    .required()
+    .oneOf([Yup.ref("confirmPassword"), null], "Password must match"),
 });

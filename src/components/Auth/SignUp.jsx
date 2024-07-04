@@ -26,10 +26,13 @@ export default function SignUp() {
       validateOnChange: true,
       validateOnBlur: false,
       onSubmit: async (values, action) => {
-       let data = await postSignUpData(values);
         action.resetForm();
-        console.log(data.response.data , "datatatatatatattatatatat");
-        navigate("/signin");
+        let data = await postSignUpData(values);
+        if (data.status === 200) {
+          navigate("/signin");
+        } else {
+          navigate('/signup')
+        }
       },
     });
 
@@ -156,7 +159,7 @@ export default function SignUp() {
                           type={showConfirmPassword ? "text" : "password"}
                           className="form-control"
                           name="confirmPassword"
-                          id="confirm_password"
+                          id="confirmPassword"
                           autoComplete="off"
                           placeholder="Confirm Password"
                           value={values.confirmPassword}
@@ -214,7 +217,7 @@ export default function SignUp() {
                   </div>
                 </form>
 
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-12">
                     <p className="mt-5 mb-4">Or sign in with</p>
                     <div className="d-flex gap-3 flex-column flex-xl-row">
@@ -259,7 +262,7 @@ export default function SignUp() {
                       </a>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="row">
                   <div className="col-12">
                     <hr className="mt-5 mb-4 border-secondary-subtle" />

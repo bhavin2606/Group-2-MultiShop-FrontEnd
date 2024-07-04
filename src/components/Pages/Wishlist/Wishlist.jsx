@@ -37,24 +37,21 @@ export default function Wishlist() {
                       alt={product.name}
                     />
                     <div className="product-action">
-                      <a className="btn btn-outline-dark btn-square" href="">
+                      <Link className="btn btn-outline-dark btn-square" href="">
                         <i className="fa fa-shopping-cart" />
-                      </a>
-                      {/* <a className="btn btn-outline-dark btn-square" href="">
-                        <i className="far fa-heart" />
-                      </a> */}
-                      <a className="btn btn-outline-dark btn-square" href="">
+                      </Link>
+                      <Link className="btn btn-outline-dark btn-square" href="">
                         <i className="fa fa-search" />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className="text-center py-4">
-                    <a
+                    <Link
                       className="h6 text-decoration-none text-truncate"
-                      href=""
+                      to=""
                     >
                       {product.name}
-                    </a>
+                    </Link>
                     <div className="d-flex align-items-center justify-content-center mt-2">
                       <h5>${product.price.toFixed(2)}</h5>
                       {product.discountPrice && (
