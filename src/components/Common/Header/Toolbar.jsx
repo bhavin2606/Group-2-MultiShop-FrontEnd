@@ -23,7 +23,7 @@ export default function Toolbar() {
     collectData();
   }, [token]);  
 
-  console.log(name,token,"name");
+  console.log(token,"name");
   return (
     <div className="container-fluid">
       <div className="row bg-secondary py-1 px-xl-5">
@@ -67,7 +67,7 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-            {isLoggedIn && `Welcome ${isLoggedIn.name}`}
+            {token && `Welcome`}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button
