@@ -5,7 +5,7 @@ const initialState = {
     token: "",
     userData: {}
 }
-
+ localStorage.getItem("")
 export const authSlice = createSlice({
     name: "auth",
     initialState,

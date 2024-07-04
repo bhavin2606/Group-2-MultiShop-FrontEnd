@@ -67,7 +67,7 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-            Welcome {name}
+            {isLoggedIn && `Welcome ${isLoggedIn.name}`}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button

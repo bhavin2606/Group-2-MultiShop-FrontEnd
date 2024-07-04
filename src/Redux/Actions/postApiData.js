@@ -9,7 +9,7 @@ export const postLoginData = async (values) => {
   data.append("password", values.password);
   try {
     await axios
-      .post("http://192.168.1.188:8000/api/login", values)
+      .post(`${process.env.REACT_APP_BASE_URL}/login`, values)
       .then((res) => {
         console.log(res,"login reesu");
         responseData = res.data
@@ -31,7 +31,7 @@ export const contactUSData = async (values) => {
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
-      url: 'http://192.168.1.188:8000/api/addcontact',
+      url: `${process.env.REACT_APP_BASE_URL}/addcontact`,
       headers: { 
         'Content-Type': 'application/json', 
         'X-API-Key': '{{token}}'
@@ -54,17 +54,19 @@ export const contactUSData = async (values) => {
 
 export const postSignUpData = async (values) => {
   let data = new FormData();
+  console.log(values,"values");
   let responseData = "";
   data.append("email", values.email);
   data.append("firstName", values.firstName);
   data.append("lastName", values.lastName);
   data.append("password", values.password);
-  data.append("confirmPassword", values.confirmPassword);
-
+  data.append("confirmPassword", values.confirm_password);
+  console.log(data,"data");
   try {
     await axios
-      .post("http://192.168.1.188:8000/api/userProfile", data)
+      .post(`${process.env.REACT_APP_BASE_URL}/signup`, data)
       .then((res) => {
+        console.log(res,"signup");
         console.log(res.data);
         responseData = res.data
         toast.success("SignUp successfully")
@@ -98,14 +100,17 @@ export const postUpdateProfileData = async (values) => {
 
   try {
     await axios
+      .post(`${process.env.REACT_APP_BASE_URL}/userProfile`, data)
       .post("http://192.168.1.188:8000/api/update-profile", data, config)
       .then((res) => {
         console.log(res);
         responseData = res.data
+        toast.success("Profile Updated successfully")
         toast.success("Profile Updated successfully!")
       })
       .catch((err) => {
         console.log(err)
+        toast.error("Something Wrong....")
         toast.error("")
       });
     return responseData
@@ -120,7 +125,7 @@ export const postNewsLetterData = async (values) => {
   let responseData = "";
   try {
     await axios
-      .post("http://192.168.1.188:8000/api/newsletter", values)
+      .post(`${process.env.REACT_APP_BASE_URL}/newsletter`, values)
       .then((res) => {
         console.log(res);
         responseData = res.data
