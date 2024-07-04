@@ -23,11 +23,11 @@ export default function Wishlist() {
         <div className="conatiner-fluid px-3 ms-3 me-0">
           <div className="row container-fluid">
             {products.map((product) => (
-              <div key={product.id} className="col-lg-3 col-md-4 col-sm-6 pb-1">
+              <div key={product.id} className="col-lg-2 col-md-4 col-sm-6 pb-1">
                 <div className="product-item bg-light mb-4">
                   <p className="d-flex justify-content-end p-2">
-                    <Link className="fs-4 text-decoration-none btn-outline-dark btn-square" to="/shop" >
-                      <i className="far fa-heart" />
+                    <Link className="fs-5 text-decoration-none btn-outline-dark btn-square" to="" >
+                      <i className="fa fa-heart" />
                     </Link>
                   </p>
                   <div className="product-img position-relative overflow-hidden">

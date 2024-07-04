@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 export default function CategoryHome() {
-  const [categoryHome, setCategoryHome] = useState([]);
   const { category}= useSelector((state)=>state.category)
-  useEffect(() => {
-    async function collectData() {
-      axios
-        .get("./JSON/category.json")
-        .then((response) => setCategoryHome(response.data.category))
-        .catch((error) => console.log(error));
-    }
-    collectData();
-  }, []);
-  console.log(category,"categoryhome");
   return (
     <div className="container-fluid pt-5">
       <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
         <span className="bg-secondary pr-3">Categories</span>
       </h2>
       <div className="row px-xl-5 pb-3">
-        {category?.data?.map((data, index) => (
+        {category?.data?.length > 0 ? category?.data?.map((data, index) => (
           <div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={index}>
             <a className="text-decoration-none" href=".">
               <div className="cat-item img-zoom d-flex align-items-center mb-4">
@@ -37,7 +27,7 @@ export default function CategoryHome() {
               </div>
             </a>
           </div>
-        ))}
+        )): <Skeleton height={300} />}
       </div>
     </div>
   );

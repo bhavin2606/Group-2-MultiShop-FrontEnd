@@ -7,21 +7,16 @@ import { getCategorys } from "../../../Redux/Slices/CategorySlice";
 
 export default function Navbar() {
   const location = useLocation();
-  const dispatch = useDispatch()
-  const { category}=useSelector((state)=>state.category)
+  const dispatch = useDispatch();
+  const { category } = useSelector((state) => state.category);
   useEffect(() => {
     async function collectData() {
-      await axios
-      async function collectData() {
-        // setLoading(true);
-        let data = await getCategoryData();
-        dispatch(getCategorys(data?.data))
-      }
-      collectData();
+      let data = await getCategoryData();
+      dispatch(getCategorys(data?.data));
     }
     collectData();
   }, []);
-  
+  console.log(category?.data,"cat on headwewr");
   return (
     <>
       <div className="container-fluid bg-dark mb-30">
@@ -51,28 +46,28 @@ export default function Navbar() {
               <div className="navbar-nav w-100">
                 {category?.data?.map((data, index) => (
                   <Fragment key={index}>
-                    {data?.subcategories?.length>0 ? (
-                    <div className="nav-item dropdown dropright">
-                      <Link
-                        href="#"
-                        className="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                      >
-                        {data.category_name}{" "}
-                        <i className="fa fa-angle-right float-right mt-1"></i>
-                      </Link>
-                      <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                        {data?.subcategories?.map((data, index) => (
-                          <Link href="" className="dropdown-item" key={index}>
-                            {data.categoryName}
-                          </Link>
-                        ))}
+                    {data?.subcategories?.length > 0 ? (
+                      <div className="nav-item dropdown dropright">
+                        <Link
+                          href="#"
+                          className="nav-link dropdown-toggle"
+                          data-toggle="dropdown"
+                        >
+                          {data.category_name}{" "}
+                          <i className="fa fa-angle-right float-right mt-1"></i>
+                        </Link>
+                        <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
+                          {data?.subcategories?.map((data, index) => (
+                            <Link href="" className="dropdown-item" key={index}>
+                              {data.subcategoryName}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
                     ) : (
-                    <Link to="/shop" className="nav-item nav-link">
-                      {data.category_name}
-                    </Link>
+                      <Link to="/shop" className="nav-item nav-link">
+                        {data.category_name}
+                      </Link>
                     )}
                   </Fragment>
                 ))}

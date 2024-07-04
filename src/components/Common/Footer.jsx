@@ -1,53 +1,64 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { newsLetterSchema } from "../validations/newsLetterSchema";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { postNewsLetterData } from "../../Redux/Actions/postApiData";
+import { getSettingData } from "../../Redux/Actions/getApiData";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
-const initialValues = {
-  email: "",
-};
+  const [settingData, setSettingData] = useState([]);
+  const initialValues = {
+    email: "",
+  };
 
-const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
-useFormik({
-  initialValues,
-  validationSchema: newsLetterSchema,
-  validateOnChange: true,
-  validateOnBlur: false,
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues,
+      validationSchema: newsLetterSchema,
+      validateOnChange: true,
+      validateOnBlur: false,
 
-  onSubmit: async (values, action) => {
-    {
-      await postNewsLetterData(values)
-      action.resetForm();
-      // toast.success("Subscribed Successfully!");
+      onSubmit: async (values, action) => {
+        await postNewsLetterData(values);
+        action.resetForm();
+        // toast.success("Subscribed Successfully!");
+      },
+    });
+
+  useMemo(() => {
+    async function collectData() {
+      let data = await getSettingData();
+      setSettingData(data);
     }
-  },
-}); 
+    collectData();
+  }, []);
 
   return (
     <div>
       <div className="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div className="row px-xl-5 pt-5">
-          <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-            <h5 className="text-secondary text-uppercase mb-4">Get In Touch</h5>
-            <p className="mb-4">
-              No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et
-              et dolor sed dolor. Rebum tempor no vero est magna amet no
-            </p>
-            <p className="mb-2">
-              <i className="fa fa-map-marker-alt text-primary mr-3" />
-              123 Street, New York, USA
-            </p>
-            <p className="mb-2">
-              <i className="fa fa-envelope text-primary mr-3" />
-              info@example.com
-            </p>
-            <p className="mb-0">
-              <i className="fa fa-phone-alt text-primary mr-3" />
-              +012 345 67890
-            </p>
-          </div>
+          {settingData &&
+            settingData?.footer?.map((data, index) => (
+              <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5" key={index}>
+                <h5 className="text-secondary text-uppercase mb-4">
+                  Get In Touch
+                </h5>
+                <p className="mb-4">{data.description}</p>
+                <p className="mb-2">
+                  <i className="fa fa-map-marker-alt text-primary mr-3" />
+                  {data.address}
+                </p>
+                <p className="mb-2">
+                  <i className="fa fa-envelope text-primary mr-3" />
+                  {data.email}
+                </p>
+                <p className="mb-0">
+                  <i className="fa fa-phone-alt text-primary mr-3" />
+                  {data.contact}
+                </p>
+              </div>
+            ))}
           <div className="col-lg-8 col-md-12">
             <div className="row">
               <div className="col-md-4 mb-5">
@@ -121,32 +132,38 @@ useFormik({
                       onBlur={handleBlur}
                     />
                     {errors.email && touched.email ? (
-                      <p className="form-error text-danger">
-                        {errors.email}
-                      </p>
+                      <p className="form-error text-danger">{errors.email}</p>
                     ) : null}
                     <div className="input-group-append">
-                      <button onClick={handleSubmit} className="btn btn-primary">Sign Up</button>
+                      <button
+                        onClick={handleSubmit}
+                        className="btn btn-primary"
+                      >
+                        Sign Up
+                      </button>
                     </div>
                   </div>
                 </form>
                 <h6 className="text-secondary text-uppercase mt-4 mb-3">
                   Follow Us
                 </h6>
-                <div className="d-flex">
-                  <a className="btn btn-primary btn-square mr-2" href="#">
-                    <i className="fab fa-twitter" />
-                  </a>
-                  <a className="btn btn-primary btn-square mr-2" href="#">
-                    <i className="fab fa-facebook-f" />
-                  </a>
-                  <a className="btn btn-primary btn-square mr-2" href="#">
-                    <i className="fab fa-linkedin-in" />
-                  </a>
-                  <a className="btn btn-primary btn-square" href="#">
-                    <i className="fab fa-instagram" />
-                  </a>
-                </div>
+                {settingData &&
+                  settingData?.footer?.map((data, index) => (
+                    <div className="d-flex" key={index}>
+                      <Link className="btn btn-primary btn-square mr-2" to={data.twitter}>
+                        <i className="fab fa-twitter" />
+                      </Link>
+                      <Link className="btn btn-primary btn-square mr-2" to={data.facebook}>
+                        <i className="fab fa-facebook-f" />
+                      </Link>
+                      <Link className="btn btn-primary btn-square mr-2" to={data.linkedIn}>
+                        <i className="fab fa-linkedin-in" />
+                      </Link>
+                      <Link className="btn btn-primary btn-square" to={data.instagram}>
+                        <i className="fab fa-instagram" />
+                      </Link>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>

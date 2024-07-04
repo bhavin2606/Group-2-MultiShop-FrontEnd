@@ -3,6 +3,7 @@ import axios from "axios";
 import { getBannerData } from "../../../Redux/Actions/getApiData";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "react-router-dom";
 
 export default function Carosel(props) {
   const [carosal, setcarosal] = useState([]);
@@ -68,12 +69,12 @@ export default function Carosel(props) {
                           <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
                             {data.banner_desc}
                           </p>
-                          <a
+                          <Link
                             className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                            href="#"
+                            to={data.banner_link}
                           >
                             Shop Now
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>

@@ -33,7 +33,25 @@ export const getUserData = async () => {
         headers: { Authorization: `Bearer ${token}` }
     };
     try {
-        await axios.get("http://192.168.1.188:8000/api/profile", config).then((response) => {
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/profile`, config).then((response) => {
+            responseData = response.data
+            console.log(responseData);
+        }).catch((error) => console.log(error))
+        return responseData
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getSettingData = async () => {
+    let token = localStorage.getItem("token")
+    console.log("token", token);
+    let responseData = ""
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    try {
+        await axios.get(`${process.env.REACT_APP_BASE_URL}/footer`).then((response) => {
             responseData = response.data
             console.log(responseData);
         }).catch((error) => console.log(error))
