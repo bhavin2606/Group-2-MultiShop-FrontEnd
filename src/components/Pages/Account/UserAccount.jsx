@@ -5,7 +5,10 @@ import { userAccountSchema } from "../../validations/userAccountSchema";
 import { postUpdateProfileData } from "../../../Redux/Actions/postApiData";
 import { useSelector } from "react-redux";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
-import { useAddUserProfileMutation, useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
+import {
+  useAddUserProfileMutation,
+  useGetUserDataQuery,
+} from "../../../Redux/Slices/AuthApis";
 
 export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);
@@ -47,13 +50,12 @@ export default function UserAccount() {
       data.append("lastName", values.lastName);
       data.append("phoneNo", values.phoneNumber);
       data.append("dob", values.birthday);
-      data.append("image", values.image)
-      data.append("_method", "put"); 
-      addUserProfile(data)
+      data.append("image", values.image);
+      data.append("_method", "put");
+      addUserProfile(data);
       setEditButton(false);
     },
   });
-  console.log("datadatadatadatadatadatadata", userData);
 
   return (
     <>
@@ -63,7 +65,7 @@ export default function UserAccount() {
           <span className="bg-secondary pr-3">My Account</span>
         </h2>
         <div className="container-xl px-4 mt-4">
-          {/* Account page navigation*/}
+          {/* Account page avigation*/}
           {/* <hr className="mt-0 mb-4" /> */}
           <form onSubmit={handleSubmit}>
             <div className="row">
