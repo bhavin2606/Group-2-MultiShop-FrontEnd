@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useGetCategoryDataQuery } from "../../../Redux/api";
+import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
 
 export default function Navbar() {
   const location = useLocation();

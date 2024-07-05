@@ -1,6 +1,6 @@
 import React from "react";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
-import { useGetAboutUsDataQuery } from "../../../Redux/api";
+import { useGetAboutUsDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
 export default function About() {
   const { data: aboutData } = useGetAboutUsDataQuery();
   console.log(aboutData, "aboutData");
@@ -13,7 +13,7 @@ export default function About() {
           <span className="bg-secondary pr-3">About US</span>
         </h2>
         <div
-          className="container mt-5"
+          className="container-fluid mx-5"
           dangerouslySetInnerHTML={{
             __html: aboutData?.description?.description,
           }}

@@ -1,5 +1,5 @@
 import Skeleton from "react-loading-skeleton";
-import { useGetCategoryDataQuery } from "../../../Redux/api";
+import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
 export default function CategoryHome() {
   const { data } = useGetCategoryDataQuery();
   return (

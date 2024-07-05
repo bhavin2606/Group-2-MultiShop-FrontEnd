@@ -6,7 +6,7 @@ import SignOut from "../../Auth/SignOut";
 import { getUserData } from "../../../Redux/Actions/getApiData";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../../../Redux/Slices/AuthSlice";
-import { useGetUserDataQuery } from "../../../Redux/api";
+import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
 
 export default function Toolbar() {
   console.log("inn");

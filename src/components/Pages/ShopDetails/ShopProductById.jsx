@@ -4,7 +4,7 @@ import avatar from "../../../assets/img/user.jpg";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
-import { useGetProductDataByIdQuery } from "../../../Redux/api";
+import { useGetProductDataByIdQuery } from "../../../Redux/Slices/ProductApi";
 export default function ShopProductById() {
 
   useEffect(() => {

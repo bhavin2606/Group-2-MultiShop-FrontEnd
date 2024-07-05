@@ -4,8 +4,8 @@ import { useFormik } from "formik";
 import { userAccountSchema } from "../../validations/userAccountSchema";
 import { postUpdateProfileData } from "../../../Redux/Actions/postApiData";
 import { useSelector } from "react-redux";
-import { useAddUserProfileMutation, useGetUserDataQuery } from "../../../Redux/api";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
+import { useAddUserProfileMutation, useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
 
 export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);

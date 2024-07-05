@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { postNewsLetterData } from "../../Redux/Actions/postApiData";
 import { getSettingData } from "../../Redux/Actions/getApiData";
 import { Link } from "react-router-dom";
-import { useGetSettingDataQuery } from "../../Redux/api";
+import { useGetSettingDataQuery } from "../../Redux/Slices/GeneralSettingsApi";
 
 export default function Footer() {
   const [settingData, setSettingData] = useState([]);

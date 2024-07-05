@@ -4,7 +4,7 @@ import { getBannerData } from "../../../Redux/Actions/getApiData";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
-import { useGetBannerDataQuery } from "../../../Redux/api";
+import { useGetBannerDataQuery } from "../../../Redux/Slices/HomePageApi";
 
 export default function Carosel(props) {
   const { data } = useGetBannerDataQuery();
