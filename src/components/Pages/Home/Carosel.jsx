@@ -4,29 +4,15 @@ import { getBannerData } from "../../../Redux/Actions/getApiData";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
+import { useGetBannerDataQuery } from "../../../Redux/api";
 
 export default function Carosel(props) {
-  const [carosal, setcarosal] = useState([]);
-  // const [loading, setLoading] = useState(false);
-
-  const { loading = true } = props;
-
-  useEffect(() => {
-    async function collectData() {
-      // setLoading(true);
-      let data = await getBannerData(loading);
-      console.log(data?.Data?.data,"dataaaa");
-      setcarosal(data?.Data?.data);
-      // setLoading(false);
-    }
-    collectData();
-  }, []);
-  console.log(carosal,"carosallllllllllllllllll");
+  const { data } = useGetBannerDataQuery();
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
         <div className="col-12">
-          {carosal && carosal?.length === 0 ? (
+          {data && data?.Data?.data?.length === 0 ? (
             <Skeleton height={500} />
           ) : (
             <div
@@ -35,8 +21,8 @@ export default function Carosel(props) {
               data-ride="carousel"
             >
               <ol className="carousel-indicators">
-                {carosal && carosal.length > 0 &&
-                  carosal?.map((data, index) => (
+                {data?.Data?.data.length > 0 &&
+                  data?.Data?.data?.map((data, index) => (
                     <li
                       key={index}
                       data-target="#header-carousel"
@@ -46,8 +32,8 @@ export default function Carosel(props) {
                   ))}
               </ol>
               <div className="carousel-inner">
-                {carosal?.length > 0 &&
-                  carosal?.map((data, index) => (
+                {data?.Data?.data?.length > 0 &&
+                  data?.Data?.data?.map((data, index) => (
                     <div
                       key={index}
                       className={

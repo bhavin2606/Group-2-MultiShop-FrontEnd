@@ -6,26 +6,14 @@ import SignOut from "../../Auth/SignOut";
 import { getUserData } from "../../../Redux/Actions/getApiData";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails } from "../../../Redux/Slices/AuthSlice";
+import { useGetUserDataQuery } from "../../../Redux/api";
 
 export default function Toolbar() {
   console.log("inn");
   const location = useLocation();
   const token = localStorage.getItem("token");
-  const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.auth)
-  console.log("userDatauserDatauserData", userData);
-
-  useEffect(() => {
-    console.log("lllll");
-    async function collectData() {
-      let data = await getUserData();
-      dispatch(getUserDetails(data));
-      console.log("datadatadatadata", data);
-    }
-    collectData();
-  }, [token]);  
-
-  console.log(token,"name");
+  const { data:userData } = useGetUserDataQuery()
+  console.log(userData,"userrrrssssDataaa");
   return (
     <div className="container-fluid">
       <div className="row bg-secondary py-1 px-xl-5">
@@ -69,7 +57,7 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-          {token &&  userData?.detail?.firstName !== undefined && `Welcome ${userData?.detail?.firstName}, `}
+            {token && `Welcome ${userData?.detail?.firstName}`}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button

@@ -1,22 +1,10 @@
-import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getCategoryData } from "../../../Redux/Actions/getApiData";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategorys } from "../../../Redux/Slices/CategorySlice";
+import { useGetCategoryDataQuery } from "../../../Redux/api";
 
 export default function Navbar() {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const { category } = useSelector((state) => state.category);
-  useEffect(() => {
-    async function collectData() {
-      let data = await getCategoryData();
-      dispatch(getCategorys(data?.data));
-    }
-    collectData();
-  }, []);
-  console.log(category?.data,"cat on headwewr");
+  const { data:banner } = useGetCategoryDataQuery();
   return (
     <>
       <div className="container-fluid bg-dark mb-30">
@@ -44,7 +32,7 @@ export default function Navbar() {
               }}
             >
               <div className="navbar-nav w-100">
-                {category?.data?.map((data, index) => (
+                {banner?.data?.data?.map((data, index) => (
                   <Fragment key={index}>
                     {data?.subcategories?.length > 0 ? (
                       <div className="nav-item dropdown dropright">

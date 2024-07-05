@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { postLoginData } from "../Actions/postApiData";
+import { useGetProductDataQuery } from "../api";
 
 const initialState = {
     token: "",

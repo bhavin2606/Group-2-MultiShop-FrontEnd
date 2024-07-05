@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { postNewsLetterData } from "../../Redux/Actions/postApiData";
 import { getSettingData } from "../../Redux/Actions/getApiData";
 import { Link } from "react-router-dom";
+import { useGetSettingDataQuery } from "../../Redux/api";
 
 export default function Footer() {
   const [settingData, setSettingData] = useState([]);
@@ -26,20 +27,13 @@ export default function Footer() {
       },
     });
 
-  useMemo(() => {
-    async function collectData() {
-      let data = await getSettingData();
-      setSettingData(data);
-    }
-    collectData();
-  }, []);
-
+  const { data:settingdata } = useGetSettingDataQuery()
   return (
     <div>
       <div className="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div className="row px-xl-5 pt-5">
-          {settingData &&
-            settingData?.footer?.map((data, index) => (
+          {settingdata &&
+            settingdata?.footer?.map((data, index) => (
               <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5" key={index}>
                 <h5 className="text-secondary text-uppercase mb-4">
                   Get In Touch
