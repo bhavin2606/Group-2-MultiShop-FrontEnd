@@ -1,9 +1,6 @@
 import React from "react";
-import product1 from "../../../assets/img/product-1.jpg";
-import product2 from "../../../assets/img/product-2.jpg";
-import product3 from "../../../assets/img/product-3.jpg";
-import product4 from "../../../assets/img/product-4.jpg";
-import product5 from "../../../assets/img/product-5.jpg";
+import { Link } from "react-router-dom";
+
 export default function ShopYouMayLike() {
   return (
     <>
@@ -22,24 +19,24 @@ export default function ShopYouMayLike() {
                     alt=""
                   />
                   <div className="product-action">
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-shopping-cart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="far fa-heart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-sync-alt" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-search" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="text-center py-4">
-                  <a className="h6 text-decoration-none text-truncate" href="">
+                  <Link className="h6 text-decoration-none text-truncate" to="">
                     Product Name Goes Here
-                  </a>
+                  </Link>
                   <div className="d-flex align-items-center justify-content-center mt-2">
                     <h5>$123.00</h5>
                     <h6 className="text-muted ml-2">
@@ -64,24 +61,24 @@ export default function ShopYouMayLike() {
                     alt=""
                   />
                   <div className="product-action">
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-shopping-cart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="far fa-heart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-sync-alt" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-search" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="text-center py-4">
-                  <a className="h6 text-decoration-none text-truncate" href="">
+                  <Link className="h6 text-decoration-none text-truncate" to="">
                     Product Name Goes Here
-                  </a>
+                  </Link>
                   <div className="d-flex align-items-center justify-content-center mt-2">
                     <h5>$123.00</h5>
                     <h6 className="text-muted ml-2">
@@ -106,24 +103,24 @@ export default function ShopYouMayLike() {
                     alt=""
                   />
                   <div className="product-action">
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-shopping-cart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="far fa-heart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-sync-alt" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-search" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="text-center py-4">
-                  <a className="h6 text-decoration-none text-truncate" href="">
+                  <Link className="h6 text-decoration-none text-truncate" to="">
                     Product Name Goes Here
-                  </a>
+                  </Link>
                   <div className="d-flex align-items-center justify-content-center mt-2">
                     <h5>$123.00</h5>
                     <h6 className="text-muted ml-2">
@@ -148,24 +145,24 @@ export default function ShopYouMayLike() {
                     alt=""
                   />
                   <div className="product-action">
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-shopping-cart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="far fa-heart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-sync-alt" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-search" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="text-center py-4">
-                  <a className="h6 text-decoration-none text-truncate" href="">
+                  <Link className="h6 text-decoration-none text-truncate" to="">
                     Product Name Goes Here
-                  </a>
+                  </Link>
                   <div className="d-flex align-items-center justify-content-center mt-2">
                     <h5>$123.00</h5>
                     <h6 className="text-muted ml-2">
@@ -190,24 +187,24 @@ export default function ShopYouMayLike() {
                     alt=""
                   />
                   <div className="product-action">
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-shopping-cart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="far fa-heart" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-sync-alt" />
-                    </a>
-                    <a className="btn btn-outline-dark btn-square" href="">
+                    </Link>
+                    <Link className="btn btn-outline-dark btn-square" to="">
                       <i className="fa fa-search" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="text-center py-4">
-                  <a className="h6 text-decoration-none text-truncate" href="">
+                  <Link className="h6 text-decoration-none text-truncate" to="">
                     Product Name Goes Here
-                  </a>
+                  </Link>
                   <div className="d-flex align-items-center justify-content-center mt-2">
                     <h5>$123.00</h5>
                     <h6 className="text-muted ml-2">
@@ -225,7 +222,7 @@ export default function ShopYouMayLike() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </>

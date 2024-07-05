@@ -11,9 +11,10 @@ import Wishlist from "../components/Pages/Wishlist/Wishlist";
 import ErrorPage from "../components/Common/ErrorPage";
 import SignIn from "../components/Auth/SignIn";
 import SignUp from "../components/Auth/SignUp";
-import ResetPassword from "../components/Auth/ResetPassword";
 import ChangePassword from "../components/Auth/ChangePassword";
 import UserAccount from "../components/Pages/Account/UserAccount";
+import ForgetPassword from "../components/Auth/ForgetPassword";
+import ResetPassword from "../components/Auth/ResetPassword";
 
 export const routesObject = [
     {
@@ -109,20 +110,27 @@ export const routesObject = [
     },
     {
         id: 13,
+        path: 'forget-password',
+        element: <ForgetPassword />,
+        name: 'ForgetPassword',
+        layout: true
+    },
+    {
+        id: 14,
         path: 'reset-password',
         element: <ResetPassword />,
         name: 'ResetPassword',
         layout: true
     },
     {
-        id: 14,
+        id: 15,
         path: 'account',
         element: <UserAccount />,
         name: 'MyAccount',
         layout: true
     },
     {
-        id: 15,
+        id: 16,
         path: 'change-password',
         element: <ChangePassword />,
         name: 'MyAccount',

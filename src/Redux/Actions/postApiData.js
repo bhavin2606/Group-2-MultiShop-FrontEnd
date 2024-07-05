@@ -12,7 +12,7 @@ export const postLoginData = async (values) => {
       .post(`${process.env.REACT_APP_BASE_URL}/login`, values)
       .then((res) => {
         console.log(res,"login reesu");
-        responseData = res.data
+        responseData = res
         toast.success("Logged in successfully")
       })
       .catch((err) => {
@@ -60,21 +60,21 @@ export const postSignUpData = async (values) => {
   data.append("firstName", values.firstName);
   data.append("lastName", values.lastName);
   data.append("password", values.password);
-  data.append("confirmPassword", values.confirm_password);
+  data.append("confirmPassword", values.confirmPassword);
   console.log(data,"data");
   try {
     await axios
       .post(`${process.env.REACT_APP_BASE_URL}/signup`, data)
       .then((res) => {
         console.log(res,"signup");
-        console.log(res.data);
-        responseData = res.data
+        responseData = res
         toast.success("SignUp successfully")
       })
       .catch((err) => {
         console.log(err)
         toast.error("Email already registered")
       });
+    console.log(responseData, "responseDataresponseDataresponseData");
     return responseData
   }
   catch (error) {
@@ -140,6 +140,29 @@ export const postNewsLetterData = async (values) => {
 };
 
 
+export const postResetPasswordData = async (values) => {
+  let responseData = "";
+  try {
+    await axios
+      .post(`${process.env.REACT_APP_BASE_URL}/password/email`, values)
+      .then((res) => {
+        console.log(res);
+        responseData = res
+        toast.success("Reset Link Sent to your email")
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Invalid email")
+      });
+    return responseData
+  }
+  catch (error) {
+    toast.error("Invalid")
+  }
+};
+
+
+
 export const postChangePasswordData = async (values) => {
   let token = localStorage.getItem("token")
   let responseData = ""
@@ -156,12 +179,39 @@ export const postChangePasswordData = async (values) => {
       })
       .catch((err) => {
         console.log(err)
-        toast.error("Invalid email")
+        toast.error("Invalid Current Password")
       });
     return responseData
   }
   catch (error) {
     toast.error("Invalid")
+  }
+};
+
+export const postLogoutData = async () => {
+  console.log("logoutlogoutlogoutlogout");
+  let token = localStorage.getItem("token")
+  let responseData = ""
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  };
+  try {
+    await axios
+      .post(`${process.env.REACT_APP_BASE_URL}/logout`, "" ,config)
+      .then((res) => {
+        console.log(res);
+        responseData = res.data
+        toast.success("LoggedOut successfully");
+        localStorage.clear("token");
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Something Went Wrong")
+      });
+    return responseData
+  }
+  catch (error) {
+    toast.error("Something Wrong......")
   }
 };
 

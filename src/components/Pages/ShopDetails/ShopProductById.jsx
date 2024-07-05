@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import avatar from "../../../assets/img/user.jpg";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
 export default function ShopProductById() {
   const [productDetail, setProductDetail] = useState([]);
@@ -17,7 +17,7 @@ export default function ShopProductById() {
         )
         .catch((error) => console.log(error));
     }
-    collectData();
+    collectData(); 
   }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,24 +42,24 @@ export default function ShopProductById() {
                     index === 0 ? "carousel-item active" : "carousel-item"
                   }
                 >
-                  <img className="w-100 h-100" src={url} alt="Image" />
+                  <img className="w-100 h-100" src={url} alt="product" />
                 </div>
               ))}
             </div>
-            <a
+            <Link
               className="carousel-control-prev"
-              href="#product-carousel"
+              to="#product-carousel"
               data-slide="prev"
             >
               <i className="fa fa-2x fa-angle-left text-dark" />
-            </a>
-            <a
+            </Link>
+            <Link
               className="carousel-control-next"
-              href="#product-carousel"
+              to="#product-carousel"
               data-slide="next"
             >
               <i className="fa fa-2x fa-angle-right text-dark" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="col-lg-7 h-auto mb-30">
@@ -152,18 +152,18 @@ export default function ShopProductById() {
             <div className="d-flex pt-2">
               <strong className="text-dark mr-2">Share on:</strong>
               <div className="d-inline-flex">
-                <a className="text-dark px-2" href="">
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-facebook-f" />
-                </a>
-                <a className="text-dark px-2" href="">
+                </Link>
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-twitter" />
-                </a>
-                <a className="text-dark px-2" href="">
+                </Link>
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-linkedin-in" />
-                </a>
-                <a className="text-dark px-2" href="">
+                </Link>
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-pinterest" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -173,27 +173,27 @@ export default function ShopProductById() {
         <div className="col">
           <div className="bg-light p-30">
             <div className="nav nav-tabs mb-4">
-              <a
+              <Link
                 className="nav-item nav-link text-dark active"
                 data-toggle="tab"
-                href="#tab-pane-1"
+                to="#tab-pane-1"
               >
                 Description
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-item nav-link text-dark"
                 data-toggle="tab"
-                href="#tab-pane-2"
+                to="#tab-pane-2"
               >
                 Information
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-item nav-link text-dark"
                 data-toggle="tab"
-                href="#tab-pane-3"
+                to="#tab-pane-3"
               >
                 Reviews (0)
-              </a>
+              </Link>
             </div>
             <div className="tab-content">
               <div className="tab-pane fade show active" id="tab-pane-1">
@@ -283,7 +283,7 @@ export default function ShopProductById() {
                     <div className="media mb-4">
                       <img
                         src={avatar}
-                        alt="Image"
+                        alt="product"
                         className="img-fluid mr-3 mt-1"
                         style={{ width: 45 }}
                       />
