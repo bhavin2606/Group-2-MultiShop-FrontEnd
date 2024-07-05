@@ -9,11 +9,9 @@ import { getUserDetails } from "../../../Redux/Slices/AuthSlice";
 import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
 
 export default function Toolbar() {
-  console.log("inn");
   const location = useLocation();
   const token = localStorage.getItem("token");
   const { data:userData } = useGetUserDataQuery()
-  console.log(userData,"userrrrssssDataaa");
   return (
     <div className="container-fluid">
       <div className="row bg-secondary py-1 px-xl-5">

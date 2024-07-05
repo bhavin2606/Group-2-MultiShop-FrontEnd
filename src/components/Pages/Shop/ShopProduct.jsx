@@ -14,19 +14,7 @@ import RatingIntegration from "../../Common/RatingIntegration";
 import { useGetProductDataQuery } from "../../../Redux/Slices/ProductApi";
 export default function ShopProduct() {
   const [toggleGrid, setToggleGrid] = useState(false);
-  // const [shopProduct, setShopProduct] = useState([]);
-  // useEffect(() => {
-  //   async function collectData() {
-  //     await axios
-  //       .get("./JSON/product.json")
-  //       .then((response) => setShopProduct(response.data.product))
-  //       .catch((error) => console.log(error));
-  //   }
-  //   collectData();
-  // }, []);
-  // console.log(shopProduct);
   const { data: shopProduct } = useGetProductDataQuery();
-  console.log(shopProduct, "shopProduct");
   return (
     <div className="col-lg-9 col-md-8">
       <div className="row pb-3">
@@ -107,7 +95,7 @@ export default function ShopProduct() {
                     <div className="card-body">
                       <h5 className="card-title">{data?.product_name}</h5>
                       <p className="card-text">{data.short_desc}</p>
-                      <p className="card-text">
+                      <div className="card-text">
                         <div className="d-flex mt-2">
                           <h5>${data?.price}</h5>
                           <h6 className="text-muted ml-2">
@@ -116,7 +104,7 @@ export default function ShopProduct() {
                             )}
                           </h6>
                         </div>
-                      </p>
+                      </div>
                       <div className="d-flex ">
                         <RatingIntegration star={data?.rating_Count} />
                         <small>({data?.totalReviews})</small>

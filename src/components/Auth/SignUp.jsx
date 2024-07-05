@@ -30,7 +30,6 @@ export default function SignUp() {
       onSubmit: async (values, action) => {
         action.resetForm();
         let res = await postUserSignUpData(values)
-        console.log(res);
         if (res.data.status === 200) {
           navigate("/signin");
           toast.success("SignUp Successfully")

@@ -15,7 +15,6 @@ function LogoutModal() {
 
   const handleLogout = async () => {
     let res = await postLogoutData()
-    console.log(res.status_code)
     handleClose();
     if (res?.data) {
       navigate("/", { replace: true });

@@ -23,9 +23,7 @@ export default function ContactForm() {
       validateOnBlur: false,
 
       onSubmit: async (values, action) => {
-        console.log(values);
        let res = await postContactData(values)
-        console.log(res,"resultresultresult");
         action.resetForm();
         if (res.data.code === 200) {
           toast.success("Data Added Successfully")

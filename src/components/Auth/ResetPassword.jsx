@@ -14,7 +14,6 @@ export default function ResetPassword() {
   const location = useLocation();
   let token = location?.search?.split("?")?.[1]?.split("token=")?.[1];
   let email = location?.search?.split("?")?.[2]?.split("email=")?.[1];
-  console.log("token", token, "email", email);
   const initialValues = {
     email: email,
     token: token,
@@ -32,8 +31,7 @@ export default function ResetPassword() {
       onSubmit: async (values, action) => {
         action.resetForm();
         let res = await postResetPasswordData(values)
-        console.log(res.data);
-        if (res.data.code == 200) {
+        if (res.data.code === 200) {
           toast.success("Password Reset Successfully")
           navigate('/signin')
         }

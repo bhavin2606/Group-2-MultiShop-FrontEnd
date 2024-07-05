@@ -9,10 +9,7 @@ import "swiper/css/autoplay";
 import RatingIntegration from "../../Common/RatingIntegration";
 export default function ShopYouMayLike() {
   const { data: productData } = useGetProductDataQuery();
-  console.log(
-    productData,
-    "productDataproductDataproductDataproductDataproductData"
-  );
+ 
   return (
     <div className="container-fluid py-5">
       <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">

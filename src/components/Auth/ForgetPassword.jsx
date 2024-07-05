@@ -23,7 +23,6 @@ export default function ForgetPassword() {
         // Post API call for Reset Password
         action.resetForm();
         let res = await postForgetPasswordData(values)
-        console.log(res.data);
         if (res.data === 200) {
           toast.success("Reset Link Sent to your Email")
         }

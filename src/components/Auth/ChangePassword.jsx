@@ -43,7 +43,6 @@ export default function ChangePassword() {
       onSubmit: async (values, action) => {
        let data =  await postChangePasswordData(values);
         action.resetForm();
-        console.log(data);
         if (data) {
           toast.success("Password Changed Successfully")
           navigate("/")

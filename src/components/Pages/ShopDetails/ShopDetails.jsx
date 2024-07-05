@@ -6,7 +6,6 @@ import Breadcrumbs from "../../../Routes/Breadcrumbs";
 
 export default function ShopDetails() {
   const  locations  = useLocation()
-  console.log(locations,"location");
   return (
     <>
       <Breadcrumbs/>

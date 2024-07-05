@@ -25,7 +25,6 @@ export default function Footer() {
         // await postNewsLetterData(values);
         let res = await postNewsLetterData(values)
         action.resetForm();
-        console.log(res?.data.code, "datatatatata");
         if (res?.data?.code) {
           toast.success("Subscribed Successfully!");
         }

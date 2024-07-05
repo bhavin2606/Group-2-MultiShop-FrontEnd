@@ -14,7 +14,6 @@ export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);
   const { data: userData } = useGetUserDataQuery();
   const [file, setFile] = useState(userData?.data?.image);
-  console.log(userData,"userrrrrrrrrrrrrrrrrrrrrr");
   function handleAccountEdit() {
     setEditButton(true);
   }
@@ -94,12 +93,7 @@ export default function UserAccount() {
                         }}
                         disabled={editButton ? false : true}
                       />
-                      {console.log(
-                        file,
-                        "kkkkkkkkk",
-                        values.image,
-                        "filefilefile"
-                      )}
+                      
                       <img
                         src={typeof file === "string" ? file : values?.image}
                         id="output"

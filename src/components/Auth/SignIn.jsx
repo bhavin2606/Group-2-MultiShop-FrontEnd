@@ -35,7 +35,6 @@ export default function SignIn() {
       onSubmit: async (values, action) => {
         let res = await postUserSignInData(values)
         action.resetForm();
-        console.log(res.data, "datataattatatatattatatatatatatatttttttttttttttttttttttttttttttttttttttttttttttt")
         if (res.data.status === 200) {
           localStorage.setItem("token" , res?.data?.data?.token)
           toast.success("Successfully Logged In")

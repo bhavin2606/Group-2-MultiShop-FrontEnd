@@ -11,8 +11,6 @@ export default function ShopProductById() {
   }, []);
   const { id } = useParams();
   const { data: productDetail } = useGetProductDataByIdQuery(id);
-  console.log(id, "id mil gya");
-  console.log(productDetail, "productDetailbyid");
   return (
     <div className="container-fluid pb-5">
       {productDetail?.products?.map((data, index) => (

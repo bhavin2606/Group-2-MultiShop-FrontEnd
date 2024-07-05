@@ -3,7 +3,6 @@ import Breadcrumbs from "../../../Routes/Breadcrumbs";
 import { useGetAboutUsDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
 export default function About() {
   const { data: aboutData } = useGetAboutUsDataQuery();
-  console.log(aboutData, "aboutData");
 
   return (
     <>
