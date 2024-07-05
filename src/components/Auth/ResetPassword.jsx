@@ -1,34 +1,45 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { resetPasswordSchema } from "../validations/resetPasswordSchema";
+import { postResetPasswordData } from "../../Redux/Actions/postApiData";
 
 export default function ResetPassword() {
+  const location = useLocation();
+  let token = location?.search?.split("?")?.[1]?.split("token=")?.[1];
+  let email = location?.search?.split("?")?.[2]?.split("email=")?.[1];
+  console.log("token", token, "email", email);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const initialValues = {
+    email: email,
+    token: token,
     password: "",
     confirmPassword: "",
   };
 
   const navigate = useNavigate();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+
     useFormik({
       initialValues,
       validationSchema: resetPasswordSchema,
       validateOnChange: true,
       validateOnBlur: false,
       onSubmit: async (values, action) => {
-        action.resetForm();    
+        action.resetForm();
+        let data = await postResetPasswordData(values)
+        console.log(data);
       },
     });
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   return (
     <>
@@ -44,7 +55,10 @@ export default function ResetPassword() {
                   <div className="col-12">
                     <div className="mb-5">
                       <h2 className="h3">Change Your Password Now</h2>
-                      <h4 className="fw-normal pt-4" style={{ color: "#c89601" }}>
+                      <h4
+                        className="fw-normal pt-4"
+                        style={{ color: "#c89601" }}
+                      >
                         Enter your details to recover your password of MultiShop
                       </h4>
                     </div>
@@ -77,7 +91,9 @@ export default function ResetPassword() {
                         </span>
                       </div>
                       {errors.password && touched.password ? (
-                        <p className="form-error text-danger">{errors.password}</p>
+                        <p className="form-error text-danger">
+                          {errors.password}
+                        </p>
                       ) : null}
                     </div>
 
@@ -107,7 +123,9 @@ export default function ResetPassword() {
                         </span>
                       </div>
                       {errors.confirmPassword && touched.confirmPassword ? (
-                        <p className="form-error text-danger">{errors.confirmPassword}</p>
+                        <p className="form-error text-danger">
+                          {errors.confirmPassword}
+                        </p>
                       ) : null}
                     </div>
 
@@ -148,7 +166,7 @@ export default function ResetPassword() {
                   </div>
                 </form>
 
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-12">
                     <p className="mt-5 mb-4">Or sign in with</p>
                     <div className="d-flex gap-3 flex-column flex-xl-row">
@@ -193,7 +211,7 @@ export default function ResetPassword() {
                       </a>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

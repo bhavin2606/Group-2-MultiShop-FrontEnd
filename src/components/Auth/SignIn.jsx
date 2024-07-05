@@ -38,7 +38,7 @@ export default function SignIn() {
         // login();
         console.log(data, "datataattatatatattatatatatatatatttttttttttttttttttttttttttttttttttttttttttttttt")
         if (data.status === 200) {
-          localStorage.setItem("token" , data?.data?.token)
+          localStorage.setItem("token" , data?.data?.data.token)
           navigate("/");
         }
       },

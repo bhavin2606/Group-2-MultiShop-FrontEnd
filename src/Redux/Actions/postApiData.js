@@ -130,7 +130,7 @@ export const postNewsLetterData = async (values) => {
       })
       .catch((err) => {
         console.log(err)
-        toast.error("Invalid email")
+        toast.error("Subscribed Already")
       });
     return responseData
   }
@@ -140,7 +140,7 @@ export const postNewsLetterData = async (values) => {
 };
 
 
-export const postResetPasswordData = async (values) => {
+export const postForgetPasswordData = async (values) => {
   let responseData = "";
   try {
     await axios
@@ -160,6 +160,29 @@ export const postResetPasswordData = async (values) => {
     toast.error("Invalid")
   }
 };
+
+
+export const postResetPasswordData = async (values) => {
+  let responseData = "";
+  try {
+    await axios
+      .post(`${process.env.REACT_APP_BASE_URL}/reset-password`, values)
+      .then((res) => {
+        console.log(res);
+        responseData = res
+        toast.success("Reset Link Sent to your email")
+      })
+      .catch((err) => {
+        console.log(err)
+        toast.error("Invalid email")
+      });
+    return responseData
+  }
+  catch (error) {
+    toast.error("Invalid")
+  }
+};
+
 
 
 

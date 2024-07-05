@@ -5,7 +5,7 @@ import { forgetSchema } from "../validations/forgetPasswordSchema";
 import { Link } from "react-router-dom";
 import BackToHome from "../Common/BackToHome";
 import { toast } from "react-toastify";
-import { postResetPasswordData } from "../../Redux/Actions/postApiData";
+import { postForgetPasswordData } from "../../Redux/Actions/postApiData";
 
 export default function ForgetPassword() {
   const initialValues = {
@@ -22,8 +22,7 @@ export default function ForgetPassword() {
       onSubmit: async (values, action) => {
         // Post API call for Reset Password
         action.resetForm();
-        let data = await postResetPasswordData(values)
-        // alert("Email :" + values.email);
+        let data = await postForgetPasswordData(values)
         console.log(data);
       },
     });

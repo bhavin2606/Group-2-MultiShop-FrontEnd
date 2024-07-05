@@ -20,7 +20,7 @@ export const routesObject = [
     {
         id: 1,
         path: '/',
-        element:<Home />,
+        element: <Home />,
         name: 'Home',
         layout: true
     },
