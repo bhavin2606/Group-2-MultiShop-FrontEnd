@@ -36,9 +36,9 @@ export default function SignIn() {
         dispatch(getUserToken(data));
         action.resetForm();
         // login();
-        console.log(data, "datataattatatatattatatatatatatatttttttttttttttttttttttttttttttttttttttttttttttt")
+        console.log(data?.data?.data?.token, "datataattatatatattatatatatatatatttttttttttttttttttttttttttttttttttttttttttttttt")
         if (data.status === 200) {
-          localStorage.setItem("token" , data?.data?.token)
+          localStorage.setItem("token" ,data?.data?.data?.token)
           navigate("/");
         }
       },
