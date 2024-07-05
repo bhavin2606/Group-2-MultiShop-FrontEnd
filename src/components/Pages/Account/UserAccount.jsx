@@ -4,12 +4,13 @@ import { useFormik } from "formik";
 import { userAccountSchema } from "../../validations/userAccountSchema";
 import { postUpdateProfileData } from "../../../Redux/Actions/postApiData";
 import { useSelector } from "react-redux";
+import { useAddUserProfileMutation, useGetUserDataQuery } from "../../../Redux/api";
 
 export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);
-  const { userData } = useSelector((state) => state.auth);
+  const { data: userData } = useGetUserDataQuery();
   const [file, setFile] = useState(userData?.detail?.image);
-
+  console.log(userData,"userrrrrrrrrrrrrrrrrrrrrr");
   function handleAccountEdit() {
     setEditButton(true);
   }
@@ -21,6 +22,7 @@ export default function UserAccount() {
     birthday: userData?.dob,
     image: userData?.detail?.image,
   };
+  const [addUserProfile] = useAddUserProfileMutation();
 
   const {
     values,
@@ -38,8 +40,14 @@ export default function UserAccount() {
     enableReinitialize: true,
     onSubmit: async (values, action) => {
       action.resetForm();
-      console.log("fileeee", values);
-      await postUpdateProfileData(values);
+      let data = new FormData();
+      data.append("firstName", values.firstName);
+      data.append("lastName", values.lastName);
+      data.append("phoneNo", values.phoneNumber);
+      data.append("dob", values.birthday);
+      data.append("image", values.image)
+      data.append("_method", "put"); 
+      addUserProfile(data)
       setEditButton(false);
     },
   });
@@ -69,7 +77,6 @@ export default function UserAccount() {
                     onChange={(e) => {
                       console.log(e.target.files[0]);
                       setFieldValue("image", e.target.files[0]);
-                      // handleChange();
                     }}
                     disabled={editButton ? false : true}
                   />

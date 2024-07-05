@@ -2,30 +2,20 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
+import { useGetProductDataQuery } from "../../../Redux/api";
 export default function ProductFeatured() {
-  const [productFeatured, setProductFeatured] = useState([]);
-  useEffect(() => {
-    async function collectData() {
-      await axios;
-      await axios
-        .get("./JSON/product.json")
-        .then((response) => setProductFeatured(response.data.product))
-        .catch((error) => console.log(error));
-    }
-    collectData();
-  }, []);
-
+  const { data: productFeatured } = useGetProductDataQuery();
   return (
     <div className="container-fluid pt-5 pb-3">
       <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
         <span className="bg-secondary pr-3">Featured Products</span>
       </h2>
       <div className="row px-xl-5">
-        {productFeatured.slice(0, 8).map((data, index) => (
+        {productFeatured?.products?.slice(0, 8).map((data, index) => (
           <div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={index}>
             <div className="product-item bg-light mb-4">
               <div className="product-img position-relative overflow-hidden">
-                <img className="img-fluid w-100" src={data.url[0]} alt="" />
+                <img className="img-fluid w-100" src={data.product_images[0]} alt="" style={{height:"470px"}}/>
                 <div className="product-action">
                   <Link
                     to={"/wishlist"}
@@ -35,7 +25,7 @@ export default function ProductFeatured() {
                   </Link>
 
                   <Link
-                    to={`/shop/${data.id}`}
+                    to={`/shop/${data.product_id}`}
                     className="btn btn-outline-dark btn-square"
                   >
                     <i className="fa fa-search" />
@@ -48,20 +38,20 @@ export default function ProductFeatured() {
                   href=""
                   data-toggle="tooltip"
                   data-placement="top"
-                  title={data.title}
+                  title={data.product_name}
                 >
-                  {data.title}
+                  {data.product_name}
                 </Link>
 
                 <div className="d-flex align-items-center justify-content-center mt-2">
-                  <h5>${data.price}</h5>
+                  <h5>{data.discount_type === "fixed" && (data.price-data.discount_value)} </h5>
                   <h6 className="text-muted ml-2">
-                    <del>${data.specialPrice}</del>
+                    <del>${data.price}</del>
                   </h6>
                 </div>
                 <div className="d-flex align-items-center justify-content-center mb-1">
-                  <RatingIntegration star={data.rating} />
-                  <small>({data.noOfRating})</small>
+                  <RatingIntegration star={data.Rating_Count} />
+                  <small>({data.totalReviews})</small>
                 </div>
               </div>
             </div>

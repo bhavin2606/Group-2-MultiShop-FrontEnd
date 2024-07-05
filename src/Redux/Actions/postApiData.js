@@ -83,39 +83,39 @@ export const postSignUpData = async (values) => {
 };
 
 
-export const postUpdateProfileData = async (values) => {
-  let token = localStorage.getItem("token")
-  let responseData = ""
-  const config = {
-    headers: { Authorization: `Bearer ${token}` }
-  };
-  console.log(values, "valuessssssssssss");
-  let data = new FormData();
-  data.append("firstName", values.firstName);
-  data.append("lastName", values.lastName);
-  data.append("phoneNumber", values.phoneNumber);
-  data.append("dob", values.birthday);
-  data.append("image", values.image)
-  data.append("_method", "put");
+// export const postUpdateProfileData = async (values) => {
+//   let token = localStorage.getItem("token")
+//   let responseData = ""
+//   const config = {
+//     headers: { Authorization: `Bearer ${token}` }
+//   };
+//   console.log(values, "valuessssssssssss");
+//   let data = new FormData();
+//   data.append("firstName", values.firstName);
+//   data.append("lastName", values.lastName);
+//   data.append("phoneNumber", values.phoneNumber);
+//   data.append("dob", values.birthday);
+//   data.append("image", values.image)
+//   data.append("_method", "put");
 
-  try {
-    await axios
-      .post(`${process.env.REACT_APP_BASE_URL}/update-profile`, data, config)
-      .then((res) => {
-        console.log(res);
-        responseData = res.data
-        toast.success("Profile Updated successfully")
-      })
-      .catch((err) => {
-        console.log(err)
-        toast.error("Something Wrong....")
-      });
-    return responseData
-  }
-  catch (error) {
-    toast.error("Something Went Wrong!")
-  }
-};
+//   try {
+//     await axios
+//       .post(`${process.env.REACT_APP_BASE_URL}/update-profile`, data, config)
+//       .then((res) => {
+//         console.log(res);
+//         responseData = res.data
+//         toast.success("Profile Updated successfully")
+//       })
+//       .catch((err) => {
+//         console.log(err)
+//         toast.error("Something Wrong....")
+//       });
+//     return responseData
+//   }
+//   catch (error) {
+//     toast.error("Something Went Wrong!")
+//   }
+// };
 
 
 export const postNewsLetterData = async (values) => {
