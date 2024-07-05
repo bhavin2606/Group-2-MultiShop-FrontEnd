@@ -10,28 +10,19 @@ import { useAddUserProfileMutation, useGetUserDataQuery } from "../../../Redux/S
 export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);
   const { data: userData } = useGetUserDataQuery();
-  const [file, setFile] = useState(userData?.detail?.image);
+  const [file, setFile] = useState(userData?.data?.image);
   console.log(userData,"userrrrrrrrrrrrrrrrrrrrrr");
   function handleAccountEdit() {
     setEditButton(true);
   }
 
-  // async function getUserDetails() {
-  //   let data = await getUserData();
-  //   setUpdatedData(data);
-  // }
-
-  // useEffect(() => {
-  //   getUserDetails();
-  // }, []);
-
   // firstName, lastName, email, phoneNo;
   const initialValues = {
-    firstName: userData?.detail?.firstName,
-    lastName: userData?.detail?.lastName,
-    phoneNumber: userData?.detail?.phoneNo,
+    firstName: userData?.data?.firstName,
+    lastName: userData?.data?.lastName,
+    phoneNumber: userData?.data?.phoneNo,
     birthday: userData?.dob,
-    image: userData?.detail?.image,
+    image: userData?.data?.image,
   };
   const [addUserProfile] = useAddUserProfileMutation();
 
@@ -122,10 +113,10 @@ export default function UserAccount() {
                 </div>
               </div>
               <div className="col-xl-8">
-                {/* Account details card*/}
+                {/* Account datas card*/}
                 <div className="card mb-4">
                   <div className="card-header p-2 d-flex justify-content-between">
-                    <span className="mt-2 ms-2">Account Details</span>
+                    <span className="mt-2 ms-2">Account datas</span>
                     <span>
                       <button
                         className="btn ms-2"
@@ -192,7 +183,7 @@ export default function UserAccount() {
                         id="inputEmailAddress"
                         type="email"
                         placeholder="Enter your email address"
-                        defaultValue={userData?.detail?.email}
+                        defaultValue={userData?.data?.email}
                         disabled
                       />
                     </div>

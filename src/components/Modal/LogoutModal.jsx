@@ -3,19 +3,25 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { postLogoutData } from "../../Redux/Actions/postApiData";
+import { usePostLogoutDataMutation } from "../../Redux/Slices/AuthApis";
 
 
 function LogoutModal() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const [postLogoutData] = usePostLogoutDataMutation()
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleLogout = async () => {
-    await postLogoutData()
+    let res = await postLogoutData()
+    console.log(res.status_code)
     handleClose();
-    navigate("/", { replace: true });
+    if (res?.data) {
+      navigate("/", { replace: true });
+      toast.success("LoggedOut Successfully")
+      localStorage.clear("token")
+    }
   };
 
   return (

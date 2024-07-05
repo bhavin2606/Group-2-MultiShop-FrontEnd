@@ -4,21 +4,11 @@ import { routesObject } from "./Routes";
 import Structure from "../layout/Structure";
 import ErrorPage from "../components/Common/ErrorPage";
 import Breadcrumbs from "./Breadcrumbs";
+import ProtectedRoute from "./ProtectedRoute";
+import LoginProtectedRoute from "./LoginProtectedRoute";
 
 export default function RoutesPath() {
-  // const breadcrumbs = [
-  //   { label: 'Home', link: '/' },
-  //   { label: 'Shops', link: '/shop' },
-  //   { label: 'ShoppingDetails', link: '/shop/:id' },
-  //   { label: 'Checkout', link: '/checkout' },
-  //   // { label: 'Contact', link: '/contact' },
-  //   // { label: 'About', link: '/about' },
-  //   // { label: 'Help', link: '/help' },
-  //   // { label: 'Faqs', link: '/faqs' },
-  //   // { label: 'Cart', link: '/cart' },
-  //   ];
-    
-
+  
   return (
       <>
     <Routes>
@@ -26,14 +16,13 @@ export default function RoutesPath() {
         <Route
         key={index}
         element={
-          route.layout ? (
+          route.isAuth ? (
             <>
-            <Structure>{route.element}</Structure>
-            {/* <Breadcrumbs breadcrumbs={breadcrumbs} /> */}
+            <ProtectedRoute><Structure>{route.element}</Structure></ProtectedRoute>
             </>
-            ) : (
-              route.element
-            )
+            ) : route.isLoggedIn ? (
+              <LoginProtectedRoute><Structure>{route.element}</Structure></LoginProtectedRoute>
+            ) : <Structure>{route.element}</Structure>
           }
           path={route.path}
         >

@@ -57,7 +57,7 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-        {token &&  userData?.detail?.firstName !== undefined && `Welcome ${userData?.detail?.firstName}`}  
+        {token &&  userData?.data?.firstName !== undefined && `Welcome ${userData?.data?.firstName}`}  
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button

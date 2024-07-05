@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { postNewsLetterData } from "../../Redux/Actions/postApiData";
 import { getSettingData } from "../../Redux/Actions/getApiData";
 import { Link } from "react-router-dom";
-import { useGetSettingDataQuery } from "../../Redux/Slices/GeneralSettingsApi";
+import { useGetSettingDataQuery, usePostNewsLetterDataMutation } from "../../Redux/Slices/GeneralSettingsApi";
 
 export default function Footer() {
   const [settingData, setSettingData] = useState([]);
@@ -13,6 +13,7 @@ export default function Footer() {
     email: "",
   };
 
+  const [postNewsLetterData] = usePostNewsLetterDataMutation()
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
       initialValues,
@@ -21,9 +22,16 @@ export default function Footer() {
       validateOnBlur: false,
 
       onSubmit: async (values, action) => {
-        await postNewsLetterData(values);
+        // await postNewsLetterData(values);
+        let res = await postNewsLetterData(values)
         action.resetForm();
-        // toast.success("Subscribed Successfully!");
+        console.log(res?.data.code, "datatatatata");
+        if (res?.data?.code) {
+          toast.success("Subscribed Successfully!");
+        }
+        else {
+          toast.error("Email Registered or Invalid Email!");
+        }
       },
     });
 
@@ -133,7 +141,7 @@ export default function Footer() {
                         onClick={handleSubmit}
                         className="btn btn-primary"
                       >
-                        Sign Up
+                        Subscribe
                       </button>
                     </div>
                   </div>

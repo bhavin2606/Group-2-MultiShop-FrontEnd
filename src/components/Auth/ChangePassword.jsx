@@ -5,12 +5,17 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { changePasswordSchema } from "../validations/changePasswordShema";
 import { postChangePasswordData } from "../../Redux/Actions/postApiData";
 import Breadcrumbs from "../../Routes/Breadcrumbs";
+import { usePostChangePasswordDataMutation } from "../../Redux/Slices/AuthApis";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function ChangePassword() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate()
 
+  const [postChangePasswordData] = usePostChangePasswordDataMutation()
   const toggleCurrentPasswordVisibility = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
@@ -36,8 +41,13 @@ export default function ChangePassword() {
       validateOnBlur: false,
 
       onSubmit: async (values, action) => {
-        await postChangePasswordData(values);
+       let data =  await postChangePasswordData(values);
         action.resetForm();
+        console.log(data);
+        if (data) {
+          toast.success("Password Changed Successfully")
+          navigate("/")
+        }
         // alert("your new password " + values.Password);
         // Post API will call from here
       },

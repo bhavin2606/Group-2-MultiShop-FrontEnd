@@ -8,11 +8,12 @@ import { getUserDetails, getUserToken } from "../../Redux/Slices/AuthSlice";
 import { postLoginData } from "../../Redux/Actions/postApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { usePostUserSignInDataMutation } from "../../Redux/Slices/AuthApis";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
-  // const location = useLocation();
-  // const { login } = useContext(AuthContext);
+  const [postUserSignInData] = usePostUserSignInDataMutation()
   const dispatch = useDispatch();
   const [userData,setUserData] = useState([])
   const initialValues = {
@@ -32,13 +33,12 @@ export default function SignIn() {
       validateOnChange: true,
       validateOnBlur: false,
       onSubmit: async (values, action) => {
-        let data = await postLoginData(values);
-        dispatch(getUserToken(data));
+        let res = await postUserSignInData(values)
         action.resetForm();
-        // login();
-        console.log(data, "datataattatatatattatatatatatatatttttttttttttttttttttttttttttttttttttttttttttttt")
-        if (data.status === 200) {
-          localStorage.setItem("token" , data?.data?.token)
+        console.log(res.data, "datataattatatatattatatatatatatatttttttttttttttttttttttttttttttttttttttttttttttt")
+        if (res.data.status === 200) {
+          localStorage.setItem("token" , res?.data?.data?.token)
+          toast.success("Successfully Logged In")
           navigate("/");
         }
       },

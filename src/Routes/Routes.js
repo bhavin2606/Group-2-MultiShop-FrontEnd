@@ -22,7 +22,8 @@ export const routesObject = [
         path: '/',
         element:<Home />,
         name: 'Home',
-        layout: true
+        layout: true,
+        isAuth: false
     },
     {
         id: 2,
@@ -31,6 +32,7 @@ export const routesObject = [
         errorElement: <ErrorPage />,
         name: 'Shops',
         layout: true,
+        isAuth: false
     },
     {
         id: 3,
@@ -39,29 +41,32 @@ export const routesObject = [
         errorElement: <ErrorPage />,
         name: 'ShoppingDetails',
         layout: true,
+        isAuth: false
     },
     {
         id: 4,
         path: 'checkout',
         element: <Checkout />,
         name: 'Checkout',
-        layout: true
-
+        layout: true,
+        isAuth: true,
     },
     {
         id: 5,
         path: 'contact',
         element: <Contact />,
         name: 'Contact',
-        layout: true
-
+        layout: true,
+        isAuth: false
     },
     {
         id: 6,
         path: 'about',
         element: <About />,
         name: 'About',
-        layout: true
+        layout: true,
+        isAuth: false
+
 
     },
     {
@@ -69,29 +74,32 @@ export const routesObject = [
         path: 'help',
         element: <Help />,
         name: 'Help',
-        layout: true
+        layout: true,
+        isAuth: false
     },
     {
         id: 8,
         path: 'faqs',
         element: <FAQs />,
         name: 'Faqs',
-        layout: true
-
+        layout: true,
+        isAuth: false
     },
     {
         id: 9,
         path: 'cart',
         element: <Cart />,
         name: 'Cart',
-        layout: true
+        layout: true,
+        isAuth: true
     },
     {
         id: 10,
         path: 'wishlist',
         element: <Wishlist />,
         name: 'wishlist',
-        layout: true
+        layout: true,
+        isAuth: true
     },
 
     {
@@ -99,41 +107,50 @@ export const routesObject = [
         path: 'signup',
         element: <SignUp />,
         name: 'SignUp',
-        layout: true
+        layout: true,
+        isAuth: false,
+        isLoggedIn: true
     },
     {
         id: 12,
         path: 'signin',
         element: <SignIn />,
         name: 'SignIn',
-        layout: true
+        layout: true,
+        isAuth: false,
+        isLoggedIn: true
     },
     {
         id: 13,
         path: 'forget-password',
         element: <ForgetPassword />,
         name: 'ForgetPassword',
-        layout: true
+        layout: true,
+        isAuth: false
+
     },
     {
         id: 14,
         path: 'reset-password',
         element: <ResetPassword />,
         name: 'ResetPassword',
-        layout: true
+        layout: true,
+        isAuth: false
     },
     {
         id: 15,
         path: 'account',
         element: <UserAccount />,
         name: 'MyAccount',
-        layout: true
+        layout: true,
+        isAuth: true
     },
     {
         id: 16,
         path: 'change-password',
         element: <ChangePassword />,
         name: 'MyAccount',
-        layout: true
+        layout: true,
+        isAuth: true
     },
 ]

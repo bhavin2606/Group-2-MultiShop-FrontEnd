@@ -5,11 +5,13 @@ import { signUpSchema } from "../validations/signUpSchema";
 import { postSignUpData } from "../../Redux/Actions/postApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { usePostUserSignUpDataMutation } from "../../Redux/Slices/AuthApis";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const [postUserSignUpData] = usePostUserSignUpDataMutation()
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -27,11 +29,14 @@ export default function SignUp() {
       validateOnBlur: false,
       onSubmit: async (values, action) => {
         action.resetForm();
-        let data = await postSignUpData(values);
-        if (data.status === 200) {
+        let res = await postUserSignUpData(values)
+        console.log(res);
+        if (res.data.status === 200) {
           navigate("/signin");
+          toast.success("SignUp Successfully")
         } else {
           navigate('/signup')
+          toast.error("Invalid Email")
         }
       },
     });

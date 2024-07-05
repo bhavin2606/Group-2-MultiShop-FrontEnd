@@ -3,15 +3,15 @@ import logo from "../../assets/img/logo.png";
 import { useFormik } from "formik";
 import { forgetSchema } from "../validations/forgetPasswordSchema";
 import { Link } from "react-router-dom";
-import BackToHome from "../Common/BackToHome";
 import { toast } from "react-toastify";
-import { postResetPasswordData } from "../../Redux/Actions/postApiData";
+import { usePostForgetPasswordDataMutation } from "../../Redux/Slices/AuthApis";
 
 export default function ForgetPassword() {
   const initialValues = {
     email: "",
   };
 
+  const [postForgetPasswordData] = usePostForgetPasswordDataMutation()
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
       initialValues,
@@ -22,9 +22,14 @@ export default function ForgetPassword() {
       onSubmit: async (values, action) => {
         // Post API call for Reset Password
         action.resetForm();
-        let data = await postResetPasswordData(values)
-        // alert("Email :" + values.email);
-        console.log(data);
+        let res = await postForgetPasswordData(values)
+        console.log(res.data);
+        if (res.data === 200) {
+          toast.success("Reset Link Sent to your Email")
+        }
+        else {
+          toast.error("Email is invalid")
+        }
       },
     });
 

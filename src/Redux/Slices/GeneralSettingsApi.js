@@ -14,11 +14,27 @@ export const GeneralSettingsApi = api.injectEndpoints({
         getAboutUsData: builder.query({
             query: () => "informationslug/about"
         }),
+        postContactData: builder.mutation({
+            query: (data) => ({ 
+                url: "addcontact",
+                method: "POST",
+                body: data,
+            }),
+        }),
+        postNewsLetterData: builder.mutation({
+            query: (data) => ({ 
+                url: "addnewsletter",
+                method: "POST",
+                body: data,
+            }),
+        }),
     })
 })
 export const {
     useGetHelpDataQuery,
     useGetFaqDataQuery,
     useGetSettingDataQuery,
-    useGetAboutUsDataQuery
+    useGetAboutUsDataQuery,
+    usePostContactDataMutation,
+    usePostNewsLetterDataMutation
 } = GeneralSettingsApi

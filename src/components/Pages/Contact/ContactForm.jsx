@@ -1,6 +1,9 @@
 import { useFormik } from "formik";
 import React from "react";
 import { contactUSData } from "../../../Redux/Actions/postApiData";
+import { usePostContactDataMutation } from "../../../Redux/Slices/GeneralSettingsApi";
+import { toast } from "react-toastify";
+import { contactSchema } from "../../validations/contactSchema";
 
 export default function ContactForm() {
   const initialValues = {
@@ -10,19 +13,25 @@ export default function ContactForm() {
     message: "",
   };
 
+  const [postContactData, result] = usePostContactDataMutation()
+
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
       initialValues,
-      validationSchema: "",
+      validationSchema: contactSchema,
       validateOnChange: true,
       validateOnBlur: false,
 
-      onSubmit: async(values, action) => {
+      onSubmit: async (values, action) => {
         console.log(values);
-        await contactUSData(JSON.stringify(values));
+       let res = await postContactData(values)
+        console.log(res,"resultresultresult");
         action.resetForm();
+        if (res.data.code === 200) {
+          toast.success("Data Added Successfully")
+        }
       },
-    });
+    });   
 
   return (
     <div className="contact-form bg-light p-30">

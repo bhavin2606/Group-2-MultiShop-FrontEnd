@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { resetPasswordSchema } from "../validations/resetPasswordSchema";
+import { usePostResetPasswordDataMutation } from "../../Redux/Slices/AuthApis";
+import { toast } from "react-toastify";
 
 export default function ResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const [postResetPasswordData] = usePostResetPasswordDataMutation()
+  const location = useLocation();
+  let token = location?.search?.split("?")?.[1]?.split("token=")?.[1];
+  let email = location?.search?.split("?")?.[2]?.split("email=")?.[1];
+  console.log("token", token, "email", email);
   const initialValues = {
+    email: email,
+    token: token,
     password: "",
     confirmPassword: "",
   };
@@ -23,7 +30,13 @@ export default function ResetPassword() {
       validateOnChange: true,
       validateOnBlur: false,
       onSubmit: async (values, action) => {
-        action.resetForm();    
+        action.resetForm();
+        let res = await postResetPasswordData(values)
+        console.log(res.data);
+        if (res.data.code == 200) {
+          toast.success("Password Reset Successfully")
+          navigate('/signin')
+        }
       },
     });
 
