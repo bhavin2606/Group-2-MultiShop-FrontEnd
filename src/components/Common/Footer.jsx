@@ -5,7 +5,10 @@ import { toast } from "react-toastify";
 import { postNewsLetterData } from "../../Redux/Actions/postApiData";
 import { getSettingData } from "../../Redux/Actions/getApiData";
 import { Link } from "react-router-dom";
-import { useGetSettingDataQuery, usePostNewsLetterDataMutation } from "../../Redux/Slices/GeneralSettingsApi";
+import {
+  useGetSettingDataQuery,
+  usePostNewsLetterDataMutation,
+} from "../../Redux/Slices/GeneralSettingsApi";
 
 export default function Footer() {
   const [settingData, setSettingData] = useState([]);
@@ -13,7 +16,7 @@ export default function Footer() {
     email: "",
   };
 
-  const [postNewsLetterData] = usePostNewsLetterDataMutation()
+  const [postNewsLetterData] = usePostNewsLetterDataMutation();
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
       initialValues,
@@ -23,18 +26,17 @@ export default function Footer() {
 
       onSubmit: async (values, action) => {
         // await postNewsLetterData(values);
-        let res = await postNewsLetterData(values)
+        let res = await postNewsLetterData(values);
         action.resetForm();
         if (res?.data?.code) {
           toast.success("Subscribed Successfully!");
-        }
-        else {
-          toast.error("Email Registered or Invalid Email!");
+        } else {
+          toast.error("Already Subscribed!");
         }
       },
     });
 
-  const { data:settingdata } = useGetSettingDataQuery()
+  const { data: settingdata } = useGetSettingDataQuery();
   return (
     <div>
       <div className="container-fluid bg-dark text-secondary mt-5 pt-5">
@@ -67,26 +69,26 @@ export default function Footer() {
                   Quick Shop
                 </h5>
                 <div className="d-flex flex-column justify-content-start">
-                  <a className="text-secondary mb-2" href="#">
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Home
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
+                  </Link>
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Our Shop
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
+                  </Link>
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Shopping Cart
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
+                  </Link>
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Checkout
-                  </a>
-                  <a className="text-secondary" href="#">
+                  </Link>
+                  <Link className="text-secondary" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Contact Us
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-md-4 mb-5">
@@ -94,26 +96,26 @@ export default function Footer() {
                   My Account
                 </h5>
                 <div className="d-flex flex-column justify-content-start">
-                  <a className="text-secondary mb-2" href="#">
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Home
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
+                  </Link>
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Our Shop
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
+                  </Link>
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Shopping Cart
-                  </a>
-                  <a className="text-secondary mb-2" href="#">
+                  </Link>
+                  <Link className="text-secondary mb-2" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Checkout
-                  </a>
-                  <a className="text-secondary" href="#">
+                  </Link>
+                  <Link className="text-secondary" to="#">
                     <i className="fa fa-angle-right mr-2" />
                     Contact Us
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-md-4 mb-5">
@@ -151,16 +153,28 @@ export default function Footer() {
                 {settingData &&
                   settingData?.footer?.map((data, index) => (
                     <div className="d-flex" key={index}>
-                      <Link className="btn btn-primary btn-square mr-2" to={data.twitter}>
+                      <Link
+                        className="btn btn-primary btn-square mr-2"
+                        to={data.twitter}
+                      >
                         <i className="fab fa-twitter" />
                       </Link>
-                      <Link className="btn btn-primary btn-square mr-2" to={data.facebook}>
+                      <Link
+                        className="btn btn-primary btn-square mr-2"
+                        to={data.facebook}
+                      >
                         <i className="fab fa-facebook-f" />
                       </Link>
-                      <Link className="btn btn-primary btn-square mr-2" to={data.linkedIn}>
+                      <Link
+                        className="btn btn-primary btn-square mr-2"
+                        to={data.linkedIn}
+                      >
                         <i className="fab fa-linkedin-in" />
                       </Link>
-                      <Link className="btn btn-primary btn-square" to={data.instagram}>
+                      <Link
+                        className="btn btn-primary btn-square"
+                        to={data.instagram}
+                      >
                         <i className="fab fa-instagram" />
                       </Link>
                     </div>
@@ -176,13 +190,13 @@ export default function Footer() {
           <div className="col-md-6 px-xl-0">
             <p className="mb-md-0 text-center text-md-left text-secondary">
               ©{" "}
-              <a className="text-primary" href="#">
+              <Link className="text-primary" to="#">
                 Domain
-              </a>
+              </Link>
               . All Rights Reserved. Designed by
-              <a className="text-primary" href="https://htmlcodex.com">
+              <Link className="text-primary" to="https://htmlcodex.com">
                 HTML Codex
-              </a>
+              </Link>
             </p>
           </div>
           <div className="col-md-6 px-xl-0 text-center text-md-right">
