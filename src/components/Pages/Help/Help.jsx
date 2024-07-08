@@ -14,7 +14,7 @@ export default function Help() {
           <span className="bg-secondary pr-3">Help Us</span>
         </h2>
         <div
-          className="container-fluid mx-5"
+          className="container mx-5"
           dangerouslySetInnerHTML={{ __html: HelpData?.description?.description}}
         ></div>
       </div>

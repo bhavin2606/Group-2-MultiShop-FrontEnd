@@ -53,6 +53,7 @@ export default function UserAccount() {
       data.append("_method", "put");
       addUserProfile(data);
       setEditButton(false);
+      
     },
   });
 

@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
-import image1 from "../../../assets/img/product-1.jpg";
-import image2 from "../../../assets/img/product-2.jpg";
-import image3 from "../../../assets/img/product-3.jpg";
-import image4 from "../../../assets/img/product-4.jpg";
-import image5 from "../../../assets/img/product-5.jpg";
-import image6 from "../../../assets/img/product-6.jpg";
-import image7 from "../../../assets/img/product-7.jpg";
-import image8 from "../../../assets/img/product-8.jpg";
-import image9 from "../../../assets/img/product-9.jpg";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import RatingIntegration from "../../Common/RatingIntegration";
 import { useGetProductDataQuery } from "../../../Redux/Slices/ProductApi";
+import { usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";
+import { toast } from "react-toastify";
 export default function ShopProduct() {
   const [toggleGrid, setToggleGrid] = useState(false);
   const { data: shopProduct } = useGetProductDataQuery();
+  const [postWishListData] =  usePostWishListDataMutation()
+     
+
+  const handleWishlistSubmit = async (p_id) => {
+    console.log(p_id);
+    let data = await postWishListData(p_id)
+    console.log(data, "HElllllllllllllllll");
+    if (data?.length > 0) {
+      toast.success("Added to wishlist")
+    } else {
+      toast.error("Already in wishlist")
+    }
+  };
+
   return (
     <div className="col-lg-9 col-md-8">
       <div className="row pb-3">
@@ -44,15 +50,15 @@ export default function ShopProduct() {
                   Sorting
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="#">
                     Latest
-                  </a>
-                  <a className="dropdown-item" href="#">
+                  </Link>
+                  <Link className="dropdown-item" to="#">
                     Popularity
-                  </a>
-                  <a className="dropdown-item" href="#">
+                  </Link>
+                  <Link className="dropdown-item" to="#">
                     Best Rating
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="btn-group ml-2">
@@ -64,15 +70,15 @@ export default function ShopProduct() {
                   Showing
                 </button>
                 <div className="dropdown-menu dropdown-menu-right">
-                  <a className="dropdown-item" href="#">
+                  <Link className="dropdown-item" to="#">
                     10
-                  </a>
-                  <a className="dropdown-item" href="#">
+                  </Link>
+                  <Link className="dropdown-item" to="#">
                     20
-                  </a>
-                  <a className="dropdown-item" href="#">
+                  </Link>
+                  <Link className="dropdown-item" to="#">
                     30
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -117,8 +123,8 @@ export default function ShopProduct() {
                           <i className="fa fa-info-circle mr-1" /> View Detail
                         </button>
                       </Link>
-                      <button className="btn btn-primary px-3 mt-5">
-                        <i className="fa fa-star mr-1" /> Add To WishList
+                      <button className="btn btn-primary px-3 mt-5" onClick={()=>  handleWishlistSubmit(data.product_id)}>
+                        <i className="fa fa-heart mr-1" /> Add To WishList
                       </button>
                     </div>
                   </div>
@@ -136,7 +142,10 @@ export default function ShopProduct() {
                     />
                     <div className="product-action">
                       <Link
-                        to={"/wishlist"}
+                        type="button"
+                        onClick={() => {
+                          handleWishlistSubmit(data.product_id);
+                        }}  
                         className="btn btn-outline-dark btn-square"
                       >
                         <i className="far fa-heart" />
@@ -179,29 +188,29 @@ export default function ShopProduct() {
           <nav>
             <ul className="pagination justify-content-center">
               <li className="page-item disabled">
-                <a className="page-link" href="#">
+                <Link className="page-link" to="#">
                   Previous
-                </a>
+                </Link>
               </li>
               <li className="page-item active">
-                <a className="page-link" href="#">
+                <Link className="page-link" to="#">
                   1
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#">
+                <Link className="page-link" to="#">
                   2
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#">
+                <Link className="page-link" to="#">
                   3
-                </a>
+                </Link>
               </li>
               <li className="page-item">
-                <a className="page-link" href="#">
+                <Link className="page-link" to="#">
                   Next
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

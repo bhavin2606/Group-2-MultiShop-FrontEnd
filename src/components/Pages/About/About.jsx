@@ -12,7 +12,7 @@ export default function About() {
           <span className="bg-secondary pr-3">About US</span>
         </h2>
         <div
-          className="container-fluid mx-5"
+          className="container mx-5"
           dangerouslySetInnerHTML={{
             __html: aboutData?.description?.description,
           }}

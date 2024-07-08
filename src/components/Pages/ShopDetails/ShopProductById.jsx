@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import avatar from "../../../assets/img/user.jpg";
-import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
 import { useGetProductDataByIdQuery } from "../../../Redux/Slices/ProductApi";
@@ -65,7 +62,12 @@ export default function ShopProductById() {
                 </div>
                 <small className="pt-1">({data?.totalReviews} Reviews)</small>
               </div>
-              <h3 className="font-weight-semi-bold mb-4">$150.00</h3>
+              <h3 className="font-weight-semi-bold mb-4">
+                $
+                {data.discount_type === "fixed"
+                  ? data.price - data.discount_value
+                  : data.price - (data.price * data.discount_value) / 100}
+              </h3>
               <p className="mb-4">{data.short_desc}</p>
               <div className="d-flex mb-3">
                 <strong className="text-dark mr-3">Sizes:</strong>

@@ -10,6 +10,7 @@ export default function Toolbar() {
 
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
+  console.log("userData", userData);
   const selectLanguage = (item) => {
     console.log("Selected language:", item);
     document.cookie = "googtrans=" + `/en/${item}`;
@@ -73,10 +74,11 @@ export default function Toolbar() {
             <div className="btn-group">
               <button
                 type="button"
-                className="btn btn-sm btn-light dropdown-toggle m-1"
+                className={token ? "btn p-0 mx-1" : "btn btn-sm btn-light dropdown-toggle m-1"}
                 data-toggle="dropdown"
               >
-                My Account
+                {token ? userData?.data?.image && <img src={userData?.data?.image} className="img-fluid" style={{ height: "40px", width: "40px" }} alt="" />
+                  :  "My Account" }
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 {token ? (

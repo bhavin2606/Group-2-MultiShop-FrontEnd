@@ -1,7 +1,9 @@
 import Skeleton from "react-loading-skeleton";
 import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
+import { Link } from "react-router-dom";
 export default function CategoryHome() {
   const { data } = useGetCategoryDataQuery();
+  console.log(data?.data?.data, "dataatatatatatattaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   return (
     <div className="container-fluid pt-5">
       <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
@@ -11,7 +13,7 @@ export default function CategoryHome() {
         {data?.data?.data.length > 0 ? (
           data?.data?.data.map((data, index) => (
             <div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={index}>
-              <a className="text-decoration-none" href=".">
+              <Link className="text-decoration-none" to="">
                 <div className="cat-item img-zoom d-flex align-items-center mb-4">
                   <div
                     className="overflow-hidden"
@@ -24,7 +26,7 @@ export default function CategoryHome() {
                     <small className="text-body">100 Products</small>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))
         ) : (

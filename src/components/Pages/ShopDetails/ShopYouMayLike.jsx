@@ -65,9 +65,9 @@ export default function ShopYouMayLike() {
                       {data?.product_name}
                     </Link>
                     <div className="d-flex align-items-center justify-content-center mt-2">
-                      <h5>
-                        {data.discount_type === "fixed" &&
-                          data.price - data.discount_value}{" "}
+                      <h5>$
+                        {data.discount_type === "fixed" ?
+                         data.price - data.discount_value : data.price - (data.price * data.discount_value)/100} 
                       </h5>
                       <h6 className="text-muted ml-2">
                         <del>${data.price}</del>

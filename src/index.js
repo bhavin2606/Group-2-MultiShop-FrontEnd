@@ -16,13 +16,13 @@ import { AuthProvider } from "./components/Auth/AuthContext"; // Use AuthProvide
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-      <Provider store={store}>
-    <AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
-    </AuthProvider>
-      </Provider>
+      </AuthProvider>
+    </Provider>
   </React.StrictMode>
 );
 

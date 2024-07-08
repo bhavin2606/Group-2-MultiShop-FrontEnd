@@ -193,7 +193,7 @@ export default function Footer() {
               <Link className="text-primary" to="#">
                 Domain
               </Link>
-              . All Rights Reserved. Designed by
+              . All Rights Reserved. Designed by{" "}
               <Link className="text-primary" to="https://htmlcodex.com">
                 HTML Codex
               </Link>

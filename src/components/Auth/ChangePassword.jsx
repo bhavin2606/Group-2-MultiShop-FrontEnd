@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { changePasswordSchema } from "../validations/changePasswordShema";
-import { postChangePasswordData } from "../../Redux/Actions/postApiData";
 import Breadcrumbs from "../../Routes/Breadcrumbs";
 import { usePostChangePasswordDataMutation } from "../../Redux/Slices/AuthApis";
 import { toast } from "react-toastify";

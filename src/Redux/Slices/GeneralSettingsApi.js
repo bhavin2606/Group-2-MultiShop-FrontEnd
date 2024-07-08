@@ -16,14 +16,14 @@ export const GeneralSettingsApi = api.injectEndpoints({
         }),
         postContactData: builder.mutation({
             query: (data) => ({ 
-                url: "addcontact",
+                url: "contactUs",
                 method: "POST",
                 body: data,
             }),
         }),
         postNewsLetterData: builder.mutation({
             query: (data) => ({ 
-                url: "addnewsletter",
+                url: "newsLetter",
                 method: "POST",
                 body: data,
             }),

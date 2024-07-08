@@ -16,7 +16,7 @@ const FAQs = () => {
           <span className="bg-secondary pr-3">FREQUENTLY ASKED QUESTIONS</span>
         </h2>
         <div
-          className="container-fluid mx-5"
+          className="container mx-5"
           dangerouslySetInnerHTML={{
             __html: FaqData?.description?.description,
           }}
