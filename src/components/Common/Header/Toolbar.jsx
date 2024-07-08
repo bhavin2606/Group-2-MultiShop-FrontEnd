@@ -1,17 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import LogoutModal from "../../Modal/LogoutModal";
-import { AuthContext } from "../../Auth/AuthContext";
 import SignOut from "../../Auth/SignOut";
-import { getUserData } from "../../../Redux/Actions/getApiData";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails } from "../../../Redux/Slices/AuthSlice";
 import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
 
 export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
-  const { data:userData } = useGetUserDataQuery()
+  const { data: userData } = useGetUserDataQuery();
+
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+
+  const selectLanguage = (item) => {
+    console.log("Selected language:", item);
+    document.cookie = "googtrans=" + `/en/${item}`;
+    console.log("Cookie set:", document.cookie);
+    setSelectedLanguage(item);
+  };
+
+  useEffect(() => {
+    if (selectedLanguage) {
+      window.location.reload();
+    }
+  }, [selectedLanguage]);
+
   return (
     <div className="container-fluid">
       <div className="row bg-secondary py-1 px-xl-5">
@@ -55,7 +66,9 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-        {token &&  userData?.data?.firstName !== undefined && `Welcome ${userData?.data?.firstName}`}  
+          {token &&
+            userData?.data?.firstName !== undefined &&
+            `Welcome ${userData?.data?.firstName}`}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button
@@ -68,10 +81,7 @@ export default function Toolbar() {
               <div className="dropdown-menu dropdown-menu-right">
                 {token ? (
                   <>
-                    <Link
-                      className="text-decoration-none"
-                      to="/account"
-                    >
+                    <Link className="text-decoration-none" to="/account">
                       <button className="dropdown-item" type="button">
                         My Profile
                       </button>
@@ -102,7 +112,7 @@ export default function Toolbar() {
                 )}
               </div>
             </div>
-            <div className="btn-group">
+            <div className="btn-group google_translate_element">
               <button
                 type="button"
                 className="btn btn-sm btn-light dropdown-toggle"
@@ -111,14 +121,34 @@ export default function Toolbar() {
                 EN
               </button>
               <div className="dropdown-menu dropdown-menu-right">
-                <button className="dropdown-item" type="button">
-                  FR
+                <button
+                  className="dropdown-item"
+                  onClick={() => selectLanguage("en")}
+                  type="button"
+                >
+                  ENGLISH
                 </button>
-                <button className="dropdown-item" type="button">
-                  AR
+                <button
+                  className="dropdown-item"
+                  onClick={() => selectLanguage("hi")}
+                  type="button"
+                >
+                  HINDI
                 </button>
-                <button className="dropdown-item" type="button">
-                  RU
+
+                <button
+                  className="dropdown-item"
+                  onClick={() => selectLanguage("gu")}
+                  type="button"
+                >
+                  GUJARATI
+                </button>
+                <button
+                  className="dropdown-item"
+                  onClick={() => selectLanguage("fr")}
+                  type="button"
+                >
+                  RUSSIAN
                 </button>
               </div>
             </div>

@@ -112,7 +112,7 @@ export default function ForgetPassword() {
                       <div className="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end"></div>
                     </div>
                   </div>
-                  <div className="row">
+                  {/* <div className="row">
                     <div className="col-12">
                       <p className="mt-5 mb-4">Or sign in with</p>
                       <div className="d-flex gap-3 flex-column flex-xl-row">
@@ -166,9 +166,9 @@ export default function ForgetPassword() {
                         </a>
                       </div>
                     </div>
-                  </div>
+                  </div> 
                 </div>
-              </div>
+              </div> */}
               {/* <div
                 className="col-12 col-md-6"
                 style={{ backgroundColor: "#F6C324" }}
@@ -195,10 +195,10 @@ export default function ForgetPassword() {
                       with artificial intelligence.
                     </p>
                   </div>
-                </div>
-              </div> */}
+                </div> */}
+              </div> 
             </div>
-          {/* </div>   */}
+          </div>  
         </div>
       </section>
     </div>

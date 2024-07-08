@@ -10153,3 +10153,23 @@ h6 {
   border-radius: 10px;
   border: 3px solid white;
 }
+
+/* for the translation  */
+
+.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
+  box-shadow: none !important;
+  background-color: white !important;
+}
+
+.VIpgJd-suEOdc,
+.VIpgJd-yAWNEb-L7lbkb {
+  display: none !important;
+}

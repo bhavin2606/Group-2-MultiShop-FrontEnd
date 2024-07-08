@@ -25,7 +25,7 @@ function App() {
       pauseOnHover
       theme="light"
       />
-      <RoutesPath />
+      <RoutesPath />  
     </>
   );
 }

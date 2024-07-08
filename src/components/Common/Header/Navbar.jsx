@@ -4,7 +4,8 @@ import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
 
 export default function Navbar() {
   const location = useLocation();
-  const { data:banner } = useGetCategoryDataQuery();
+  const { data: banner } = useGetCategoryDataQuery();
+
   return (
     <>
       <div className="container-fluid bg-dark mb-30">
@@ -37,7 +38,7 @@ export default function Navbar() {
                     {data?.subcategories?.length > 0 ? (
                       <div className="nav-item dropdown dropright">
                         <Link
-                          href="#"
+                          to="#"
                           className="nav-link dropdown-toggle"
                           data-toggle="dropdown"
                         >
@@ -45,15 +46,18 @@ export default function Navbar() {
                           <i className="fa fa-angle-right float-right mt-1"></i>
                         </Link>
                         <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                          {data?.subcategories?.map((data, index) => (
-                            <Link href="" className="dropdown-item" key={index}>
-                              {data.subcategoryName}
+                          {data?.subcategories?.map((subcategory, index) => (
+                            <Link to="#" className="dropdown-item" key={index}>
+                              {subcategory.subcategoryName}
                             </Link>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <Link to="/shop" className="nav-item nav-link">
+                      <Link
+                        to="/shop"
+                        className="nav-item nav-link"
+                      >
                         {data.category_name}
                       </Link>
                     )}
@@ -64,7 +68,7 @@ export default function Navbar() {
           </div>
           <div className="col-lg-9">
             <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-              <Link href="" className="text-decoration-none d-block d-lg-none">
+              <Link to="/" className="text-decoration-none d-block d-lg-none">
                 <span className="h1 text-uppercase text-dark bg-light px-2">
                   Multi
                 </span>
@@ -88,7 +92,7 @@ export default function Navbar() {
                   <Link
                     to="/"
                     className={`nav-link ${
-                      location?.pathname === "/" && "active"
+                      location.pathname === "/" ? "text-primary" : "text-secondary"
                     }`}
                     id="pills-home-tab"
                     data-toggle="pill"
@@ -102,7 +106,7 @@ export default function Navbar() {
                   <Link
                     to="/shop"
                     className={`nav-link ${
-                      location?.pathname === "/shop" && "active"
+                      location.pathname === "/shop" ? "text-primary" : "text-secondary"
                     }`}
                     id="pills-shop-tab"
                     role="tab"
@@ -113,8 +117,11 @@ export default function Navbar() {
                   </Link>
                 </div>
                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
-                  <Link to="/wishlist" className="btn px-0">
-                    <i className="fas fa-heart text-primary" />
+                  <Link
+                    to="/wishlist"
+                    className={`btn px-0 ${location.pathname === "/wishlist" ? "text-primary" : "text-secondary"}`}
+                  >
+                    <i className={`fas fa-heart ${location.pathname === "/wishlist" ? "text-primary" : "text-secondary"}`} />
                     <span
                       className="badge text-secondary border mx-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}
@@ -122,8 +129,11 @@ export default function Navbar() {
                       0
                     </span>
                   </Link>
-                  <Link to="/cart" className="btn px-0 ml-3">
-                    <i className="fas fa-shopping-cart text-primary" />
+                  <Link
+                    to="/cart"
+                    className={`btn px-0 ml-3 ${location.pathname === "/cart" ? "text-primary" : "text-secondary"}`}
+                  >
+                    <i className={`fas fa-shopping-cart ${location.pathname === "/cart" ? "text-primary" : "text-secondary"}`} />
                     <span
                       className="badge text-secondary border ml-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}

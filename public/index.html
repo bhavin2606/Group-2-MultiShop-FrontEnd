@@ -30,6 +30,18 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
   
+   <!-- Language Translate  -->
+   <script>
+    // eslint-disable-next-line no-unused-vars,, @typescript-eslint/no-unused-vars
+    function googleTranslateElementInit() {
+      // eslint-disable-next-line no-undef
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en' }
+      );
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&loading=async"></script>
+
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
