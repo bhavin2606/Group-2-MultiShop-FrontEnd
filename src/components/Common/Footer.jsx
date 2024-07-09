@@ -25,10 +25,9 @@ export default function Footer() {
       validateOnBlur: false,
 
       onSubmit: async (values, action) => {
-        // await postNewsLetterData(values);
         let res = await postNewsLetterData(values);
         action.resetForm();
-        if (res?.data?.code) {
+        if (res?.data?.success === true) {
           toast.success("Subscribed Successfully!");
         } else {
           toast.error("Already Subscribed!");

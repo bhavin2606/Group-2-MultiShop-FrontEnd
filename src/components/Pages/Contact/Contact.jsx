@@ -2,10 +2,12 @@ import React from "react";
 import ContactForm from "./ContactForm";
 import ContactMap from "./ContactMap";
 import ContactAddress from "./ContactAddress";
-import { Link } from "react-router-dom";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
+import { useGetSettingDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
 
 export default function Contact() {
+  // const { data } = useGetSettingDataQuery()
+  // console.log("getSettingData", data);  
   return (
     <>
       <Breadcrumbs />
@@ -18,6 +20,7 @@ export default function Contact() {
             <ContactForm />
           </div>
           <div className="col-lg-5 mb-5">
+            
             <ContactMap />
             <ContactAddress />
           </div>

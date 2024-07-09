@@ -16,7 +16,7 @@ function LogoutModal() {
   const handleLogout = async () => {
     let res = await postLogoutData()
     handleClose();
-    if (res?.data) {
+    if (res?.data.success === true) {
       navigate("/", { replace: true });
       toast.success("LoggedOut Successfully")
       localStorage.clear("token")

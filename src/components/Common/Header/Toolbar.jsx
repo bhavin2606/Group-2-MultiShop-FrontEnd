@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SignOut from "../../Auth/SignOut";
 import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
+import user from "../../../assets/img/user.png";
 
 export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
   const { data: userData } = useGetUserDataQuery();
 
+
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
-  console.log("userData", userData);
   const selectLanguage = (item) => {
     console.log("Selected language:", item);
     document.cookie = "googtrans=" + `/en/${item}`;
@@ -68,17 +69,40 @@ export default function Toolbar() {
         </div>
         <div className="col-lg-6 text-center text-lg-right">
           {token &&
-            userData?.data?.firstName !== undefined &&
-            `Welcome ${userData?.data?.firstName}`}
+            userData?.data?.first_name !== undefined &&
+            `Welcome ${userData?.data?.first_name}`}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button
                 type="button"
-                className={token ? "btn p-0 mx-1" : "btn btn-sm btn-light dropdown-toggle m-1"}
+                className={
+                  token
+                    ? userData?.image_url
+                      ? "btn p-0 mx-1"
+                      : "btn btn-sm btn-light dropdown-toggle m-1"
+                    : "btn btn-sm btn-light dropdown-toggle m-1"
+                }
                 data-toggle="dropdown"
               >
-                {token ? userData?.data?.image && <img src={userData?.data?.image} className="img-fluid" style={{ height: "40px", width: "40px" }} alt="" />
-                  :  "My Account" }
+                {token ? (
+                  userData?.image_url ? (
+                    <img
+                      src={userData?.data?.user_logo}
+                      className="img-fluid rounded-circle"
+                      style={{ height: "40px", width: "40px" }}
+                      alt=""
+                    />
+                  ) : (
+                    <img
+                      src={user}
+                      className="img-fluid rounded-circle"
+                      style={{ height: "22px", width: "22px" }}
+                      alt=""
+                    />
+                  )
+                ) : (
+                  "My Account"
+                )}
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 {token ? (

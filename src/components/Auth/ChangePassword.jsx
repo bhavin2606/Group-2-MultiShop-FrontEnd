@@ -12,9 +12,9 @@ export default function ChangePassword() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [postChangePasswordData] = usePostChangePasswordDataMutation()
+  const [postChangePasswordData] = usePostChangePasswordDataMutation();
   const toggleCurrentPasswordVisibility = () => {
     setShowCurrentPassword(!showCurrentPassword);
   };
@@ -40,14 +40,16 @@ export default function ChangePassword() {
       validateOnBlur: false,
 
       onSubmit: async (values, action) => {
-       let data =  await postChangePasswordData(values);
         action.resetForm();
-        if (data) {
-          toast.success("Password Changed Successfully")
-          navigate("/")
+        let formData = new FormData();
+        formData.append("current_password", values.currentPassword);
+        formData.append("new_password", values.password);
+        formData.append("confirm_password", values.confirmPassword);
+        let res = await postChangePasswordData(formData);
+        if (res?.data?.success === true) {
+          toast.success("Password Changed Successfully");
+          navigate("/");
         }
-        // alert("your new password " + values.Password);
-        // Post API will call from here
       },
     });
 

@@ -20,13 +20,14 @@ export default function UserAccount() {
 
   // firstName, lastName, email, phoneNo;
   const initialValues = {
-    firstName: userData?.data?.firstName,
-    lastName: userData?.data?.lastName,
-    phoneNumber: userData?.data?.phoneNo,
+    firstName: userData?.data?.first_name,
+    lastName: userData?.data?.last_name,
+    phoneNumber: userData?.data?.phone_number,
     birthday: userData?.dob,
-    image: userData?.data?.image,
+    image: userData?.data?.user_logo,
   };
-  const [addUserProfile] = useAddUserProfileMutation();
+  const [addUserProfile, {data, isError, isLoading}] = useAddUserProfileMutation();
+  console.log("datadatadatadata", data);
 
   const {
     values,
@@ -45,15 +46,14 @@ export default function UserAccount() {
     onSubmit: async (values, action) => {
       action.resetForm();
       let data = new FormData();
-      data.append("firstName", values.firstName);
-      data.append("lastName", values.lastName);
-      data.append("phoneNo", values.phoneNumber);
-      data.append("dob", values.birthday);
-      data.append("image", values.image);
-      data.append("_method", "put");
+      data.append("first_name", values.firstName);
+      data.append("last_name", values.lastName);
+      data.append("phone_number", values.phoneNumber);
+      // data.append("dob", values.birthday);
+      data.append("user_logo", values.image);
+      // data.append("_method", "put");
       addUserProfile(data);
       setEditButton(false);
-      
     },
   });
 

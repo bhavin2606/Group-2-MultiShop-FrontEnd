@@ -4,7 +4,7 @@ import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
 
 export default function Navbar() {
   const location = useLocation();
-  const { data: banner } = useGetCategoryDataQuery();
+  const { data } = useGetCategoryDataQuery();
 
   return (
     <>
@@ -33,22 +33,22 @@ export default function Navbar() {
               }}
             >
               <div className="navbar-nav w-100">
-                {banner?.data?.data?.map((data, index) => (
+                {data?.data?.map((data, index) => (
                   <Fragment key={index}>
-                    {data?.subcategories?.length > 0 ? (
+                    {data?.subcategory?.length > 0 ? (
                       <div className="nav-item dropdown dropright">
                         <Link
                           to="#"
                           className="nav-link dropdown-toggle"
                           data-toggle="dropdown"
                         >
-                          {data.category_name}{" "}
+                          {data.name}{" "}
                           <i className="fa fa-angle-right float-right mt-1"></i>
                         </Link>
                         <div className="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                          {data?.subcategories?.map((subcategory, index) => (
+                          {data?.subcategory?.map((subcategory, index) => (
                             <Link to="#" className="dropdown-item" key={index}>
-                              {subcategory.subcategoryName}
+                              {subcategory.name}
                             </Link>
                           ))}
                         </div>
@@ -58,7 +58,7 @@ export default function Navbar() {
                         to="/shop"
                         className="nav-item nav-link"
                       >
-                        {data.category_name}
+                        {data.name}
                       </Link>
                     )}
                   </Fragment>

@@ -8,11 +8,12 @@ import { useGetBannerDataQuery } from "../../../Redux/Slices/HomePageApi";
 
 export default function Carosel(props) {
   const { data } = useGetBannerDataQuery();
+  // console.log("carosouel", data?.data);
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
         <div className="col-12">
-          {data && data?.Data?.data?.length === 0 ? (
+          {data && data?.data?.length === 0 ? (
             <Skeleton height={500} />
           ) : (
             <div
@@ -21,8 +22,8 @@ export default function Carosel(props) {
               data-ride="carousel"
             >
               <ol className="carousel-indicators">
-                {data?.Data?.data.length > 0 &&
-                  data?.Data?.data?.map((data, index) => (
+                {data?.data?.length > 0 &&
+                  data?.data?.map((data, index) => (
                     <li
                       key={index}
                       data-target="#header-carousel"
@@ -32,8 +33,8 @@ export default function Carosel(props) {
                   ))}
               </ol>
               <div className="carousel-inner">
-                {data?.Data?.data?.length > 0 &&
-                  data?.Data?.data?.map((data, index) => (
+                {data?.data?.length > 0 &&
+                  data?.data?.map((data, index) => (
                     <div
                       key={index}
                       className={
@@ -45,20 +46,20 @@ export default function Carosel(props) {
                     >
                       <img
                         className="position-absolute w-100 h-100"
-                        src={data.banner_image}
+                        src={data?.image}
                         style={{ objectFit: "cover" }}
                       />
                       <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div className="p-3" style={{ maxWidth: 700 }}>
                           <h1 className="display-4 text-white mb-3 animate__animated animate__fadeInDown">
-                            {data.banner_title}
+                            {data?.banner_title}
                           </h1>
                           <p className="mx-md-5 px-5 animate__animated animate__bounceIn">
-                            {data.banner_desc}
+                            {data?.description}
                           </p>
                           <Link
                             className="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp"
-                            to={data.banner_link}
+                            to={data.url}
                           >
                             Shop Now
                           </Link>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signUpSchema } from "../validations/signUpSchema";
-import { postSignUpData } from "../../Redux/Actions/postApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { usePostUserSignUpDataMutation } from "../../Redux/Slices/AuthApis";
@@ -11,13 +10,16 @@ import { toast } from "react-toastify";
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [postUserSignUpData] = usePostUserSignUpDataMutation()
+  const [postUserSignUpData, { data, isError, isLoading, isSuccess }] =
+    usePostUserSignUpDataMutation();
+
   const initialValues = {
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    password_confirmation: "",
+    phone_number: "",
   };
 
   const navigate = useNavigate();
@@ -29,19 +31,29 @@ export default function SignUp() {
       validateOnBlur: false,
       onSubmit: async (values, action) => {
         action.resetForm();
-        let res = await postUserSignUpData(values)
-        if (res.data.status === 200) {
+        let formData = new FormData();
+        formData.append("first_name", values.first_name);
+        formData.append("last_name", values.last_name);
+        formData.append("email", values.email);
+        formData.append("password", values.password);
+        formData.append("password_confirmation", values.password_confirmation);
+        formData.append("phone_number", values.phone_number);
+
+      let res =  postUserSignUpData(formData);
+        if (res?.data?.success === true) {
           navigate("/signin");
-          toast.success("SignUp Successfully")
+          toast.success("SignUp Successfully");
         } else {
-          navigate('/signup')
-          toast.error("Invalid Email")
+          navigate("/signup");
+          toast.error("Invalid Email");
         }
       },
     });
+    
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
-  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   return (
     <>
@@ -57,7 +69,10 @@ export default function SignUp() {
                   <div className="col-12">
                     <div className="mb-5">
                       <h2 className="h3">Sign up Now</h2>
-                      <h4 className="fw-normal pt-4" style={{ color: "#c89601" }}>
+                      <h4
+                        className="fw-normal pt-4"
+                        style={{ color: "#c89601" }}
+                      >
                         Enter your details to register in MultiShop
                       </h4>
                     </div>
@@ -68,64 +83,93 @@ export default function SignUp() {
                     <div className="col-12 mt-3">
                       <div className="row">
                         <div className="col-md-6 form-group">
-                          <label htmlFor="firstName" className="form-label">
+                          <label htmlFor="first_name" className="form-label">
                             First Name <span className="text-danger">*</span>
                           </label>
                           <input
                             type="text"
                             className="form-control"
-                            name="firstName"
-                            id="firstName"
+                            name="first_name"
+                            id="first_name"
                             placeholder="First Name"
-                            value={values.firstName}
+                            value={values.first_name}
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          {errors.firstName && touched.firstName ? (
-                            <p className="form-error text-danger">{errors.firstName}</p>
+                          {errors.first_name && touched.first_name ? (
+                            <p className="form-error text-danger">
+                              {errors.first_name}
+                            </p>
                           ) : null}
                         </div>
                         <div className="col-md-6 form-group mt-md-0">
-                          <label htmlFor="lastName" className="form-label">
+                          <label htmlFor="last_name" className="form-label">
                             Last Name <span className="text-danger">*</span>
                           </label>
                           <input
                             type="text"
                             className="form-control"
-                            name="lastName"
-                            id="lastName"
+                            name="last_name"
+                            id="last_name"
                             placeholder="Last Name"
-                            value={values.lastName}
+                            value={values.last_name}
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          {errors.lastName && touched.lastName ? (
-                            <p className="form-error text-danger">{errors.lastName}</p>
+                          {errors.last_name && touched.last_name ? (
+                            <p className="form-error text-danger">
+                              {errors.last_name}
+                            </p>
                           ) : null}
                         </div>
                       </div>
                     </div>
 
-                    <div className="col-12">
-                      <label htmlFor="email" className="form-label">
-                        Email <span className="text-danger">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        name="email"
-                        id="email"
-                        placeholder="name@example.com"
-                        value={values.email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      />
-                      {errors.email && touched.email ? (
-                        <p className="form-error text-danger">{errors.email}</p>
-                      ) : null}
+                    <div className="col-12 mt-2">
+                      <div className="row mb-0">
+                        <div className="col-md-6 form-group">
+                          <label htmlFor="email" className="form-label">
+                            Email <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            name="email"
+                            id="email"
+                            placeholder="name@example.com"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                          {errors.email && touched.email ? (
+                            <p className="form-error text-danger">
+                              {errors.email}
+                            </p>
+                          ) : null}
+                        </div>
+                        <div className="col-md-6 form-group mt-md-0">
+                          <label htmlFor="email" className="form-label">
+                            Phone Number <span className="text-danger">*</span>
+                          </label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            name="phone_number"
+                            id="phone"
+                            placeholder="9876543210"
+                            value={values.phone_number}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                          />
+                          {errors.email && touched.phone_number ? (
+                            <p className="form-error text-danger">
+                              {errors.phone_number}
+                            </p>
+                          ) : null}
+                        </div>
+                      </div>
                     </div>
-
-                    <div className="col-12 mt-3">
+                    <div className="col-12 mt-2">
                       <label htmlFor="password" className="form-label">
                         Password <span className="text-danger">*</span>
                       </label>
@@ -150,7 +194,9 @@ export default function SignUp() {
                         </span>
                       </div>
                       {errors.password && touched.password ? (
-                        <p className="form-error text-danger">{errors.password}</p>
+                        <p className="form-error text-danger">
+                          {errors.password}
+                        </p>
                       ) : null}
                     </div>
 
@@ -162,11 +208,11 @@ export default function SignUp() {
                         <input
                           type={showConfirmPassword ? "text" : "password"}
                           className="form-control"
-                          name="confirmPassword"
+                          name="password_confirmation"
                           id="confirmPassword"
                           autoComplete="off"
                           placeholder="Confirm Password"
-                          value={values.confirmPassword}
+                          value={values.password_confirmation}
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
@@ -179,12 +225,15 @@ export default function SignUp() {
                           />
                         </span>
                       </div>
-                      {errors.confirmPassword && touched.confirmPassword ? (
-                        <p className="form-error text-danger">{errors.confirmPassword}</p>
+                      {errors.password_confirmation &&
+                      touched.password_confirmation ? (
+                        <p className="form-error text-danger">
+                          {errors.password_confirmation}
+                        </p>
                       ) : null}
                     </div>
 
-                    <div className="col-12 mt-3">
+                    <div className="col-12 mt-2">
                       <div className="form-check ms-1">
                         <input
                           className="form-check-input"

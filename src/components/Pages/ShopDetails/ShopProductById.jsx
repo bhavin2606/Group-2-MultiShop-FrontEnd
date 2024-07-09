@@ -7,156 +7,152 @@ export default function ShopProductById() {
     window.scrollTo(0, 0);
   }, []);
   const { id } = useParams();
-  const { data: productDetail } = useGetProductDataByIdQuery(id);
+  const { data } = useGetProductDataByIdQuery(id);
   return (
     <div className="container-fluid pb-5">
-      {productDetail?.products?.map((data, index) => (
-        <div className="row px-xl-5">
-          <div className="col-lg-5 mb-30">
+      <div className="row px-xl-5">
+        <div className="col-lg-5 mb-30">
+          <div
+            id="product-carousel"
+            className="carousel slide"
+            data-ride="carousel"
+          >
             <div
-              id="product-carousel"
-              className="carousel slide"
-              data-ride="carousel"
+              className="carousel-inner bg-light"
+              style={{ height: "700px" }}
             >
-              <div
-                className="carousel-inner bg-light"
-                style={{ height: "700px" }}
-              >
-                {data?.product_images?.map((url, index) => (
+              {data?.data?.product_images?.map((url, index) => (
+                <div
+                  className={
+                    index === 0 ? "carousel-item active" : "carousel-item"
+                  }
+                >
+                  <img
+                    className="w-100 "
+                    src={url?.image}
+                    alt="Image"
+                    style={{ height: "800px" }}
+                  />
+                </div>
+              ))}
+            </div>
+            <a
+              className="carousel-control-prev"
+              href="#product-carousel"
+              data-slide="prev"
+            >
+              <i className="fa fa-2x fa-angle-left text-dark" />
+            </a>
+            <a
+              className="carousel-control-next"
+              href="#product-carousel"
+              data-slide="next"
+            >
+              <i className="fa fa-2x fa-angle-right text-dark" />
+            </a>
+          </div>
+        </div>
+        <div className="col-lg-7 h-auto mb-30">
+          <div className="h-100 bg-light p-30">
+            <h3>{data?.data?.name}</h3>
+            <div className="d-flex mb-3">
+              <div className="text-primary mr-2">
+                <RatingIntegration star={""} />
+              </div>
+              <small className="pt-1">
+                ({data?.data?.total_review} Reviews)
+              </small>
+            </div>
+            <h3 className="font-weight-semi-bold mb-4">${data?.data?.price}</h3>
+            <p className="mb-4">{data?.short_desc}</p>
+            <div className="d-flex mb-3">
+              <strong className="text-dark mr-3">Sizes:</strong>
+              <form>
+                {data?.data?.sizes?.map((size, index) => (
                   <div
-                    className={
-                      index === 0 ? "carousel-item active" : "carousel-item"
-                    }
+                    className="custom-control custom-radio custom-control-inline"
+                    key={index}
                   >
-                    <img
-                      className="w-100 "
-                      src={url}
-                      alt="Image"
-                      style={{ height: "800px" }}
+                    <input
+                      type="radio"
+                      className="custom-control-input"
+                      id={size.size}
+                      name="size"
                     />
+                    <label className="custom-control-label" htmlFor={size}>
+                      {size.size}
+                    </label>
                   </div>
                 ))}
-              </div>
-              <a
-                className="carousel-control-prev"
-                href="#product-carousel"
-                data-slide="prev"
-              >
-                <i className="fa fa-2x fa-angle-left text-dark" />
-              </a>
-              <a
-                className="carousel-control-next"
-                href="#product-carousel"
-                data-slide="next"
-              >
-                <i className="fa fa-2x fa-angle-right text-dark" />
-              </a>
+              </form>
             </div>
-          </div>
-          <div className="col-lg-7 h-auto mb-30">
-            <div className="h-100 bg-light p-30">
-              <h3>{data.product_name}</h3>
-              <div className="d-flex mb-3">
-                <div className="text-primary mr-2">
-                  <RatingIntegration star={data.Rating_Count} />
-                </div>
-                <small className="pt-1">({data?.totalReviews} Reviews)</small>
-              </div>
-              <h3 className="font-weight-semi-bold mb-4">
-                $
-                {data.discount_type === "fixed"
-                  ? data.price - data.discount_value
-                  : data.price - (data.price * data.discount_value) / 100}
-              </h3>
-              <p className="mb-4">{data.short_desc}</p>
-              <div className="d-flex mb-3">
-                <strong className="text-dark mr-3">Sizes:</strong>
-                <form>
-                  {data?.sizes?.map((size, index) => (
-                    <div
-                      className="custom-control custom-radio custom-control-inline"
-                      key={index}
+            <div className="d-flex mb-4">
+              <strong className="text-dark mr-3">Colors:</strong>
+              <form>
+                {data?.data?.colors?.map((color, index) => (
+                  <div
+                    className="custom-control custom-radio custom-control-inline"
+                    key={index}
+                  >
+                    <input
+                      type="radio"
+                      className="custom-control-input"
+                      id={color?.id}
+                      name="color"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor={color.color}
                     >
-                      <input
-                        type="radio"
-                        className="custom-control-input"
-                        id={size}
-                        name="size"
-                      />
-                      <label className="custom-control-label" htmlFor={size}>
-                        {size}
-                      </label>
-                    </div>
-                  ))}
-                </form>
-              </div>
-              <div className="d-flex mb-4">
-                <strong className="text-dark mr-3">Colors:</strong>
-                <form>
-                  {data?.colors?.map((color, index) => (
-                    <div
-                      className="custom-control custom-radio custom-control-inline"
-                      key={index}
-                    >
-                      <input
-                        type="radio"
-                        className="custom-control-input"
-                        id={color}
-                        name="color"
-                      />
-                      <label className="custom-control-label" htmlFor={color}>
-                        {color}
-                      </label>
-                    </div>
-                  ))}
-                </form>
-              </div>
-              <div className="d-flex align-items-center mb-4 pt-2">
-                <div
-                  className="input-group quantity mr-3"
-                  style={{ width: 130 }}
-                >
-                  <div className="input-group-btn">
-                    <button className="btn btn-primary btn-minus">
-                      <i className="fa fa-minus" />
-                    </button>
+                      {color.color}
+                    </label>
                   </div>
-                  <input
-                    type="text"
-                    className="form-control bg-secondary border-0 text-center"
-                    defaultValue={1}
-                  />
-                  <div className="input-group-btn">
-                    <button className="btn btn-primary btn-plus">
-                      <i className="fa fa-plus" />
-                    </button>
-                  </div>
+                ))}
+              </form>
+            </div>
+            <div className="d-flex align-items-center mb-4 pt-2">
+              <div className="input-group quantity mr-3" style={{ width: 130 }}>
+                <div className="input-group-btn">
+                  <button className="btn btn-primary btn-minus">
+                    <i className="fa fa-minus" />
+                  </button>
                 </div>
-                <button className="btn btn-primary px-3">
-                  <i className="fa fa-shopping-cart mr-1" /> Add To Cart
-                </button>
+                <input
+                  type="text"
+                  className="form-control bg-secondary border-0 text-center"
+                  defaultValue={1}
+                />
+                <div className="input-group-btn">
+                  <button className="btn btn-primary btn-plus">
+                    <i className="fa fa-plus" />
+                  </button>
+                </div>
               </div>
-              <div className="d-flex pt-2">
-                <strong className="text-dark mr-2">Share on:</strong>
-                <div className="d-inline-flex">
-                  <a className="text-dark px-2" href="">
-                    <i className="fab fa-facebook-f" />
-                  </a>
-                  <a className="text-dark px-2" href="">
-                    <i className="fab fa-twitter" />
-                  </a>
-                  <a className="text-dark px-2" href="">
-                    <i className="fab fa-linkedin-in" />
-                  </a>
-                  <a className="text-dark px-2" href="">
-                    <i className="fab fa-pinterest" />
-                  </a>
-                </div>
+              <button className="btn btn-primary px-3">
+                <i className="fa fa-shopping-cart mr-1" /> Add To Cart
+              </button>
+            </div>
+            <div className="d-flex pt-2">
+              <strong className="text-dark mr-2">Share on:</strong>
+              <div className="d-inline-flex">
+                <a className="text-dark px-2" href="">
+                  <i className="fab fa-facebook-f" />
+                </a>
+                <a className="text-dark px-2" href="">
+                  <i className="fab fa-twitter" />
+                </a>
+                <a className="text-dark px-2" href="">
+                  <i className="fab fa-linkedin-in" />
+                </a>
+                <a className="text-dark px-2" href="">
+                  <i className="fab fa-pinterest" />
+                </a>
               </div>
             </div>
           </div>
         </div>
-      ))}
+      </div>
+
       {/* <div className="row px-xl-5">
         <div className="col">
           <div className="bg-light p-30">

@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
 import { AuthContext } from "./AuthContext";
 import { useDispatch } from "react-redux";
-import { getUserDetails, getUserToken } from "../../Redux/Slices/AuthSlice";
 import { postLoginData } from "../../Redux/Actions/postApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +14,7 @@ export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [postUserSignInData] = usePostUserSignInDataMutation()
   const dispatch = useDispatch();
-  const [userData,setUserData] = useState([])
+  // const [userData,setUserData] = useState([])
   const initialValues = {
     email: "",
     password: "",
@@ -35,10 +34,12 @@ export default function SignIn() {
       onSubmit: async (values, action) => {
         let res = await postUserSignInData(values)
         action.resetForm();
-        if (res.data.status === 200) {
-          localStorage.setItem("token" , res?.data?.data?.token)
+        if (res?.data?.success === true) {
+          localStorage.setItem("token" , res?.data?.token)
           toast.success("Successfully Logged In")
           navigate("/");
+        } else {
+          toast.success("Invalid email or password")
         }
       },
     });

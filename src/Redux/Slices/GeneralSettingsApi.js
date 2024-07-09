@@ -9,21 +9,21 @@ export const GeneralSettingsApi = api.injectEndpoints({
             query: () => "informationslug/faqs"
         }),
         getSettingData: builder.query({
-            query: () => "footer",
+            query: () => "get-setting",
         }),
         getAboutUsData: builder.query({
             query: () => "informationslug/about"
         }),
         postContactData: builder.mutation({
             query: (data) => ({ 
-                url: "contactUs",
+                url: "add-contact",
                 method: "POST",
                 body: data,
             }),
         }),
         postNewsLetterData: builder.mutation({
             query: (data) => ({ 
-                url: "newsLetter",
+                url: "news-letter",
                 method: "POST",
                 body: data,
             }),

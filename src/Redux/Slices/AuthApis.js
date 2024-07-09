@@ -4,7 +4,7 @@ export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getUserData: builder.query({
             query: () => ({
-                url: "profile",
+                url: "my-profile",
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` }
             }),
@@ -21,7 +21,7 @@ export const authApi = api.injectEndpoints({
         }),
         postUserSignInData: builder.mutation({
             query: (values) => ({
-                url: "login",
+                url: "user-login",
                 method: "POST",
                 body: values,
             }),
@@ -29,7 +29,7 @@ export const authApi = api.injectEndpoints({
         }),
         postUserSignUpData: builder.mutation({
             query: (data) => ({
-                url: "signup",
+                url: "user-register",
                 method: "POST",
                 body: data,
             }),
@@ -59,7 +59,7 @@ export const authApi = api.injectEndpoints({
         }),
         postLogoutData: builder.mutation({
             query: (data) => ({
-                url: "logout",
+                url: "user-logout",
                 method: "POST",
                 body: data,
                 headers: { Authorization: `Bearer ${token}` }

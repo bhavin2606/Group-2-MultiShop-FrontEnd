@@ -13,7 +13,7 @@ export default function ContactForm() {
     message: "",
   };
 
-  const [postContactData, result] = usePostContactDataMutation()
+  const [postContactData] = usePostContactDataMutation()
 
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
     useFormik({
@@ -25,7 +25,7 @@ export default function ContactForm() {
       onSubmit: async (values, action) => {
        let res = await postContactData(values)
         action.resetForm();
-        if (res.data.code === 200) {
+        if (res.data.success === true) {
           toast.success("Data Added Successfully")
         }
       },

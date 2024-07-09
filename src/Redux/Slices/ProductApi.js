@@ -7,13 +7,22 @@ export const ProductApi = api.injectEndpoints({
             query: () => "products",
             providesTags: ["multishop"]
         }),
+        getFeaturedProductData: builder.query({
+            query: () => "list-featured-product",
+            providesTags: ["multishop"]
+        }),
         getProductDataById: builder.query({
-            query: id => `products/${id}`
+            query: (slug) => `get-product/${slug}`
+        }),
+        getProductYouMakeLikeData: builder.query({
+            query: (slug) => `get-related-product/${slug}`
         }),
     })
 })
 
 export const {
     useGetProductDataByIdQuery,
-    useGetProductDataQuery
+    useGetProductDataQuery,
+    useGetFeaturedProductDataQuery,
+    useGetProductYouMakeLikeDataQuery
 } = ProductApi

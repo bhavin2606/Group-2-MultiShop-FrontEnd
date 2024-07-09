@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
-import { useGetProductDataQuery } from "../../../Redux/Slices/ProductApi";
+import { useGetFeaturedProductDataQuery } from "../../../Redux/Slices/ProductApi";
 import { usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";
 import { toast } from "react-toastify";
 export default function ShopProduct() {
   const [toggleGrid, setToggleGrid] = useState(false);
-  const { data: shopProduct } = useGetProductDataQuery();
-  const [postWishListData] =  usePostWishListDataMutation()
-     
+  const { data } = useGetFeaturedProductDataQuery();
+  const [postWishListData] = usePostWishListDataMutation();
 
   const handleWishlistSubmit = async (p_id) => {
     console.log(p_id);
-    let data = await postWishListData(p_id)
+    let data = await postWishListData(p_id);
     console.log(data, "HElllllllllllllllll");
     if (data?.length > 0) {
-      toast.success("Added to wishlist")
+      toast.success("Added to wishlist");
     } else {
-      toast.error("Already in wishlist")
+      toast.error("Already in wishlist");
     }
   };
 
@@ -85,13 +84,13 @@ export default function ShopProduct() {
           </div>
         </div>
         {toggleGrid
-          ? shopProduct?.products?.map((data, index) => (
+          ? data?.data?.map((data, index) => (
               <div className="card mb-3 pt-4 pb-0" key={index}>
                 <div className="row no-gutters ">
                   <div className="col-md-4 product-item bg-light mb-4">
                     <div className=" product-img position-relative overflow-hidden">
                       <img
-                        src={data?.product_images[0]}
+                        src={data?.product_images[0].image}
                         className="card-img img-fluid "
                         style={{ height: "510px" }}
                       />
@@ -99,7 +98,7 @@ export default function ShopProduct() {
                   </div>
                   <div className="col-md-8" style={{ marginTop: "100px" }}>
                     <div className="card-body">
-                      <h5 className="card-title">{data?.product_name}</h5>
+                      <h5 className="card-title">{data?.name}</h5>
                       <p className="card-text">{data.short_desc}</p>
                       <div className="card-text">
                         <div className="d-flex mt-2">
@@ -112,10 +111,10 @@ export default function ShopProduct() {
                         </div>
                       </div>
                       <div className="d-flex ">
-                        <RatingIntegration star={data?.rating_Count} />
-                        <small>({data?.totalReviews})</small>
+                        <RatingIntegration star={""} />
+                        <small>({data?.total_review})</small>
                       </div>
-                      <Link to={`/shop/${data?.product_id}`}>
+                      <Link to={`/shop/${data?.slug}`}>
                         <button
                           className="btn btn-secondary px-3 mt-5 mx-3"
                           style={{ backgroundColor: "#E9E9E7" }}
@@ -123,7 +122,10 @@ export default function ShopProduct() {
                           <i className="fa fa-info-circle mr-1" /> View Detail
                         </button>
                       </Link>
-                      <button className="btn btn-primary px-3 mt-5" onClick={()=>  handleWishlistSubmit(data.product_id)}>
+                      <button
+                        className="btn btn-primary px-3 mt-5"
+                        onClick={() => handleWishlistSubmit(data?.slug)}
+                      >
                         <i className="fa fa-heart mr-1" /> Add To WishList
                       </button>
                     </div>
@@ -131,27 +133,27 @@ export default function ShopProduct() {
                 </div>
               </div>
             ))
-          : shopProduct?.products?.map((data, index) => (
+          : data?.data?.map((data, index) => (
               <div className="col-lg-4 col-md-6 col-sm-6 pb-1" key={index}>
                 <div className="product-item bg-light mb-4">
                   <div className="product-img position-relative overflow-hidden">
                     <img
                       className="img-fluid w-100"
-                      src={data.product_images[0]}
+                      src={data.product_images[0].image}
                       style={{ height: "510px" }}
                     />
                     <div className="product-action">
                       <Link
                         type="button"
                         onClick={() => {
-                          handleWishlistSubmit(data.product_id);
-                        }}  
+                          handleWishlistSubmit(data?.slug);
+                        }}
                         className="btn btn-outline-dark btn-square"
                       >
                         <i className="far fa-heart" />
                       </Link>
                       <Link
-                        to={`/shop/${data.product_id}`}
+                        to={`/shop/${data?.slug}`}
                         className="btn btn-outline-dark btn-square"
                       >
                         <i className="fa fa-search" />
@@ -163,9 +165,9 @@ export default function ShopProduct() {
                       className="h6 text-decoration-none text-truncate"
                       data-toggle="tooltip"
                       data-placement="top"
-                      title={data.product_name}
+                      title={data.name}
                     >
-                      {data.product_name}
+                      {data.name}
                     </Link>
                     <div className="d-flex align-items-center justify-content-center mt-2">
                       <h5>${data.price}</h5>
@@ -177,7 +179,7 @@ export default function ShopProduct() {
                     </div>
                     <div className="d-flex align-items-center justify-content-center mb-1">
                       <RatingIntegration star={data.rating_Count} />
-                      <small>({data.totalReviews})</small>
+                      <small>({data.total_review})</small>
                     </div>
                   </div>
                 </div>

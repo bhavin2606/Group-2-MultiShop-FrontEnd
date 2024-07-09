@@ -1,6 +1,9 @@
 import React from "react";
+import { useGetSettingDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
 
 export default function ContactMap() {
+  const { data } = useGetSettingDataQuery()
+  console.log("getSettingData", data);  
   return (
     <div className="bg-light p-30 mb-30">
       <iframe
