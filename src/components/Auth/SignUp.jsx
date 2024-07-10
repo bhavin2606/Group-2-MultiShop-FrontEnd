@@ -39,8 +39,7 @@ export default function SignUp() {
         formData.append("password_confirmation", values.password_confirmation);
         formData.append("phone_number", values.phone_number);
 
-        let res = postUserSignUpData(formData);
-        console.log("res", res);
+      let res =  await postUserSignUpData(formData);
         if (res?.data?.success === true) {
           navigate("/signin");
           toast.success("SignUp Successfully");

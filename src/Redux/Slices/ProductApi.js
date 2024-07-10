@@ -1,5 +1,6 @@
 import { api } from "../api";
 
+let token = localStorage.getItem("token")
 
 export const ProductApi = api.injectEndpoints({
     endpoints: (builder) => ({
@@ -17,11 +18,30 @@ export const ProductApi = api.injectEndpoints({
         getProductYouMakeLikeData: builder.query({
             query: (slug) => `get-related-product/${slug}`
         }),
+        getAdditionalInformation: builder.query({
+            query: (id) => `get-product-details?id=${id}`
+        }),
+        getProductReview: builder.query({
+            query: (id) => `get-product-review?id=${id}`,
+            providesTags: ["review"]
+        }),
+        addReview: builder.mutation({
+            query: ({ id, review }) => ({
+                url: `add-product-review/${id}`,
+                method: "POST",
+                body: review,
+                headers: { Authorization: `Bearer ${token}` }
+            }),
+            invalidatesTags: ["review"]
+        }),
     })
 })
 
 export const {
     useGetProductDataByIdQuery,
+    useAddReviewMutation,
+    useGetProductReviewQuery,
+    useGetAdditionalInformationQuery,
     useGetProductDataQuery,
     useGetFeaturedProductDataQuery,
     useGetProductYouMakeLikeDataQuery

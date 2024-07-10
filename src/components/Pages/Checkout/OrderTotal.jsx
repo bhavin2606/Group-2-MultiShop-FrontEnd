@@ -1,6 +1,9 @@
 import React from "react";
+import { useGetCheckOutDetailQuery } from "../../../Redux/Slices/CheckoutApi";
 
-export default function OrderTotal({formik}) {
+export default function OrderTotal({ formik }) {
+  const { data: checkout } = useGetCheckOutDetailQuery();
+  console.log(checkout?.data);
   return (
     <div className="col-lg-4">
       <h5 className="section-title position-relative text-uppercase mb-3">
@@ -9,23 +12,17 @@ export default function OrderTotal({formik}) {
       <div className="bg-light p-30 mb-5">
         <div className="border-bottom">
           <h6 className="mb-3">Products</h6>
-          <div className="d-flex justify-content-between">
-            <p>Product Name 1</p>
-            <p>$150</p>
-          </div>
-          <div className="d-flex justify-content-between">
-            <p>Product Name 2</p>
-            <p>$150</p>
-          </div>
-          <div className="d-flex justify-content-between">
-            <p>Product Name 3</p>
-            <p>$150</p>
-          </div>
+          {checkout?.data?.data?.map((data, index) => (
+            <div className="d-flex justify-content-between">
+              <p>{data?.product_name}</p>
+              <p>{data?.total}</p>
+            </div>
+          ))}
         </div>
         <div className="border-bottom pt-3 pb-2">
           <div className="d-flex justify-content-between mb-3">
             <h6>Subtotal</h6>
-            <h6>$150</h6>
+            <h6>{checkout?.data?.sub_total}</h6>
           </div>
           <div className="d-flex justify-content-between">
             <h6 className="font-weight-medium">Shipping</h6>
@@ -35,7 +32,7 @@ export default function OrderTotal({formik}) {
         <div className="pt-2">
           <div className="d-flex justify-content-between mt-2">
             <h5>Total</h5>
-            <h5>$160</h5>
+            <h5>{checkout?.data?.sub_total + 10}</h5>
           </div>
         </div>
       </div>
@@ -90,7 +87,10 @@ export default function OrderTotal({formik}) {
             </div>
           </div>
 
-          <button className="btn btn-block btn-primary font-weight-bold py-3" type="submit">
+          <button
+            className="btn btn-block btn-primary font-weight-bold py-3"
+            type="submit"
+          >
             Place Order
           </button>
         </div>
