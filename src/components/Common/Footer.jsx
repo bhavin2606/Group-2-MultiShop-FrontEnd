@@ -40,27 +40,25 @@ export default function Footer() {
     <div>
       <div className="container-fluid bg-dark text-secondary mt-5 pt-5">
         <div className="row px-xl-5 pt-5">
-          {settingdata &&
-            settingdata?.footer?.map((data, index) => (
-              <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5" key={index}>
-                <h5 className="text-secondary text-uppercase mb-4">
-                  Get In Touch
-                </h5>
-                <p className="mb-4">{data.description}</p>
-                <p className="mb-2">
-                  <i className="fa fa-map-marker-alt text-primary mr-3" />
-                  {data.address}
-                </p>
-                <p className="mb-2">
-                  <i className="fa fa-envelope text-primary mr-3" />
-                  {data.email}
-                </p>
-                <p className="mb-0">
-                  <i className="fa fa-phone-alt text-primary mr-3" />
-                  {data.contact}
-                </p>
-              </div>
-            ))}
+          <div className="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 className="text-secondary text-uppercase mb-4">Get In Touch</h5>
+            <p className="mb-4">
+              No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et
+              et dolor sed dolor. Rebum tempor no vero est magna amet no
+            </p>
+            <p className="mb-2">
+              <i className="fa fa-map-marker-alt text-primary mr-3" />
+              123 Street, New York, USA
+            </p>
+            <p className="mb-2">
+              <i className="fa fa-envelope text-primary mr-3" />
+              info@example.com
+            </p>
+            <p className="mb-0">
+              <i className="fa fa-phone-alt text-primary mr-3" />
+              +012 345 67890
+            </p>
+          </div>
           <div className="col-lg-8 col-md-12">
             <div className="row">
               <div className="col-md-4 mb-5">

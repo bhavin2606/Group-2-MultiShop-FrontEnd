@@ -10154,6 +10154,20 @@ h6 {
   border: 3px solid white;
 }
 
+.review-sidebar{
+  position: "sticky";
+  overflow-y: scroll;
+  max-height: 40vh;
+}
+.review-sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.review-sidebar:hover::-webkit-scrollbar-thumb {
+  background-color: gainsboro;
+  border-radius: 10px;
+  border: 3px solid white;
+}
 /* for the translation  */
 
 .skiptranslate {

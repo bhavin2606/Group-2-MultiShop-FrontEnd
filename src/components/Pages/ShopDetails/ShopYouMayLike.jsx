@@ -9,7 +9,7 @@ import RatingIntegration from "../../Common/RatingIntegration";
 export default function ShopYouMayLike() {
   const { id } = useParams();
   const { data } = useGetProductYouMakeLikeDataQuery(id)
-  console.log("data", data?.data);
+  console.log("dataaaaaaaaaaaa", data?.data);
 
   return (
     <div className="container-fluid py-5">
@@ -41,7 +41,7 @@ export default function ShopYouMayLike() {
                 <div className="product-img position-relative overflow-hidden">
                   <img
                     className="img-fluid w-100"
-                    src={data?.product_images[0].image}
+                    src={data?.product_image}
                     alt=""
                     style={{ height: "510px" }}
                   />
@@ -74,7 +74,7 @@ export default function ShopYouMayLike() {
                     </h5>
                   </div>
                   <div className="d-flex align-items-center justify-content-center mb-1">
-                    <RatingIntegration star={""} />
+                    <RatingIntegration star={data?.avg_rating} />
                     <small>({data?.total_review})</small>
                   </div>
                 </div>

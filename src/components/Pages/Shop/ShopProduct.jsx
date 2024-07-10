@@ -90,7 +90,7 @@ export default function ShopProduct() {
                   <div className="col-md-4 product-item bg-light mb-4">
                     <div className=" product-img position-relative overflow-hidden">
                       <img
-                        src={data?.product_images[0].image}
+                        src={data?.product_image}
                         className="card-img img-fluid "
                         style={{ height: "510px" }}
                       />
@@ -139,7 +139,7 @@ export default function ShopProduct() {
                   <div className="product-img position-relative overflow-hidden">
                     <img
                       className="img-fluid w-100"
-                      src={data.product_images[0].image}
+                      src={data.product_image}
                       style={{ height: "510px" }}
                     />
                     <div className="product-action">
@@ -178,7 +178,7 @@ export default function ShopProduct() {
                       </h6>
                     </div>
                     <div className="d-flex align-items-center justify-content-center mb-1">
-                      <RatingIntegration star={data.rating_Count} />
+                      <RatingIntegration star={data.avg_rating} />
                       <small>({data.total_review})</small>
                     </div>
                   </div>

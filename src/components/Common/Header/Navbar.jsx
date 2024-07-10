@@ -1,11 +1,13 @@
 import React, { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
+import { useGetCartProductsQuery } from "../../../Redux/Slices/CartListApi";
 
 export default function Navbar() {
   const location = useLocation();
   const { data } = useGetCategoryDataQuery();
-
+  const { data: cartData } = useGetCartProductsQuery()
+  
   return (
     <>
       <div className="container-fluid bg-dark mb-30">
@@ -138,7 +140,7 @@ export default function Navbar() {
                       className="badge text-secondary border ml-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}
                     >
-                      0
+                      {cartData?.data?.length || 0}
                     </span>
                   </Link>
                 </div>
