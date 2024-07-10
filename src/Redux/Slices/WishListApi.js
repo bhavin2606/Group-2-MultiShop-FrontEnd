@@ -6,7 +6,7 @@ export const WishListApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getWishListData: builder.query({
             query: () => ({
-                url: "show-wishlist",
+                url: "show-product/wishlist",
                 headers: { Authorization: `Bearer ${token}` },
 
             }),
@@ -15,11 +15,11 @@ export const WishListApi = api.injectEndpoints({
         }),
         postWishListData: builder.mutation({
             query: (p_id) => ({
-                url: `Add-WishList/${p_id}`,
+                url: `add-product/wishlist/${p_id}`,
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
-                invalidatesTags: ["wish"]
-            })
+            }),
+            invalidatesTags: ["wish"]
         }),
     })
 })

@@ -57,7 +57,7 @@ export default function ShopProductById() {
             <h3>{data?.data?.name}</h3>
             <div className="d-flex mb-3">
               <div className="text-primary mr-2">
-                <RatingIntegration star={""} />
+                <RatingIntegration star={data?.data?.avg_rate} />
               </div>
               <small className="pt-1">
                 ({data?.data?.total_review} Reviews)

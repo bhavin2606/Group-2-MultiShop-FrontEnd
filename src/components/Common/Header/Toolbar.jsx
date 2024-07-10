@@ -8,9 +8,9 @@ export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
   const { data: userData } = useGetUserDataQuery();
-
-  const [selectedLanguage, setSelectedLanguage] = useState("");
-
+  const [selectedLanguage, setSelectedLanguage] = useState()
+  
+  console.log("userData", userData);
   const selectLanguage = (item) => {
     console.log("Selected language:", item);
     document.cookie = "googtrans=" + `/en/${item}`;
@@ -76,32 +76,21 @@ export default function Toolbar() {
                 type="button"
                 className={
                   token
-                    ? userData?.image_url
-                      ? "btn p-0 mx-1"
-                      : "btn btn-sm btn-light dropdown-toggle m-1"
+                    ? "btn p-0 mx-1"
                     : "btn btn-sm btn-light dropdown-toggle m-1"
                 }
                 data-toggle="dropdown"
               >
-                {token ? (
-                  userData?.image_url ? (
-                    <img
-                      src={userData?.data?.user_logo}
-                      className="img-fluid rounded-circle"
-                      style={{ height: "40px", width: "40px" }}
-                      alt=""
-                    />
-                  ) : (
-                    <img
-                      src={user}
-                      className="img-fluid rounded-circle"
-                      style={{ height: "22px", width: "22px" }}
-                      alt=""
-                    />
-                  )
-                ) : (
-                  "My Account"
-                )}
+                {token
+                  ? (
+                      <img
+                        src={userData?.image_url}
+                        className="img-fluid rounded-circle"
+                        style={{ height: "35px", width: "35px" }}
+                        alt=""
+                      />
+                    )
+                  : "My Account"}
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 {token ? (
@@ -119,10 +108,7 @@ export default function Toolbar() {
                         Change Password
                       </button>
                     </Link>
-                    <Link
-                      className="text-decoration-none"
-                      to="/my-order"
-                    >
+                    <Link className="text-decoration-none" to="/my-order">
                       <button className="dropdown-item" type="button">
                         My Orders
                       </button>

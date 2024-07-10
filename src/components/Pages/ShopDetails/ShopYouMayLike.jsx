@@ -74,7 +74,7 @@ export default function ShopYouMayLike() {
                     </h5>
                   </div>
                   <div className="d-flex align-items-center justify-content-center mb-1">
-                    <RatingIntegration star={""} />
+                    <RatingIntegration star={data?.avg_rating} />
                     <small>({data?.total_review})</small>
                   </div>
                 </div>

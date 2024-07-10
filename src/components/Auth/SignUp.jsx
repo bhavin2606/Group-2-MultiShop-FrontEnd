@@ -39,7 +39,8 @@ export default function SignUp() {
         formData.append("password_confirmation", values.password_confirmation);
         formData.append("phone_number", values.phone_number);
 
-      let res =  postUserSignUpData(formData);
+        let res = postUserSignUpData(formData);
+        console.log("res", res);
         if (res?.data?.success === true) {
           navigate("/signin");
           toast.success("SignUp Successfully");
@@ -57,7 +58,7 @@ export default function SignUp() {
 
   return (
     <>
-      <section className="p-3 p-md-4 p-xl-5">
+      <section className="">
         <div className="container">
           <div className="row g-0 justify-content-center">
             <div

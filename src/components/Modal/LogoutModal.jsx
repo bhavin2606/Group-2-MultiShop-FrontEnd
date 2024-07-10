@@ -5,22 +5,24 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { usePostLogoutDataMutation } from "../../Redux/Slices/AuthApis";
 
-
 function LogoutModal() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  const [postLogoutData] = usePostLogoutDataMutation()
+  const [postLogoutData] = usePostLogoutDataMutation();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleLogout = async () => {
-    let res = await postLogoutData()
-    handleClose();
-    if (res?.data.success === true) {
+    let res = await postLogoutData({ token: localStorage?.getItem("token") });
+    console.log("res", res);
+    if (res?.data?.success === true) {
       navigate("/", { replace: true });
-      toast.success("LoggedOut Successfully")
-      localStorage.clear("token")
+      toast.success("LoggedOut successfully");
+      localStorage.clear("token");
+    } else {
+      toast.error("Something went wrong");
     }
+    handleClose();
   };
 
   return (

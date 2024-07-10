@@ -7,6 +7,7 @@ import {
   useAddUserProfileMutation,
   useGetUserDataQuery,
 } from "../../../Redux/Slices/AuthApis";
+import { toast } from "react-toastify";
 
 export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);
@@ -15,16 +16,15 @@ export default function UserAccount() {
   function handleAccountEdit() {
     setEditButton(true);
   }
+  console.log("file", file);
 
-  // firstName, lastName, email, phoneNo;
   const initialValues = {
     firstName: userData?.data?.first_name,
     lastName: userData?.data?.last_name,
     phoneNumber: userData?.data?.phone_number,
-    birthday: userData?.dob,
     image: userData?.data?.user_logo,
   };
-  const [addUserProfile, {data, isError, isLoading}] = useAddUserProfileMutation();
+  const [addUserProfile, { data }] = useAddUserProfileMutation();
   console.log("datadatadatadata", data);
 
   const {
@@ -42,16 +42,20 @@ export default function UserAccount() {
     validateOnBlur: false,
     enableReinitialize: true,
     onSubmit: async (values, action) => {
-      action.resetForm();
-      let data = new FormData();
-      data.append("first_name", values.firstName);
-      data.append("last_name", values.lastName);
-      data.append("phone_number", values.phoneNumber);
-      // data.append("dob", values.birthday);
-      data.append("user_logo", values.image);
-      // data.append("_method", "put");
-      addUserProfile(data);
+      console.log("values", values);
+      let formData = new FormData();
+      formData.append("first_name", values.firstName);
+      formData.append("last_name", values.lastName);
+      formData.append("phone_number", values.phoneNumber);
+      formData.append("user_logo", values.image);
       setEditButton(false);
+      let res = await addUserProfile(formData);
+      if (res.data.success === true) {
+        toast.success("Profile updated successfully");
+      }
+      else {
+        toast.error("Something went wrong")
+      }
     },
   });
 
@@ -63,8 +67,6 @@ export default function UserAccount() {
           <span className="bg-secondary pr-3">My Account</span>
         </h2>
         <div className="container-xl px-4 mt-4">
-          {/* Account page avigation*/}
-          {/* <hr className="mt-0 mb-4" /> */}
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-xl-4">
@@ -87,14 +89,17 @@ export default function UserAccount() {
                         name="image"
                         onChange={(e) => {
                           setFieldValue("image", e.target.files[0]);
+                          // console.log("setFieldValue", setFieldValue);
                           let url = URL.createObjectURL(e.target.files[0]);
                           setFile(url);
                         }}
                         disabled={editButton ? false : true}
                       />
-                      
+
                       <img
-                        src={typeof file === "string" ? file : values?.image}
+                        src={
+                          typeof file === "string" ? file : userData?.image_url
+                        }
                         id="output"
                         alt="profile"
                         width="200"
@@ -182,51 +187,28 @@ export default function UserAccount() {
                         disabled
                       />
                     </div>
-                    <div className="row gx-3 mb-3">
-                      <div className="col-md-6">
-                        <label className="small mb-1" htmlFor="inputPhone">
-                          Phone number
-                        </label>
-                        <input
-                          className="form-control"
-                          id="inputPhone"
-                          type="tel"
-                          name="phoneNumber"
-                          placeholder="Enter your phone number"
-                          disabled={editButton ? false : true}
-                          value={values.phoneNumber}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                        />
-                        {errors.phoneNumber && touched.phoneNumber ? (
-                          <p className="form-error text-danger">
-                            {errors.phoneNumber}
-                          </p>
-                        ) : null}
-                      </div>
-                      {/* Form Group (birthday)*/}
-                      <div className="col-md-6">
-                        <label className="small mb-1" htmlFor="inputBirthday">
-                          Birthday
-                        </label>
-                        <input
-                          className="form-control"
-                          id="inputBirthday"
-                          type="date"
-                          name="birthday"
-                          placeholder="Enter your birthday"
-                          disabled={editButton ? false : true}
-                          value={values.birthday}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                        />
-                        {errors.birthday && touched.birthday ? (
-                          <p className="form-error text-danger">
-                            {errors.birthday}
-                          </p>
-                        ) : null}
-                      </div>
+                    <div className="mb-3">
+                      <label className="small mb-1" htmlFor="inputPhone">
+                        Phone number
+                      </label>
+                      <input
+                        className="form-control"
+                        id="inputPhone"
+                        type="tel"
+                        name="phoneNumber"
+                        placeholder="Enter your phone number"
+                        disabled={editButton ? false : true}
+                        value={values.phoneNumber}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {errors.phoneNumber && touched.phoneNumber ? (
+                        <p className="form-error text-danger">
+                          {errors.phoneNumber}
+                        </p>
+                      ) : null}
                     </div>
+
                     {/* Save changes button*/}
                     {editButton && (
                       <button className="btn btn-primary" type="submit">

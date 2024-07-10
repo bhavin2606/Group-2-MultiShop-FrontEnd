@@ -26,7 +26,7 @@ export default function CategoryHome() {
                   </div>
                   <div className="flex-fill pl-3">
                     <h6>{data.name}</h6>
-                    <small className="text-body">{data?.total_products} {data?.total_products > 1 ? "Products": "Product"} </small>
+                    <small className="text-body">{data?.total_products} {data?.total_products === 1 ? "Product": "Products"} </small>
                   </div>
                 </div>
               </Link>

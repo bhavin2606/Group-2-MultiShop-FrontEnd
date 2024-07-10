@@ -1,10 +1,15 @@
 import React, { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
+import { useGetWishListDataQuery } from "../../../Redux/Slices/WishListApi";
 
 export default function Navbar() {
   const location = useLocation();
   const { data } = useGetCategoryDataQuery();
+  const { data: wishData } = useGetWishListDataQuery();
+  
+  let token = localStorage.getItem("token");
+  console.log("wishData", wishData);  
 
   return (
     <>
@@ -54,10 +59,7 @@ export default function Navbar() {
                         </div>
                       </div>
                     ) : (
-                      <Link
-                        to="/shop"
-                        className="nav-item nav-link"
-                      >
+                      <Link to="/shop" className="nav-item nav-link">
                         {data.name}
                       </Link>
                     )}
@@ -92,7 +94,9 @@ export default function Navbar() {
                   <Link
                     to="/"
                     className={`nav-link ${
-                      location.pathname === "/" ? "text-primary" : "text-secondary"
+                      location.pathname === "/"
+                        ? "text-primary"
+                        : "text-secondary"
                     }`}
                     id="pills-home-tab"
                     data-toggle="pill"
@@ -106,7 +110,9 @@ export default function Navbar() {
                   <Link
                     to="/shop"
                     className={`nav-link ${
-                      location.pathname === "/shop" ? "text-primary" : "text-secondary"
+                      location.pathname === "/shop"
+                        ? "text-primary"
+                        : "text-secondary"
                     }`}
                     id="pills-shop-tab"
                     role="tab"
@@ -119,21 +125,41 @@ export default function Navbar() {
                 <div className="navbar-nav ml-auto py-0 d-none d-lg-block">
                   <Link
                     to="/wishlist"
-                    className={`btn px-0 ${location.pathname === "/wishlist" ? "text-primary" : "text-secondary"}`}
+                    className={`btn px-0 ${
+                      location.pathname === "/wishlist"
+                        ? "text-primary"
+                        : "text-secondary"
+                    }`}
                   >
-                    <i className={`fas fa-heart ${location.pathname === "/wishlist" ? "text-primary" : "text-secondary"}`} />
+                    <i
+                      className={`fas fa-heart ${
+                        location.pathname === "/wishlist"
+                          ? "text-primary"
+                          : "text-secondary"
+                      }`}
+                    />
                     <span
                       className="badge text-secondary border mx-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}
                     >
-                      0
+                      {token ? wishData?.length : 0}
                     </span>
                   </Link>
                   <Link
                     to="/cart"
-                    className={`btn px-0 ml-3 ${location.pathname === "/cart" ? "text-primary" : "text-secondary"}`}
+                    className={`btn px-0 ml-3 ${
+                      location.pathname === "/cart"
+                        ? "text-primary"
+                        : "text-secondary"
+                    }`}
                   >
-                    <i className={`fas fa-shopping-cart ${location.pathname === "/cart" ? "text-primary" : "text-secondary"}`} />
+                    <i
+                      className={`fas fa-shopping-cart ${
+                        location.pathname === "/cart"
+                          ? "text-primary"
+                          : "text-secondary"
+                      }`}
+                    />
                     <span
                       className="badge text-secondary border ml-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}

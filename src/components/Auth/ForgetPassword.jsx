@@ -37,14 +37,15 @@ export default function ForgetPassword() {
       className="w-100 h-100"
       style={{ backgroundColor: "", width: "100%", height: "100vh" }}
     >
-      <section className="p-3 p-md-4 p-xl-5">
+      <section className="">
         <div className="container ">
           {/* <div className="card border-light-subtle shadow-sm"> */}
             <div className="row g-0 justify-content-center rounded">
               <div
                 className="col-xl-8 col-sm-12 col-12"
                 style={{ backgroundColor: "#E9E9E7" }}
-              >
+            >
+              <a onClick={()=> {}}></a>
                 <div className="card-body p-3 p-md-4 p-xl-5 m-sm-5 m-md-0 m-4">
                   <div className="row">
                     <div className="col-12">

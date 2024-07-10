@@ -38,7 +38,7 @@ export default function Footer() {
   const { data: settingdata } = useGetSettingDataQuery();
   return (
     <div>
-      <div className="container-fluid bg-dark text-secondary mt-5 pt-5">
+      <div className="container-fluid bg-dark text-secondary mt-4 pt-5">
         <div className="row px-xl-5 pt-5">
           {settingdata &&
             settingdata?.footer?.map((data, index) => (

@@ -39,7 +39,7 @@ export default function SignIn() {
           toast.success("Successfully Logged In")
           navigate("/");
         } else {
-          toast.success("Invalid email or password")
+          toast.error("Invalid email or password")
         }
       },
     });
@@ -50,7 +50,7 @@ export default function SignIn() {
         className="w-100 h-100"
         style={{ backgroundColor: "", width: "100%", height: "100vh" }}
       >
-        <section className="p-3 p-md-4 p-xl-5">
+        <section className="">
           <div className="container">
             <div className="row justify-content-center g-0 rounded my-0">
               <div

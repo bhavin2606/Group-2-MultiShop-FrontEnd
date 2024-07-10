@@ -8,7 +8,7 @@ export const authApi = api.injectEndpoints({
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` }
             }),
-            providesTags: ["use","multishop"]
+            providesTags: ["use", "multishop"]
         }),
         addUserProfile: builder.mutation({
             query: (data) => ({
@@ -25,7 +25,7 @@ export const authApi = api.injectEndpoints({
                 method: "POST",
                 body: values,
             }),
-            
+
         }),
         postUserSignUpData: builder.mutation({
             query: (data) => ({
@@ -33,7 +33,7 @@ export const authApi = api.injectEndpoints({
                 method: "POST",
                 body: data,
             }),
-            
+
         }),
         postChangePasswordData: builder.mutation({
             query: (data) => ({
@@ -58,11 +58,10 @@ export const authApi = api.injectEndpoints({
             }),
         }),
         postLogoutData: builder.mutation({
-            query: (data) => ({
+            query: (payload) => ({
                 url: "user-logout",
                 method: "POST",
-                body: data,
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { Authorization: `Bearer ${payload?.token}` }
             }),
         }),
     })
