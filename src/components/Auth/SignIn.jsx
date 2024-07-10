@@ -52,7 +52,7 @@ export default function SignIn() {
       >
         <section className="p-3 p-md-4 p-xl-5">
           <div className="container">
-            <div className="row justify-content-center g-0 rounded">
+            <div className="row justify-content-center g-0 rounded my-0">
               <div
                 className="col-xl-8 col-sm-12 col-12"
                 style={{ backgroundColor: "#E9E9E7" }}

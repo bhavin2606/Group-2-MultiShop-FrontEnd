@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./account.css";
 import { useFormik } from "formik";
 import { userAccountSchema } from "../../validations/userAccountSchema";
-import { postUpdateProfileData } from "../../../Redux/Actions/postApiData";
-import { useSelector } from "react-redux";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
 import {
   useAddUserProfileMutation,
@@ -113,7 +111,7 @@ export default function UserAccount() {
                 {/* Account datas card*/}
                 <div className="card mb-4">
                   <div className="card-header p-2 d-flex justify-content-between">
-                    <span className="mt-2 ms-2">Account datas</span>
+                    <span className="mt-2 ms-2">Account data</span>
                     <span>
                       <button
                         className="btn ms-2"

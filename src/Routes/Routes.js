@@ -15,6 +15,7 @@ import ChangePassword from "../components/Auth/ChangePassword";
 import UserAccount from "../components/Pages/Account/UserAccount";
 import ForgetPassword from "../components/Auth/ForgetPassword";
 import ResetPassword from "../components/Auth/ResetPassword";
+import UserOrders from "../components/Pages/MyOrders/UserOrders";
 
 export const routesObject = [
     {
@@ -101,7 +102,6 @@ export const routesObject = [
         layout: true,
         isAuth: true
     },
-
     {
         id: 11,
         path: 'signup',
@@ -150,6 +150,14 @@ export const routesObject = [
         path: 'change-password',
         element: <ChangePassword />,
         name: 'MyAccount',
+        layout: true,
+        isAuth: true
+    },
+    {
+        id: 17,
+        path: 'my-order',
+        element: <UserOrders />,
+        name: 'MyOrder',
         layout: true,
         isAuth: true
     },

@@ -4,6 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./assets/lib/animate/animate.min.css"
 import './assets/css/style.css';
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 import RoutesPath from './Routes/RoutesPath';
 import 'aos/dist/aos.css';
 import { ToastContainer } from 'react-toastify';

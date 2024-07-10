@@ -9,7 +9,6 @@ export default function Toolbar() {
   const token = localStorage.getItem("token");
   const { data: userData } = useGetUserDataQuery();
 
-
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
   const selectLanguage = (item) => {
@@ -118,6 +117,14 @@ export default function Toolbar() {
                     >
                       <button className="dropdown-item" type="button">
                         Change Password
+                      </button>
+                    </Link>
+                    <Link
+                      className="text-decoration-none"
+                      to="/my-order"
+                    >
+                      <button className="dropdown-item" type="button">
+                        My Orders
                       </button>
                     </Link>
                     <SignOut />
