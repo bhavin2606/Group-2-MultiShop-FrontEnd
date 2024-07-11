@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import "./faqs.css"; // Import your CSS file for custom styles
 import Accordion from "react-bootstrap/Accordion";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
-import { useGetFaqDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
 
 const FAQs = () => {
   const [faqsData, setFaqsData] = useState({});
@@ -39,55 +38,64 @@ const FAQs = () => {
 
   return (
     <>
-      <Breadcrumbs />
-      <div className="container">
-        {/* Section title */}
-        <div className="section-title" data-aos="fade-in">
-          <h2 className="mb-5">{faqsData.title}</h2>
-          <p className="mb-4">{faqsData.description}</p>
-        </div>
+    <Breadcrumbs />
+    <div className="container-fluid">
+      <h2 className="section-title mx-5 position-relative text-uppercase mx-xl-5 mb-4">
+        <span className="bg-secondary pr-3">{faqsData.title}</span>
+      </h2>
+      <div className="container-fluid">
+        <div className="container-fluid">
+          <section className="p-0">
+            <div className="mt-5 container-fluid">
+              {/* Section title */}
+              <h2 className="mb-5"></h2>
+              <p className="mb-4">{faqsData.description}</p>
 
-        <div className="row mb-5">
-          {/* Category buttons */}
-          <div className="col-4">
-            <button
-              className={`btn btn-outline-warning p-2 text-dark w-100 ${
-                activeCategory === "1" ? "active" : ""
-              }`}
-              onClick={() => handleCategoryClick("1")}
-            >
-              Category 1
-            </button>
-            <br />
-            <button
-              className={`btn btn-outline-warning p-2 text-dark mt-3 w-100 ${
-                activeCategory === "2" ? "active" : ""
-              }`}
-              onClick={() => handleCategoryClick("2")}
-            >
-              Category 2
-            </button>
-          </div>
+              <div className="row mb-5">
+                {/* Category buttons */}
+                <div className="col-xs-12 col-sm-4">
+                  <button
+                    className={`btn btn-outline-warning p-2 text-dark w-100 ${
+                      activeCategory === "1" ? "active" : ""
+                    }`}
+                    onClick={() => handleCategoryClick("1")}
+                  >
+                    Category 1
+                  </button>
+                  <br />
+                  <button
+                    className={`btn btn-outline-warning p-2 text-dark mt-3 w-100 ${
+                      activeCategory === "2" ? "active" : ""
+                    }`}
+                    onClick={() => handleCategoryClick("2")}
+                  >
+                    Category 2
+                  </button>
+                </div>
 
-          {/* FAQs accordion */}
-          <div className="col-8">
-            <Accordion defaultActiveKey="0">
-              {/* Display filtered FAQs */}
-              {filterFaqs.map((faq, index) => (
-                <Accordion.Item
-                  className="accordion"
-                  key={index}
-                  eventKey={index.toString()}
-                >
-                  <Accordion.Header>{faq.question}</Accordion.Header>
-                  <Accordion.Body>{faq.answer}</Accordion.Body>
-                </Accordion.Item>
-              ))}
-            </Accordion>
-          </div>
+                {/* FAQs accordion */}
+                <div className="col-xs-12 col-sm-8 ">
+                  <Accordion defaultActiveKey="0">
+                    {/* Display filtered FAQs */}
+                    {filterFaqs.map((faq, index) => (
+                      <Accordion.Item
+                        className="accordion"
+                        key={index}
+                        eventKey={index.toString()}
+                      >
+                        <Accordion.Header className="mt-2 mt-md-0">{faq.question}</Accordion.Header>
+                        <Accordion.Body>{faq.answer}</Accordion.Body>
+                      </Accordion.Item>
+                    ))}
+                  </Accordion>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
-    </>
+    </div>
+  </>
   );
 };
 

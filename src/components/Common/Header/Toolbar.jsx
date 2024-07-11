@@ -3,13 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import SignOut from "../../Auth/SignOut";
 import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
 import user from "../../../assets/img/user.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
   const { data: userData } = useGetUserDataQuery();
-  const [selectedLanguage, setSelectedLanguage] = useState()
-  
+  const [selectedLanguage, setSelectedLanguage] = useState();
+
   console.log("userData", userData);
   const selectLanguage = (item) => {
     console.log("Selected language:", item);
@@ -81,22 +82,23 @@ export default function Toolbar() {
                 }
                 data-toggle="dropdown"
               >
-                {token
-                  ? (
-                      <img
-                        src={userData?.image_url}
-                        className="img-fluid rounded-circle"
-                        style={{ height: "35px", width: "35px" }}
-                        alt=""
-                      />
-                    )
-                  : "My Account"}
+                {token ? (
+                  <img
+                    src={userData?.image_url}
+                    className="img-fluid rounded-circle"
+                    style={{ height: "35px", width: "35px" }}
+                    alt=""
+                  />
+                ) : (
+                  "My Account"
+                )}
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 {token ? (
                   <>
                     <Link className="text-decoration-none" to="/account">
                       <button className="dropdown-item" type="button">
+                        <i className="fas fa-user mr-2" style={{color: "#ffd333"}}></i>
                         My Profile
                       </button>
                     </Link>
@@ -105,11 +107,13 @@ export default function Toolbar() {
                       to="/change-password"
                     >
                       <button className="dropdown-item" type="button">
+                        <i className="fas fa-lock mr-2" style={{color: "#ffd333"}}></i>
                         Change Password
                       </button>
                     </Link>
                     <Link className="text-decoration-none" to="/my-order">
                       <button className="dropdown-item" type="button">
+                        <i className="fas fa-box mr-2" style={{color: "#ffd333"}}></i>
                         My Orders
                       </button>
                     </Link>
@@ -119,11 +123,13 @@ export default function Toolbar() {
                   <>
                     <Link className="text-decoration-none" to="/signin">
                       <button className="dropdown-item" type="button">
+                        <i className="fas fa-sign-in-alt mr-2" style={{color: "#ffd333"}}></i>
                         Sign in
                       </button>
                     </Link>
                     <Link className="text-decoration-none" to="/signup">
                       <button className="dropdown-item" type="button">
+                        <i className="fas fa-user-plus mr-2" style={{color: "#ffd333"}}></i>
                         Sign up
                       </button>
                     </Link>
@@ -137,7 +143,7 @@ export default function Toolbar() {
                 className="btn btn-sm btn-light dropdown-toggle"
                 data-toggle="dropdown"
               >
-                EN
+                {selectedLanguage ? selectedLanguage.toUpperCase() : "EN"}
               </button>
               <div className="dropdown-menu dropdown-menu-right">
                 <button
@@ -145,14 +151,14 @@ export default function Toolbar() {
                   onClick={() => selectLanguage("en")}
                   type="button"
                 >
-                  ENGLISH
+                  EN
                 </button>
                 <button
                   className="dropdown-item"
                   onClick={() => selectLanguage("hi")}
                   type="button"
                 >
-                  HINDI
+                  HI
                 </button>
 
                 <button
@@ -160,37 +166,44 @@ export default function Toolbar() {
                   onClick={() => selectLanguage("gu")}
                   type="button"
                 >
-                  GUJARATI
+                  GU
                 </button>
                 <button
                   className="dropdown-item"
                   onClick={() => selectLanguage("fr")}
                   type="button"
                 >
-                  RUSSIAN
+                  RU
+                </button>
+                <button
+                  className="dropdown-item"
+                  onClick={() => selectLanguage("ar")}
+                  type="button"
+                >
+                  AR
                 </button>
               </div>
             </div>
           </div>
           <div className="d-inline-flex align-items-center d-block d-lg-none">
-            <a href="" className="btn px-0 ml-2">
-              <i className="fas fa-heart text-dark" />
+            <Link to="/wishlist" className="btn px-0 ml-3">
+              <i className="fas fa-heart mr-1 text-dark" />
               <span
                 className="badge text-dark border border-dark rounded-circle"
                 style={{ paddingBottom: 2 }}
               >
                 0
               </span>
-            </a>
-            <a href="" className="btn px-0 ml-2">
-              <i className="fas fa-shopping-cart text-dark" />
+            </Link>
+            <Link to="/cart" className="btn px-0 ml-3">
+              <i className="fas fa-shopping-cart mr-1 text-dark" />
               <span
                 className="badge text-dark border border-dark rounded-circle"
                 style={{ paddingBottom: 2 }}
               >
                 0
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
