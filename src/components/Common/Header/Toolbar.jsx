@@ -10,7 +10,6 @@ export default function Toolbar() {
   const { data: userData } = useGetUserDataQuery();
   const [selectedLanguage, setSelectedLanguage] = useState()
   
-  console.log("userData", userData);
   const selectLanguage = (item) => {
     console.log("Selected language:", item);
     document.cookie = "googtrans=" + `/en/${item}`;

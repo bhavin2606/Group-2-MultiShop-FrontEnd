@@ -11,7 +11,6 @@ export default function ShopProductById() {
   }, []);
   const { id } = useParams();
   const { data } = useGetProductDataByIdQuery(id);
-  console.log(data, ":databyid");
   const [AddCartItem] = useAddCartItemMutation();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -21,22 +20,21 @@ export default function ShopProductById() {
       quantity: 1,
     },
     onSubmit: (values) => {
-      console.log(values, "varient");
       const formitem = new FormData();
       formitem.append("size", values.size);
       formitem.append("color", values.color);
       formitem.append("quantity", values.quantity);
       AddCartItem({ id: data?.data?.id, product: formitem });
-      // navigate("/cart")
+      navigate("/cart")
     },
   });
 
   const handlePlus = () => {
-    formik.values.quantity += 1;
+    formik.setFieldValue("quantity",formik.values.quantity += 1)
   };
   const handleMinus = () => {
     if (formik.values.quantity > 1) {
-      formik.values.quantity -= 1;
+      formik.setFieldValue("quantity",formik.values.quantity -= 1)
     }
   };
   return (
@@ -162,6 +160,7 @@ export default function ShopProductById() {
                     <button
                       className="btn btn-primary btn-minus"
                       onClick={handleMinus}
+                      type="button"
                       disabled={formik.values.quantity <= 1}
                     >
                       <i className="fa fa-minus" />
@@ -179,16 +178,17 @@ export default function ShopProductById() {
                     <button
                       className="btn btn-primary btn-plus"
                       onClick={handlePlus}
+                      type="button"
                     >
                       <i className="fa fa-plus" />
                     </button>
                   </div>
                 </div>
-                <Link to={"/cart"}>
+                {/* <Link to={"/cart"}> */}
                   <button className="btn btn-primary px-3" type="submit">
                     <i className="fa fa-shopping-cart mr-1" /> Add To Cart
                   </button>
-                </Link>
+                {/* </Link> */}
               </div>
             </form>
             <div className="d-flex pt-2">

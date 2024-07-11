@@ -4,8 +4,8 @@ let token = localStorage.getItem("token")
 export const CartApi = api.injectEndpoints({
     endpoints: (bulider) => ({
         AddCartItem: bulider.mutation({
-            query: ({id, product}) => {
-                console.log(product,id, "adddddddddd");
+            query: ({ id, product }) => {
+                console.log(product, id, "adddddddddd");
                 return {
                     url: `add-product/cart/${id}`,
                     method: "POST",
@@ -51,12 +51,27 @@ export const CartApi = api.injectEndpoints({
                 url: "checkout",
                 headers: { Authorization: `Bearer ${token}` },
             }),
-            providesTags:["multishop","plus","minus"]
+            providesTags: ["multishop", "plus", "minus"]
+        }),
+        getAllCity: bulider.query({
+            query: () => ({
+                url: "get-city",
+                headers: { Authorization: `Bearer ${token}` },
+            }),
+        }),
+        getCityById:bulider.query({
+            query: (id) => ({
+                url: `select-city/${id}`,
+                headers: { Authorization: `Bearer ${token}` },
+            }),
         }),
     })
 })
 
 export const {
+    useGetCityByIdQuery,
+    useLazyGetCityByIdQuery,
+    useGetAllCityQuery,
     useAddCartItemMutation,
     useGetCheckOutDetailQuery,
     useMinusCartItemMutation,

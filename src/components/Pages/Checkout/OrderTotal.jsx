@@ -3,7 +3,6 @@ import { useGetCheckOutDetailQuery } from "../../../Redux/Slices/CheckoutApi";
 
 export default function OrderTotal({ formik }) {
   const { data: checkout } = useGetCheckOutDetailQuery();
-  console.log(checkout?.data);
   return (
     <div className="col-lg-4">
       <h5 className="section-title position-relative text-uppercase mb-3">

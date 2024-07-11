@@ -12,7 +12,6 @@ export default function Navbar() {
   const { data: wishData } = useGetWishListDataQuery();
   
   let token = localStorage.getItem("token");
-  console.log("wishData", wishData);  
 
   return (
     <>
