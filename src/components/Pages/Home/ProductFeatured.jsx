@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
 import { useGetFeaturedProductDataQuery } from "../../../Redux/Slices/ProductApi";
 import { toast } from "react-toastify";
@@ -8,17 +8,17 @@ import { usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";
 export default function ProductFeatured() {
   const { data } = useGetFeaturedProductDataQuery();
   const [postWishListData] = usePostWishListDataMutation();
-
+  const navigate = useNavigate();
+  
   const handleWishlistSubmit = async (p_id) => {
-    console.log(p_id);
-    let data = await postWishListData(p_id);
-    console.log(data, "HElllllllllllllllll");
+    let data = await postWishListData(p_id);;
     if (data?.data?.success === true) {
       toast.success(data?.data?.message);
     } else {
-      toast.error(data?.data?.message);
+      navigate("/signin");
+      toast.error("Please login first");
     }
-  };
+  };  
 
   return (
     <div className="container-fluid pt-5 pb-3">

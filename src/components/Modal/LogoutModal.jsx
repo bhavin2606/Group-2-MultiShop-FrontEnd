@@ -22,6 +22,7 @@ function LogoutModal() {
     } else {
       toast.error("Something went wrong");
     }
+    
     handleClose();
   };
 
@@ -31,7 +32,8 @@ function LogoutModal() {
         className="px-4 w-100 text-start border-0 bg-light btn-danger"
         onClick={handleShow}
       >
-        Logout
+        <i className="fas fa-sign-out-alt mr-2" style={{color: "#ffd333"}}></i>
+        Sign Out
       </Button>
 
       <Modal show={show} className="mt-5" onHide={handleClose}>

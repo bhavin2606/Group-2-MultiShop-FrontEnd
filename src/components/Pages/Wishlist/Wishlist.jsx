@@ -63,9 +63,9 @@ export default function Wishlist() {
                         alt={product?.products?.name}
                       />
                       <div className="product-action">
-                        <Link className="btn btn-outline-dark btn-square" to="">
+                        {/* <Link className="btn btn-outline-dark btn-square" to="">
                           <i className="fa fa-shopping-cart" />
-                        </Link>
+                        </Link> */}
                         <Link
                           className="btn btn-outline-dark btn-square"
                           to={`/shop/${product?.products?.slug}`}

@@ -12,7 +12,7 @@ export default function Navbar() {
   const { data: wishData } = useGetWishListDataQuery();
   
   let token = localStorage.getItem("token");
-  console.log("wishData", wishData);  
+  // console.log("wishData", wishData);  
 
   return (
     <>
@@ -145,7 +145,7 @@ export default function Navbar() {
                       className="badge text-secondary border mx-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}
                     >
-                      {token ? wishData?.length : 0}
+                      {token ? wishData?.length || 0  : 0}
                     </span>
                   </Link>
                   <Link
@@ -167,7 +167,7 @@ export default function Navbar() {
                       className="badge text-secondary border ml-1 border-secondary rounded-circle"
                       style={{ paddingBottom: 2 }}
                     >
-                      {cartData?.data?.length || 0}
+                      {token ? cartData?.data?.length || 0 : 0}
                     </span>
                   </Link>
                 </div>
