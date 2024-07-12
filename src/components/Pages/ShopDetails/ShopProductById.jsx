@@ -11,7 +11,6 @@ export default function ShopProductById() {
   }, []);
   const { id } = useParams();
   const { data } = useGetProductDataByIdQuery(id);
-  console.log(data, ":databyid");
   const [AddCartItem] = useAddCartItemMutation();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -27,7 +26,6 @@ export default function ShopProductById() {
       formitem.append("color", values.color);
       formitem.append("quantity", values.quantity);
       AddCartItem({ id: data?.data?.id, product: formitem });
-      // navigate("/cart")
     },
   });
 

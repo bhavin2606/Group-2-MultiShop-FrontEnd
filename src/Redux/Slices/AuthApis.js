@@ -8,7 +8,8 @@ export const authApi = api.injectEndpoints({
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` }
             }),
-            providesTags: ["use", "multishop"]
+            providesTags: ["use", "multishop", "UserProfile"],
+            // keepUnusedDataFor: 1
         }),
         addUserProfile: builder.mutation({
             query: (data) => ({
@@ -18,6 +19,7 @@ export const authApi = api.injectEndpoints({
                 headers: { Authorization: `Bearer ${token}` }
             }),
             invalidatesTags: ["use"]
+
         }),
         postUserSignInData: builder.mutation({
             query: (values) => ({
@@ -25,8 +27,9 @@ export const authApi = api.injectEndpoints({
                 method: "POST",
                 body: values,
             }),
-
+            invalidatesTags : ["UserProfile"]
         }),
+        
         postUserSignUpData: builder.mutation({
             query: (data) => ({
                 url: "user-register",
@@ -63,7 +66,9 @@ export const authApi = api.injectEndpoints({
                 method: "POST",
                 headers: { Authorization: `Bearer ${payload?.token}` }
             }),
+            invalidatesTags: ["logout","UserProfile"]
         }),
+
     })
 })
 
@@ -76,5 +81,6 @@ export const {
     usePostChangePasswordDataMutation,
     usePostForgetPasswordDataMutation,
     usePostResetPasswordDataMutation,
-    usePostLogoutDataMutation
+    usePostLogoutDataMutation,
+    useLazyGetUserDataQuery
 } = authApi

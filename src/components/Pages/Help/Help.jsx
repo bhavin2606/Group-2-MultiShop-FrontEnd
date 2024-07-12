@@ -23,7 +23,7 @@ export default function Help() {
 
                 <div className="row mb-5">
                   {/* Category buttons */}
-                  <div className="col-xs-12 col-sm-6">
+                  <div className="col-12 col-sm-12 col-md-6 ">
                     <h4 className="h4 mb-3">How can we help you?</h4>
                     <p className="lead fs-6 mb-5">
                       We hope you have found an answer to your question. If you
@@ -145,7 +145,7 @@ export default function Help() {
                     </Accordion>
                   </div>
               {/* FAQs accordion */}
-              <div className="col-xs-12 col-sm-6 mt-4 mb-mt-0">
+              <div className="col-12 col-sm-12 col-md-6 mt-4 mt-sm-4 mt-md-0">
                 <img
                   className="img-fluid rounded"
                   loading="lazy"
@@ -158,7 +158,7 @@ export default function Help() {
             </section>
           </div>
         </div>
-      </div>  
+      </div>
     </>
   );
 }

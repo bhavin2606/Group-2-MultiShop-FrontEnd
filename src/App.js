@@ -10,23 +10,37 @@ import 'aos/dist/aos.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-loading-skeleton/dist/skeleton.css";
+import { useEffect } from 'react';
+import { useGetUserDataQuery } from './Redux/Slices/AuthApis';
 
 function App() {
+ const {data, refetch} = useGetUserDataQuery()
+
+  useEffect(() => {
+    const getProfile = () => {
+      if (localStorage.getItem("token")) {
+        // call profile api
+        refetch()
+      }
+    }
+    getProfile();
+  },[])
+
   return (
     <>
       <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
       />
-      <RoutesPath />  
+      <RoutesPath />
     </>
   );
 }

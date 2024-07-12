@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
 import { useGetFeaturedProductDataQuery } from "../../../Redux/Slices/ProductApi";
 import { usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";
 import { toast } from "react-toastify";
+
 export default function ShopProduct() {
   const [toggleGrid, setToggleGrid] = useState(false);
   const { data } = useGetFeaturedProductDataQuery();
   const [postWishListData] = usePostWishListDataMutation();
-
+  const navigate = useNavigate();
+  
   const handleWishlistSubmit = async (p_id) => {
-    console.log(p_id);
-    let data = await postWishListData(p_id);
-    console.log(data, "HElllllllllllllllll");
+    let data = await postWishListData(p_id);;
     if (data?.data?.success === true) {
       toast.success(data?.data?.message);
     } else {
-      toast.error(data?.data?.message);
+      navigate("/signin");
+      toast.error("Please login first");
     }
   };
 
@@ -103,11 +104,6 @@ export default function ShopProduct() {
                       <div className="card-text">
                         <div className="d-flex mt-2">
                           <h5>${data?.price}</h5>
-                          <h6 className="text-muted ml-2">
-                            {data?.discount_type === "fixed" && (
-                              <del>${data?.price - data?.discount_value}</del>
-                            )}
-                          </h6>
                         </div>
                       </div>
                       <div className="d-flex ">
@@ -148,7 +144,11 @@ export default function ShopProduct() {
                         onClick={() => {
                           handleWishlistSubmit(data?.id);
                         }}
-                        className={data?.isWishlist === 0 ? `btn btn-outline-dark btn-square` : `btn btn-dark btn-square`}
+                        className={
+                          data?.isWishlist === 0
+                            ? `btn btn-outline-dark btn-square`
+                            : `btn btn-dark btn-square`
+                        }
                       >
                         <i className="far fa-heart" />
                       </Link>

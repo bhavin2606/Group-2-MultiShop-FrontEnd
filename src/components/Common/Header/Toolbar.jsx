@@ -1,23 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SignOut from "../../Auth/SignOut";
-import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
+import { useGetUserDataQuery, useLazyGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
 import user from "../../../assets/img/user.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useGetCartProductsQuery } from "../../../Redux/Slices/CartListApi";
+import { useGetWishListDataQuery } from "../../../Redux/Slices/WishListApi";
+import { useSelector } from "react-redux";
 
 export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
   const { data: userData } = useGetUserDataQuery();
   const [selectedLanguage, setSelectedLanguage] = useState();
-
-  console.log("userData", userData);
+  const { data: cartData } = useGetCartProductsQuery();
+  const { data: wishData } = useGetWishListDataQuery();
+  const reducer = useSelector((state) => state.auth)
+  console.log('reducer', reducer);
+  // console.log("userData", userData);
   const selectLanguage = (item) => {
     console.log("Selected language:", item);
     document.cookie = "googtrans=" + `/en/${item}`;
     console.log("Cookie set:", document.cookie);
     setSelectedLanguage(item);
   };
+
+  // useEffect(() => {
+  //   // refetch();
+  //   if (localStorage.getItem("token") != "") {
+  //     getUser()
+  //   }
+  // },[]);
 
   useEffect(() => {
     if (selectedLanguage) {
@@ -68,9 +80,9 @@ export default function Toolbar() {
           </div>
         </div>
         <div className="col-lg-6 text-center text-lg-right">
-          {token &&
+          {/* {token &&
             userData?.data?.first_name !== undefined &&
-            `Welcome ${userData?.data?.first_name}`}
+            `Welcome ${userData?.data?.first_name}`} */}
           <div className="d-inline-flex align-items-center">
             <div className="btn-group">
               <button
@@ -82,10 +94,15 @@ export default function Toolbar() {
                 }
                 data-toggle="dropdown"
               >
+                <span>
+                  {token &&
+                    userData?.data?.first_name !== undefined &&
+                    `Welcome ${userData?.data?.first_name}`}
+                </span>
                 {token ? (
                   <img
-                    src={userData?.image_url}
-                    className="img-fluid rounded-circle"
+                    src={userData?.image_url || user}
+                    className="img-fluid ms-1 rounded-circle"
                     style={{ height: "35px", width: "35px" }}
                     alt=""
                   />
@@ -98,7 +115,10 @@ export default function Toolbar() {
                   <>
                     <Link className="text-decoration-none" to="/account">
                       <button className="dropdown-item" type="button">
-                        <i className="fas fa-user mr-2" style={{color: "#ffd333"}}></i>
+                        <i
+                          className="fas fa-user mr-2"
+                          style={{ color: "#ffd333" }}
+                        ></i>
                         My Profile
                       </button>
                     </Link>
@@ -107,13 +127,19 @@ export default function Toolbar() {
                       to="/change-password"
                     >
                       <button className="dropdown-item" type="button">
-                        <i className="fas fa-lock mr-2" style={{color: "#ffd333"}}></i>
+                        <i
+                          className="fas fa-lock mr-2"
+                          style={{ color: "#ffd333" }}
+                        ></i>
                         Change Password
                       </button>
                     </Link>
                     <Link className="text-decoration-none" to="/my-order">
                       <button className="dropdown-item" type="button">
-                        <i className="fas fa-box mr-2" style={{color: "#ffd333"}}></i>
+                        <i
+                          className="fas fa-box mr-2"
+                          style={{ color: "#ffd333" }}
+                        ></i>
                         My Orders
                       </button>
                     </Link>
@@ -123,13 +149,19 @@ export default function Toolbar() {
                   <>
                     <Link className="text-decoration-none" to="/signin">
                       <button className="dropdown-item" type="button">
-                        <i className="fas fa-sign-in-alt mr-2" style={{color: "#ffd333"}}></i>
+                        <i
+                          className="fas fa-sign-in-alt mr-2"
+                          style={{ color: "#ffd333" }}
+                        ></i>
                         Sign in
                       </button>
                     </Link>
                     <Link className="text-decoration-none" to="/signup">
                       <button className="dropdown-item" type="button">
-                        <i className="fas fa-user-plus mr-2" style={{color: "#ffd333"}}></i>
+                        <i
+                          className="fas fa-user-plus mr-2"
+                          style={{ color: "#ffd333" }}
+                        ></i>
                         Sign up
                       </button>
                     </Link>
@@ -192,7 +224,7 @@ export default function Toolbar() {
                 className="badge text-dark border border-dark rounded-circle"
                 style={{ paddingBottom: 2 }}
               >
-                0
+                {token ? wishData?.length || 0 : 0}
               </span>
             </Link>
             <Link to="/cart" className="btn px-0 ml-3">
@@ -201,7 +233,7 @@ export default function Toolbar() {
                 className="badge text-dark border border-dark rounded-circle"
                 style={{ paddingBottom: 2 }}
               >
-                0
+                {token ? cartData?.data?.length || 0 : 0}
               </span>
             </Link>
           </div>

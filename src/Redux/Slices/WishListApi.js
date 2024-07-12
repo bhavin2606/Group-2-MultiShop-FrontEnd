@@ -1,7 +1,7 @@
 // import { url } from "inspector";
 import { api } from "../api";
 
-let token = localStorage.getItem("token")
+let token = localStorage.getItem("token")   
 export const WishListApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getWishListData: builder.query({
@@ -11,7 +11,7 @@ export const WishListApi = api.injectEndpoints({
 
             }),
             transformResponse: (result) => result.data.data,
-            providesTags: ["multishop", "wish"],
+            providesTags: ["wish", "logout"],
         }),
         postWishListData: builder.mutation({
             query: (p_id) => ({

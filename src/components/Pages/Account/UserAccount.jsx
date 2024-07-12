@@ -11,7 +11,8 @@ import { toast } from "react-toastify";
 
 export default function UserAccount() {
   const [editButton, setEditButton] = useState(false);
-  const { data: userData } = useGetUserDataQuery();
+  const { data: userData = [], isError } = useGetUserDataQuery();
+  console.log(isError, userData, "user porifle");
   const [file, setFile] = useState(userData?.data?.image);
   function handleAccountEdit() {
     setEditButton(true);
@@ -52,9 +53,8 @@ export default function UserAccount() {
       let res = await addUserProfile(formData);
       if (res.data.success === true) {
         toast.success("Profile updated successfully");
-      }
-      else {
-        toast.error("Something went wrong")
+      } else {
+        toast.error("Something went wrong");
       }
     },
   });

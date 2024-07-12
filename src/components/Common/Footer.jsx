@@ -78,13 +78,13 @@ export default function Footer() {
                     <i className="fa fa-angle-right mr-2" />
                     Shopping Cart
                   </Link>
-                  <Link className="text-secondary mb-2" to="#">
+                  <Link className="text-secondary mb-2" to="/faqs">
                     <i className="fa fa-angle-right mr-2" />
-                    Checkout
+                    FAQs
                   </Link>
-                  <Link className="text-secondary" to="#">
+                  <Link className="text-secondary" to="/about">
                     <i className="fa fa-angle-right mr-2" />
-                    Contact Us
+                    About Us
                   </Link>
                 </div>
               </div>
@@ -93,23 +93,23 @@ export default function Footer() {
                   My Account
                 </h5>
                 <div className="d-flex flex-column justify-content-start">
-                  <Link className="text-secondary mb-2" to="#">
+                  <Link className="text-secondary mb-2" to="/account">
                     <i className="fa fa-angle-right mr-2" />
-                    Home
+                    My Profile
                   </Link>
-                  <Link className="text-secondary mb-2" to="#">
+                  <Link className="text-secondary mb-2" to="/change-password">
                     <i className="fa fa-angle-right mr-2" />
-                    Our Shop
+                    Change Password
                   </Link>
-                  <Link className="text-secondary mb-2" to="#">
+                  <Link className="text-secondary mb-2" to="/my-order">
                     <i className="fa fa-angle-right mr-2" />
-                    Shopping Cart
+                    My Orders
                   </Link>
-                  <Link className="text-secondary mb-2" to="#">
+                  <Link className="text-secondary mb-2" to="/help">
                     <i className="fa fa-angle-right mr-2" />
-                    Checkout
+                    Help
                   </Link>
-                  <Link className="text-secondary" to="#">
+                  <Link className="text-secondary" to="/contact">
                     <i className="fa fa-angle-right mr-2" />
                     Contact Us
                   </Link>

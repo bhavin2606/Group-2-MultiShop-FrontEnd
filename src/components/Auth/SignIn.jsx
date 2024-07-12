@@ -7,13 +7,18 @@ import { useDispatch } from "react-redux";
 import { postLoginData } from "../../Redux/Actions/postApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { usePostUserSignInDataMutation } from "../../Redux/Slices/AuthApis";
+import {
+  useGetUserDataQuery,
+  usePostUserSignInDataMutation,
+} from "../../Redux/Slices/AuthApis";
 import { toast } from "react-toastify";
+import { getUserToken } from "../../Redux/Slices/AuthSlice";
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
-  const [postUserSignInData] = usePostUserSignInDataMutation()
+  const [postUserSignInData] = usePostUserSignInDataMutation();
   const dispatch = useDispatch();
+  const { data: userData, refetch } = useGetUserDataQuery();
   // const [userData,setUserData] = useState([])
   const initialValues = {
     email: "",
@@ -32,14 +37,17 @@ export default function SignIn() {
       validateOnChange: true,
       validateOnBlur: false,
       onSubmit: async (values, action) => {
-        let res = await postUserSignInData(values)
+        let res = await postUserSignInData(values);
         action.resetForm();
         if (res?.data?.success === true) {
-          localStorage.setItem("token" , res?.data?.token)
-          toast.success("Successfully Logged In")
+          localStorage.setItem("token", res?.data?.token);
+          dispatch(getUserToken(res?.data?.token))
+          toast.success("Successfully Logged In");
+          // refetch();
           navigate("/");
-        } else {
-          toast.error("Invalid email or password")
+        }
+        else {
+          toast.error("Invalid email or password");
         }
       },
     });
