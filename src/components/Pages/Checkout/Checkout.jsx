@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CheckOutForm from "./CheckOutForm";
 import OrderTotal from "./OrderTotal";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
 import { useFormik } from "formik";
 import { checkoutSchema } from "../../validations/checkoutSchema";
-import * as Yup from "yup";
+import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
+import { useGetCityByIdQuery } from "../../../Redux/Slices/CartListApi";
+// import * as Yup from "yup";
 
 export default function Checkout() {
+  const { data: userData } = useGetUserDataQuery();
   const initialValues = {
     billing: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      mobileNo: "",
+      firstName: userData?.data?.first_name ? userData?.data?.first_name : "",
+      lastName: userData?.data?.last_name ?userData?.data?.last_name:"",
+      email:userData?.data?.email ?userData?.data?.email:"",
+      mobileNo: userData?.data?.phone_number ?userData?.data?.phone_number:"",
       address1: "",
       address2: "",
       country: "",
@@ -20,18 +23,18 @@ export default function Checkout() {
       state: "",
       zip: "",
     },
+    isDiffrentShip: false,
     shiping: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      mobileNo: "",
+      firstName: userData?.data?.first_name ? userData?.data?.first_name : "",
+      lastName: userData?.data?.last_name ?userData?.data?.last_name:"",
+      email: userData?.data?.email ?userData?.data?.email:"",
+      mobileNo: userData?.data?.phone_number ?userData?.data?.phone_number:"",
       address1: "",
       address2: "",
       country: "",
       city: "",
       state: "",
       zip: "",
-      isDiffrentShip: "",
     },
     payment: "",
   };
@@ -41,6 +44,7 @@ export default function Checkout() {
     enableReinitialize: true,
     onSubmit: (values, action) => {
       alert(JSON.stringify(values));
+      // console.log(values,"checkout");
       action.resetForm();
     },
   });

@@ -19,6 +19,7 @@ function LogoutModal() {
       navigate("/", { replace: true });
       toast.success("LoggedOut successfully");
       localStorage.clear("token");
+      
     } else {
       toast.error("Something went wrong");
     }
