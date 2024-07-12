@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { useGetWishListDataQuery, usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";

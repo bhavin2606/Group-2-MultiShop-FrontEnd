@@ -2,10 +2,10 @@ import React from "react";
 import helpImg from "../../../assets/img/help.png";
 import Accordion from "react-bootstrap/Accordion";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
-import { useGetHelpDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
+// import { useGetHelpDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
 
 export default function Help() {
-  const { data: HelpData } = useGetHelpDataQuery();
+  // const { data: HelpData } = useGetHelpDataQuery();
   return (
     <>
       <Breadcrumbs />
@@ -18,7 +18,7 @@ export default function Help() {
             <section className="p-0">
               <div className="mt-5 container-fluid">
                 {/* Section title */}
-                <h2 className="mb-5"></h2>
+                <h2 className="mb-5"> </h2>
                 <p className="mb-4"></p>
 
                 <div className="row mb-5">

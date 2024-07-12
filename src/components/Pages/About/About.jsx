@@ -1,8 +1,8 @@
 import React from "react";
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
-import { useGetAboutUsDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
+// import { useGetAboutUsDataQuery } from "../../../Redux/Slices/GeneralSettingsApi";
 export default function About() {
-  const { data: aboutData } = useGetAboutUsDataQuery();
+  // const { data: aboutData } = useGetAboutUsDataQuery();
 
   return (
     <>

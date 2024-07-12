@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
 import { useGetProductDataByIdQuery } from "../../../Redux/Slices/ProductApi";
 import { useFormik } from "formik";
@@ -12,7 +12,6 @@ export default function ShopProductById() {
   const { id } = useParams();
   const { data } = useGetProductDataByIdQuery(id);
   const [AddCartItem] = useAddCartItemMutation();
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       size: "",
@@ -59,26 +58,26 @@ export default function ShopProductById() {
                   <img
                     className="w-100 "
                     src={url?.image}
-                    alt="Image"
+                    alt="products"
                     style={{ height: "800px" }}
                   />
                 </div>
               ))}
             </div>
-            <a
+            <Link
               className="carousel-control-prev"
-              href="#product-carousel"
+              to="#product-carousel"
               data-slide="prev"
             >
               <i className="fa fa-2x fa-angle-left text-dark" />
-            </a>
-            <a
+            </Link>
+            <Link
               className="carousel-control-next"
-              href="#product-carousel"
+              to="#product-carousel"
               data-slide="next"
             >
               <i className="fa fa-2x fa-angle-right text-dark" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="col-lg-7 h-auto mb-30">
@@ -192,18 +191,18 @@ export default function ShopProductById() {
             <div className="d-flex pt-2">
               <strong className="text-dark mr-2">Share on:</strong>
               <div className="d-inline-flex">
-                <a className="text-dark px-2" href="">
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-facebook-f" />
-                </a>
-                <a className="text-dark px-2" href="">
+                </Link>
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-twitter" />
-                </a>
-                <a className="text-dark px-2" href="">
+                </Link>
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-linkedin-in" />
-                </a>
-                <a className="text-dark px-2" href="">
+                </Link>
+                <Link className="text-dark px-2" to="">
                   <i className="fab fa-pinterest" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -214,27 +213,27 @@ export default function ShopProductById() {
         <div className="col">
           <div className="bg-light p-30">
             <div className="nav nav-tabs mb-4">
-              <a
+              <Link
                 className="nav-item nav-link text-dark active"
                 data-toggle="tab"
-                href="#tab-pane-1"
+                to="#tab-pane-1"
               >
                 Description
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-item nav-link text-dark"
                 data-toggle="tab"
-                href="#tab-pane-2"
+                to="#tab-pane-2"
               >
                 Information
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-item nav-link text-dark"
                 data-toggle="tab"
-                href="#tab-pane-3"
+                to="#tab-pane-3"
               >
                 Reviews ({reviews?.data?.product_review?.length})
-              </a>
+              </Link>
             </div>
             <div className="tab-content">
               <div className="tab-pane fade show active" id="tab-pane-1">

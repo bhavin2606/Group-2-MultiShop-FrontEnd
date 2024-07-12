@@ -10,7 +10,9 @@ import { useSelector } from "react-redux";
 export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
-  const { data: userData } = useGetUserDataQuery();
+  const { data: userData } = useGetUserDataQuery(undefined, {
+    skip: !token,
+  });
   const [selectedLanguage, setSelectedLanguage] = useState();
   const { data: cartData } = useGetCartProductsQuery();
   const { data: wishData } = useGetWishListDataQuery();

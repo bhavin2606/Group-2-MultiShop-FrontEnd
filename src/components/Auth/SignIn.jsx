@@ -1,16 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signInSchema } from "../validations/signInSchema";
-import { AuthContext } from "./AuthContext";
 import { useDispatch } from "react-redux";
-import { postLoginData } from "../../Redux/Actions/postApiData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import {
-  useGetUserDataQuery,
-  usePostUserSignInDataMutation,
-} from "../../Redux/Slices/AuthApis";
+import { usePostUserSignInDataMutation } from "../../Redux/Slices/AuthApis";
 import { toast } from "react-toastify";
 import { getUserToken } from "../../Redux/Slices/AuthSlice";
 
@@ -18,7 +13,7 @@ export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [postUserSignInData] = usePostUserSignInDataMutation();
   const dispatch = useDispatch();
-  const { data: userData, refetch } = useGetUserDataQuery();
+  // const { data: userData, refetch } = useGetUserDataQuery();
   // const [userData,setUserData] = useState([])
   const initialValues = {
     email: "",
@@ -41,12 +36,11 @@ export default function SignIn() {
         action.resetForm();
         if (res?.data?.success === true) {
           localStorage.setItem("token", res?.data?.token);
-          dispatch(getUserToken(res?.data?.token))
+          dispatch(getUserToken(res?.data?.token));
           toast.success("Successfully Logged In");
           // refetch();
           navigate("/");
-        }
-        else {
+        } else {
           toast.error("Invalid email or password");
         }
       },

@@ -1,9 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { newsLetterSchema } from "../validations/newsLetterSchema";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { postNewsLetterData } from "../../Redux/Actions/postApiData";
-import { getSettingData } from "../../Redux/Actions/getApiData";
 import { Link } from "react-router-dom";
 import {
   useGetSettingDataQuery,
@@ -11,8 +9,7 @@ import {
 } from "../../Redux/Slices/GeneralSettingsApi";
 
 export default function Footer() {
-  const [settingData, setSettingData] = useState([]);
-  const initialValues = {
+const initialValues = {
     email: "",
   };
 
@@ -35,7 +32,7 @@ export default function Footer() {
       },
     });
 
-  const { data: settingdata } = useGetSettingDataQuery();
+  const { data: settingData } = useGetSettingDataQuery();
   return (
     <div>
       <div className="container-fluid bg-dark text-secondary mt-4 pt-5">

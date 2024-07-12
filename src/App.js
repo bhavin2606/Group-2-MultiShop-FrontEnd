@@ -10,21 +10,21 @@ import 'aos/dist/aos.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-loading-skeleton/dist/skeleton.css";
-import { useEffect } from 'react';
-import { useGetUserDataQuery } from './Redux/Slices/AuthApis';
+// import { useEffect } from 'react';
+// import { useGetUserDataQuery } from './Redux/Slices/AuthApis';
 
 function App() {
- const {data, refetch} = useGetUserDataQuery()
+//  const { refetch} = useGetUserDataQuery()
 
-  useEffect(() => {
-    const getProfile = () => {
-      if (localStorage.getItem("token")) {
-        // call profile api
-        refetch()
-      }
-    }
-    getProfile();
-  },[])
+//   useEffect(() => {
+//     const getProfile = () => {
+//       if (localStorage.getItem("token")) {
+//         // call profile api
+//         refetch()
+//       }
+//     }
+//     getProfile();
+//   },[])
 
   return (
     <>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
 import { useGetFeaturedProductDataQuery } from "../../../Redux/Slices/ProductApi";
 import { usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";
@@ -94,6 +94,7 @@ export default function ShopProduct() {
                         src={data?.product_image}
                         className="card-img img-fluid "
                         style={{ height: "510px" }}
+                        alt="product"
                       />
                     </div>
                   </div>
@@ -137,6 +138,7 @@ export default function ShopProduct() {
                       className="img-fluid w-100"
                       src={data.product_image}
                       style={{ height: "510px" }}
+                      alt="product"
                     />
                     <div className="product-action">
                       <Link
