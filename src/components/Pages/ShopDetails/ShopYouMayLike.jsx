@@ -40,7 +40,7 @@ export default function ShopYouMayLike() {
               <div className="product-item bg-light mb-4">
                 <div className="product-img position-relative overflow-hidden">
                   <img
-                    className="img-fluid w-100"
+                    className="img-fluid w-100 object-fit-cover" 
                     src={data?.product_image}
                     alt=""
                     style={{ height: "510px" }}

@@ -1,6 +1,8 @@
 import Skeleton from "react-loading-skeleton";
 import { useGetCategoryDataQuery } from "../../../Redux/Slices/CategoryApis";
 import { Link } from "react-router-dom";
+import category from "../../../assets/img/categorty.png";
+
 export default function CategoryHome() {
   const { data } = useGetCategoryDataQuery();
   return (
@@ -19,14 +21,21 @@ export default function CategoryHome() {
                     style={{ width: 100, height: 100 }}
                   >
                     <img
-                      className="img-fluid"
                       src={data.category_image}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src= category;
+                      }}
+                      className="img-fluid h-100 w-100 object-fit-cover"
                       alt=""
                     />
                   </div>
                   <div className="flex-fill pl-3">
                     <h6>{data.name}</h6>
-                    <small className="text-body">{data?.total_products} {data?.total_products === 1 ? "Product": "Products"} </small>
+                    <small className="text-body">
+                      {data?.total_products}{" "}
+                      {data?.total_products === 1 ? "Product" : "Products"}{" "}
+                    </small>
                   </div>
                 </div>
               </Link>

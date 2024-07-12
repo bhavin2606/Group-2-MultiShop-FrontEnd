@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { getBannerData } from "../../../Redux/Actions/getApiData";
-import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import { useGetBannerDataQuery } from "../../../Redux/Slices/HomePageApi";
+import banner from "../../../assets/img/banner.jpg"
 
 export default function Carosel(props) {
   const { data } = useGetBannerDataQuery();
-  // console.log("carosouel", data?.data);
   return (
     <div className="container-fluid mb-3" id="carousel">
       <div className="row px-xl-5">
@@ -47,6 +44,10 @@ export default function Carosel(props) {
                       <img
                         className="position-absolute w-100 h-100"
                         src={data?.image}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null;
+                          currentTarget.src= banner;
+                        }}
                         style={{ objectFit: "cover" }}
                       />
                       <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">

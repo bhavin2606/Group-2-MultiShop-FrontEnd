@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SignOut from "../../Auth/SignOut";
-import { useGetUserDataQuery, useLazyGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
+import {
+  useGetUserDataQuery,
+  useLazyGetUserDataQuery,
+} from "../../../Redux/Slices/AuthApis";
 import user from "../../../assets/img/user.png";
 import { useGetCartProductsQuery } from "../../../Redux/Slices/CartListApi";
 import { useGetWishListDataQuery } from "../../../Redux/Slices/WishListApi";
@@ -10,14 +13,18 @@ import { useSelector } from "react-redux";
 export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
-  const { data: userData } = useGetUserDataQuery(undefined, {
+  // const { token } = useSelector((state) => state.auth);
+  const { data: userData, refetch: userAPI } = useGetUserDataQuery(undefined, {
     skip: !token,
   });
   const [selectedLanguage, setSelectedLanguage] = useState();
-  const { data: cartData } = useGetCartProductsQuery();
-  const { data: wishData } = useGetWishListDataQuery();
-  const reducer = useSelector((state) => state.auth)
-  console.log('reducer', reducer);
+  const { data: cartData } = useGetCartProductsQuery(undefined, {
+    skip: !token,
+  });
+  const { data: wishData } = useGetWishListDataQuery(undefined, {
+    skip: !token,
+  });
+  console.log("reducer", token);
   // console.log("userData", userData);
   const selectLanguage = (item) => {
     console.log("Selected language:", item);
@@ -26,12 +33,13 @@ export default function Toolbar() {
     setSelectedLanguage(item);
   };
 
-  // useEffect(() => {
-  //   // refetch();
-  //   if (localStorage.getItem("token") != "") {
-  //     getUser()
-  //   }
-  // },[]);
+  useEffect(() => {
+    // refetch();
+    // if (localStorage.getItem("token") != "") {
+      // userAPI()
+
+    // }
+  }, []);
 
   useEffect(() => {
     if (selectedLanguage) {

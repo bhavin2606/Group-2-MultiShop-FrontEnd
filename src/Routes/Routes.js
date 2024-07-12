@@ -16,6 +16,7 @@ import UserAccount from "../components/Pages/Account/UserAccount";
 import ForgetPassword from "../components/Auth/ForgetPassword";
 import ResetPassword from "../components/Auth/ResetPassword";
 import UserOrders from "../components/Pages/MyOrders/UserOrders";
+import BackToHome from "../components/Common/BackToHome";
 
 export const routesObject = [
     {
@@ -160,5 +161,13 @@ export const routesObject = [
         name: 'MyOrder',
         layout: true,
         isAuth: true
+    },
+    {
+        id: 18,
+        path: 'back',
+        element: <BackToHome/>,
+        name: 'MyOrder',
+        layout: true,
+        isAuth: false
     },
 ]

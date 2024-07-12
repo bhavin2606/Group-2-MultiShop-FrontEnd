@@ -30,7 +30,7 @@ export default function ProductFeatured() {
           <div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={index}>
             <div className="product-item bg-light mb-4">
               <div className="product-img position-relative overflow-hidden">
-                <img className="img-fluid w-100" src={data?.product_image} alt="" style={{height:"510px"}}/>
+                <img className="img-fluid w-100 object-fit-cover" src={data?.product_image} alt="" style={{height:"510px"}}/>
                 <div className="product-action">
                   <Link
                     type="button"

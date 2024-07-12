@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    useAddReviewMutation,
+  useAddReviewMutation,
   useGetAdditionalInformationQuery,
   useGetProductDataByIdQuery,
   useGetProductReviewQuery,
@@ -120,11 +120,11 @@ export default function ShopReviewPage() {
                     <form onSubmit={formik.handleSubmit}>
                       <div className="d-flex my-3">
                         <p className="mb-0 mr-2">Your Rating * :</p>
-                        <div className="text-primary">
+                        <div className="text-primary fs-1">
                           <Rating
                             onClick={handleRating}
                             // onChange={formik.handleChange}
-                            className="display-6"
+                            className="display-8"
                             id="rating"
                             name="rating"
                             value={formik.values.rating}

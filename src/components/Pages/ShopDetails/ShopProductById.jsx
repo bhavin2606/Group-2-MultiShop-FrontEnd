@@ -55,7 +55,7 @@ export default function ShopProductById() {
                   }
                 >
                   <img
-                    className="w-100 "
+                    className="w-100 object-fit-cover "
                     src={url?.image}
                     alt="products"
                     style={{ height: "800px" }}
@@ -65,14 +65,14 @@ export default function ShopProductById() {
             </div>
             <Link
               className="carousel-control-prev"
-              to="#product-carousel"
+              to=""
               data-slide="prev"
             >
               <i className="fa fa-2x fa-angle-left text-dark" />
             </Link>
             <Link
               className="carousel-control-next"
-              to="#product-carousel"
+              to=""
               data-slide="next"
             >
               <i className="fa fa-2x fa-angle-right text-dark" />
