@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    useAddReviewMutation,
+  useAddReviewMutation,
   useGetAdditionalInformationQuery,
   useGetProductDataByIdQuery,
   useGetProductReviewQuery,
@@ -71,11 +71,14 @@ export default function ShopReviewPage() {
               </div>
               <div className="tab-pane fade" id="tab-pane-2">
                 <h4 className="mb-3">Additional Information</h4>
-                <p>
-                  {
-                    additionalinfo?.data?.product_information
-                      ?.additional_information
-                  }
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      additionalinfo?.data?.product_information
+                        ?.additional_information,
+                  }}
+                >
+                
                 </p>
               </div>
               <div className="tab-pane fade" id="tab-pane-3">

@@ -195,6 +195,7 @@ export default function RowExpansionDemo() {
   return (
     <>
       <Breadcrumbs />
+  
       <div className="container-fluid">
         <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">
           <span className="bg-secondary pr-3">My Orders</span>
@@ -210,7 +211,7 @@ export default function RowExpansionDemo() {
               onRowCollapse={onRowCollapse}
               rowExpansionTemplate={rowExpansionTemplate}
               dataKey="id"
-              header={header}
+              // header={header}
               tableStyle={{ minWidth: "60rem" }}
             >
               <Column expander={allowExpansion} style={{ width: "5rem" }} />

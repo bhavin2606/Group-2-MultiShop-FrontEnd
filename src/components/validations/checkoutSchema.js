@@ -2,83 +2,84 @@ import * as Yup from "yup";
 
 export const checkoutSchema = Yup.object().shape({
   billing: Yup.object().shape({
-    firstName: Yup.string().required("Please enter your first name"),
-    lastName: Yup.string().required("Please enter your last name"),
-    email: Yup.string().required("Please enter your email"),
-    mobileNo: Yup.string().required("Please enter your mobile number"),
-    address1: Yup.string().required("Please enter address line 1"),
-    country: Yup.string().required("Please select a country"),
-    city: Yup.string().required("Please enter your city name"),
-    state: Yup.string().required("Please enter your state name"),
-    zip: Yup.string().required("Please enter your city zip code"),
+      firstName: Yup.string().required("Please enter first name"),
+      lastName: Yup.string().required("Please enter last name"),
+      email: Yup.string().email("Invalid email").required("Please enter email"),
+      mobileNo: Yup.string().required("Please enter mobile number").matches(/^\d{10}$/, "Invalid mobile number"),
+      address1: Yup.string().required("Please enter address line 1."),
+      country: Yup.string().required("Please select country"),
+      city: Yup.string().required("Please enter city"),
+      state: Yup.string().required("Please enter state"),
+      zip: Yup.string().required("Please enter zip code"),
   }),
-  isDifferentShip: Yup.boolean(),
+  isDiffrentShiping: Yup.boolean(),
   shiping: Yup.object().shape({
-    // firstName: Yup.string().when("$isDifferentShip", {
-    //   is: (a) => {
-    //     console.log(a,"-------------")
-    //     return a
-    //   },
-    //   then: (schema) => schema.required("Please enter your first name"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    // lastName: Yup.string().when("$isDifferentShip", {
-    //   is: (isDifferentShip) => {
-    //     return isDifferentShip
-    //   },
-    //   then: (schema) => schema.required("Please enter your last name"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    // email: Yup.string().when("$isDifferentShip", {
-    //   is: (isDifferentShip) => {
-    //     return isDifferentShip
-    //   },
-    //   then: (schema) => schema.required("Please enter your email"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    // mobileNo: Yup.string().when("$isDifferentShip", {
-    //   is: (isDifferentShip) => {
-    //     return isDifferentShip
-    //   },
-    //   then: (schema) => schema.required("Please enter your mobile number"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    // address1: Yup.string().when("$isDifferentShip", {
-    //   is: (isDifferentShip) => {
-    //     console.log(isDifferentShip,"is diffrent ship")
-    //     return isDifferentShip
-    //   },
-    //   then: (schema) => schema.required("Please enter address line 1"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    // country: Yup.string().when("$isDifferentShip", {
-    //   is: (isDifferentShip) => {
-    //     return isDifferentShip
-    //   },
-    //   then: (schema) => schema.required("Please select a country"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    // city: Yup.string().when("$isDifferentShip", {
-    //   is: (isDifferentShip) => {
-    //     return isDifferentShip
-    //   },
-    //   then: (schema) => schema.required("Please enter your city name"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    // state: Yup.string().when("$isDifferentShip", {
-    //   is: (isDifferentShip) => {
-    //     return isDifferentShip
-    //   },
-    //   then: (schema) => schema.required("Please enter your state name"),
-    //   otherwise: (schema) => schema.notRequired()
-    // }),
-    zip: Yup.string().when("$isDifferentShip", {
-      is: (isDifferentShip) => {
-        console.log(isDifferentShip,"is fiadf")
-        return isDifferentShip
-      },
-      then: (schema) => schema.required("Please enter your city zip code"),
-      otherwise: (schema) => schema.notRequired()
-    }),
+      firstName: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please enter first name"),
+          otherwise: string => string,
+      }),
+      lastName: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please enter last name"),
+          otherwise: string => string,
+      }),
+      email: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please enter email"),
+          otherwise: string => string,
+      }),
+      mobileNo: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please enter mobile no").matches(/^\d{10}$/, "Invalid mobile number"),
+          otherwise: string => string,
+      }),
+      address1: Yup.string().when("$isDiffrentShiping", {
+        is: (val) => {
+          console.log(val,"valsdfd")
+              return val
+          },
+          then: string => string.required("Please enter address line 1"),
+          otherwise: string => string,
+      }),
+      country: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please select country"),
+          otherwise: string => string,
+      }),
+      city: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please enter city"),
+          otherwise: string => string,
+      }),
+      state: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please enter state"),
+          otherwise: string => string,
+      }),
+      zip: Yup.string().when("$isDiffrentShiping", {
+          is: (val) => {
+              return val
+          },
+          then: string => string.required("Please enter zip code"),
+          otherwise: string => string,
+      }),
   }),
-});
+  payment: Yup.string().required()
+})
+
+

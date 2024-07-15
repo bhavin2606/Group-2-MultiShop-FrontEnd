@@ -59,16 +59,26 @@ export const CartApi = api.injectEndpoints({
                 headers: { Authorization: `Bearer ${token}` },
             }),
         }),
-        getCityById:bulider.query({
+        getCityById: bulider.query({
             query: (id) => ({
                 url: `select-city/${id}`,
                 headers: { Authorization: `Bearer ${token}` },
             }),
         }),
+        postAddOrder: bulider.mutation({
+            query: ({ data }) => ({
+                url: `add-order`,
+                method: "POST",
+                body: data,
+                headers: { Authorization: `Bearer ${token}` },
+            }),
+            providesTags:["multishop","cart"]
+        })
     })
 })
 
 export const {
+    usePostAddOrderMutation,
     useGetCityByIdQuery,
     useLazyGetCityByIdQuery,
     useGetAllCityQuery,
