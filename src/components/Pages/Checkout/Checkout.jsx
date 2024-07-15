@@ -5,17 +5,20 @@ import Breadcrumbs from "../../../Routes/Breadcrumbs";
 import { useFormik } from "formik";
 import { checkoutSchema } from "../../validations/checkoutSchema";
 import { useGetUserDataQuery } from "../../../Redux/Slices/AuthApis";
-import { useGetCityByIdQuery } from "../../../Redux/Slices/CartListApi";
+import {  usePostAddOrderMutation } from "../../../Redux/Slices/CartListApi";
 // import * as Yup from "yup";
 
 export default function Checkout() {
   const { data: userData } = useGetUserDataQuery();
+  const [postAddOrder] = usePostAddOrderMutation()
   const initialValues = {
     billing: {
       firstName: userData?.data?.first_name ? userData?.data?.first_name : "",
-      lastName: userData?.data?.last_name ?userData?.data?.last_name:"",
-      email:userData?.data?.email ?userData?.data?.email:"",
-      mobileNo: userData?.data?.phone_number ?userData?.data?.phone_number:"",
+      lastName: userData?.data?.last_name ? userData?.data?.last_name : "",
+      email: userData?.data?.email ? userData?.data?.email : "",
+      mobileNo: userData?.data?.phone_number
+        ? userData?.data?.phone_number
+        : "",
       address1: "",
       address2: "",
       country: "",
@@ -23,12 +26,14 @@ export default function Checkout() {
       state: "",
       zip: "",
     },
-    isDiffrentShip: false,
+    isDiffrentShiping: false,
     shiping: {
       firstName: userData?.data?.first_name ? userData?.data?.first_name : "",
-      lastName: userData?.data?.last_name ?userData?.data?.last_name:"",
-      email: userData?.data?.email ?userData?.data?.email:"",
-      mobileNo: userData?.data?.phone_number ?userData?.data?.phone_number:"",
+      lastName: userData?.data?.last_name ? userData?.data?.last_name : "",
+      email: userData?.data?.email ? userData?.data?.email : "",
+      mobileNo: userData?.data?.phone_number
+        ? userData?.data?.phone_number
+        : "",
       address1: "",
       address2: "",
       country: "",
@@ -42,9 +47,24 @@ export default function Checkout() {
     initialValues,
     validationSchema: checkoutSchema,
     enableReinitialize: true,
-    onSubmit: (values, action) => {
-      alert(JSON.stringify(values));
-      // console.log(values,"checkout");
+    onSubmit: async(values, action) => {
+      let form = new FormData();
+      form.append("payment_method", values?.payment);
+      form.append("address_line_1", values?.billing?.address1);
+      form.append("address_line_2", values?.billing?.address2);
+      form.append("city", values?.billing?.city);
+      form.append("state", values?.billing?.state);
+      form.append("country", values?.billing?.country);
+      form.append("zipcode", values?.billing?.zip);
+      form.append("ship_to_different_address", values?.isDiffrentShiping  === true ? 1 : 0);
+      form.append("shipping_address_line_1", values?.shiping?.address1);
+      form.append("shipping_address_line_2", values?.shiping?.address2);
+      form.append("shipping_city", values?.shiping?.city);
+      form.append("shipping_state", values?.shiping?.state);
+      form.append("shipping_country", values?.shiping?.country);
+      form.append("shipping_zipcode", values?.shiping?.zip);
+      let res = await postAddOrder({data:form});
+      console.log(res , "checkout form");
       action.resetForm();
     },
   });

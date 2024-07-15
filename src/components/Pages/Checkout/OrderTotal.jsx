@@ -85,7 +85,11 @@ export default function OrderTotal({ formik }) {
               </label>
             </div>
           </div>
-
+          {formik?.errors?.payment && formik?.touched?.payment ? (
+            <p className="help-block text-danger">
+              {formik?.errors?.payment}
+            </p>
+          ) : null}
           <button
             className="btn btn-block btn-primary font-weight-bold py-3"
             type="submit"

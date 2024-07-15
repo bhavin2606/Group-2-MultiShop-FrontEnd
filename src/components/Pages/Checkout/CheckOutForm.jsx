@@ -1,25 +1,20 @@
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   useGetAllCityQuery,
   useGetCityByIdQuery,
   useLazyGetCityByIdQuery,
 } from "../../../Redux/Slices/CartListApi";
+import ReactSelect from "react-select";
+import { date } from "yup";
 export default function CheckOutForm({ formik }) {
   const [getCityById, { data: citybyid }] = useLazyGetCityByIdQuery();
-  const [getCityByIdShiping, { data: citybyidshiping }] =
-    useLazyGetCityByIdQuery();
   const { data: allCity } = useGetAllCityQuery();
-  const handleBillingCitySelect = async (e) => {
-    let response = await getCityById(e?.target?.value);
-    formik.setFieldValue("billing.country", response?.data?.data?.country_name);
-    formik.setFieldValue("billing.state", response?.data?.data?.state_name);
-  };
-  const handleShipingCitySelect = async (e) => {
-    let response = await getCityByIdShiping(e?.target?.value);
-    formik.setFieldValue("shiping.country", response?.data?.data?.country_name);
-    formik.setFieldValue("shiping.state", response?.data?.data?.state_name);
-  };
+
+  const cityOptions = allCity?.data?.data?.map((city) => ({
+    value: city.id,
+    label: city.city_name,
+  }));
 
   return (
     <div className="col-lg-8">
@@ -143,18 +138,17 @@ export default function CheckOutForm({ formik }) {
           </div>
           <div className="col-md-6 form-group">
             <label>Country</label>
-            <select
-              className="custom-select"
+            <input
+              className="form-control"
+              type="text"
+              placeholder="New York"
               id="country"
               name="billing.country"
               onChange={formik.handleChange}
               value={formik?.values?.billing?.country}
-              disabled
-            >
-              <option value={citybyid?.data?.country_name}>
-                {citybyid?.data?.country_name}
-              </option>
-            </select>
+              readOnly
+            />
+
             {formik?.errors?.billing?.country &&
             formik?.touched?.billing?.country ? (
               <p className="help-block text-danger">
@@ -164,22 +158,29 @@ export default function CheckOutForm({ formik }) {
           </div>
           <div className="col-md-6 form-group">
             <label>City</label>
-            <select
-              className="custom-select"
-              id="city"
+            <ReactSelect
               name="billing.city"
-              onChange={formik.handleChange}
-              onClick={handleBillingCitySelect}
-            >
-              <option value="" disabled>
-                Select City
-              </option>
-              {allCity?.data?.data?.map((city, index) => (
-                <option key={index} value={city?.id}>
-                  {city?.city_name}
-                </option>
-              ))}
-            </select>
+              id="city"
+              className=""
+              options={cityOptions}
+              onChange={async (value) => {
+                console.log("hiihi hoy hoy");
+                formik?.setFieldValue("billing.city", value?.label);
+                let res = await getCityById(value?.value);
+                formik.setFieldValue(
+                  "billing.country",
+                  res?.data?.data?.country_name
+                );
+                formik.setFieldValue(
+                  "billing.state",
+                  res?.data?.data?.state_name
+                );
+              }}
+              value={cityOptions?.find(
+                (option) => option.label === formik?.values?.billing?.city
+              )}
+            ></ReactSelect>
+
             {formik?.errors?.billing?.city && formik?.touched?.billing?.city ? (
               <p className="help-block text-danger">
                 {formik?.errors?.billing?.city}
@@ -195,7 +196,7 @@ export default function CheckOutForm({ formik }) {
               id="state"
               name="billing.state"
               onChange={formik.handleChange}
-              value={citybyid?.data?.state_name}
+              value={formik?.values?.billing?.state}
               disabled
             />
             {formik?.errors?.billing?.state &&
@@ -228,9 +229,9 @@ export default function CheckOutForm({ formik }) {
                 type="checkbox"
                 className="custom-control-input"
                 id="isDiffrentShip"
-                name="isDiffrentShip"
+                name="isDiffrentShiping"
                 onChange={formik.handleChange}
-                value={formik?.values?.isDiffrentShip}
+                value={formik?.values?.isDiffrentShiping}
               />
               <label
                 className="custom-control-label"
@@ -360,18 +361,16 @@ export default function CheckOutForm({ formik }) {
             </div>
             <div className="col-md-6 form-group">
               <label>Country</label>
-              <select
-                className="custom-select"
+              <input
+                className="form-control"
+                type="text"
+                placeholder="New York"
                 id="country"
                 name="shiping.country"
                 onChange={formik.handleChange}
                 value={formik?.values?.shiping?.country}
-                disabled
-              >
-                <option value={citybyidshiping?.data?.country_name}>
-                  {citybyidshiping?.data?.country_name}
-                </option>
-              </select>
+                readOnly
+              />
               {formik?.errors?.shiping?.country &&
               formik?.touched?.shiping?.country ? (
                 <p className="help-block text-danger">
@@ -381,22 +380,28 @@ export default function CheckOutForm({ formik }) {
             </div>
             <div className="col-md-6 form-group">
               <label>City</label>
-              <select
-                className="custom-select"
-                id="city"
+              <ReactSelect
                 name="shiping.city"
-                onChange={formik.handleChange}
-                onClick={handleShipingCitySelect}
-              >
-                <option value="" disabled>
-                  Select City
-                </option>
-                {allCity?.data?.data?.map((city, index) => (
-                  <option key={index} value={city?.id}>
-                    {city?.city_name}
-                  </option>
-                ))}
-              </select>
+                id="city"
+                className=""
+                options={cityOptions}
+                onChange={async (value) => {
+                  formik?.setFieldValue("shiping.city", value?.label);
+                  let res = await getCityById(value?.value);
+                  formik.setFieldValue(
+                    "shiping.country",
+                    res?.data?.data?.country_name
+                  );
+                  formik.setFieldValue(
+                    "shiping.state",
+                    res?.data?.data?.state_name
+                  );
+                }}
+                value={cityOptions?.find(
+                  (option) => option.label === formik?.values?.shiping?.city
+                )}
+              ></ReactSelect>
+
               {formik?.errors?.shiping?.city &&
               formik?.touched?.shiping?.city ? (
                 <p className="help-block text-danger">
@@ -413,8 +418,8 @@ export default function CheckOutForm({ formik }) {
                 id="state"
                 name="shiping.state"
                 onChange={formik.handleChange}
-                value={citybyidshiping?.data?.state_name}
-                disabled
+                value={formik?.values?.shiping?.state}
+                readOnly
               />
               {formik?.errors?.shiping?.state &&
               formik?.touched?.shiping?.state ? (
@@ -423,7 +428,6 @@ export default function CheckOutForm({ formik }) {
                 </p>
               ) : null}
             </div>
-
             <div className="col-md-6 form-group">
               <label>ZIP Code</label>
               <input
