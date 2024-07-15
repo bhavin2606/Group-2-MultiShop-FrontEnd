@@ -3,10 +3,10 @@ let token = localStorage.getItem("token")
 export const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getUserData: builder.query({
-            query: () => ({
+            query: (auth) => ({
                 url: "my-profile",
                 method: "GET",
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { Authorization: `Bearer ${auth}` }
             }),
             providesTags: ["use", "multishop", "UserProfile"],
             // keepUnusedDataFor: 1
@@ -66,7 +66,7 @@ export const authApi = api.injectEndpoints({
                 method: "POST",
                 headers: { Authorization: `Bearer ${payload?.token}` }
             }),
-            invalidatesTags: ["logout","UserProfile"]
+            invalidatesTags: ["logout"]
         }),
 
     })

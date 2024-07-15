@@ -7,11 +7,13 @@ import { useGetWishListDataQuery } from "../../../Redux/Slices/WishListApi";
 export default function Navbar() {
   const location = useLocation();
   const { data } = useGetCategoryDataQuery();
-  const { data: cartData } = useGetCartProductsQuery()
-  
-  const { data: wishData } = useGetWishListDataQuery();
-  
   let token = localStorage.getItem("token");
+  const { data: cartData } = useGetCartProductsQuery(token, {
+    skip: !token,
+  });
+  const { data: wishData } = useGetWishListDataQuery(token, {
+    skip: !token,
+  });
 
   return (
     <>

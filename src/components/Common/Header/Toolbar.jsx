@@ -14,32 +14,25 @@ export default function Toolbar() {
   const location = useLocation();
   const token = localStorage.getItem("token");
   // const { token } = useSelector((state) => state.auth);
-  const { data: userData, refetch: userAPI } = useGetUserDataQuery(undefined, {
+  const { data: userData } = useGetUserDataQuery(token, {
     skip: !token,
   });
   const [selectedLanguage, setSelectedLanguage] = useState();
-  const { data: cartData } = useGetCartProductsQuery(undefined, {
+  const { data: cartData } = useGetCartProductsQuery(token, {
     skip: !token,
   });
-  const { data: wishData } = useGetWishListDataQuery(undefined, {
+  const { data: wishData } = useGetWishListDataQuery(token, {
     skip: !token,
   });
-  console.log("reducer", token);
+  // console.log("reducer", token);
   // console.log("userData", userData);
   const selectLanguage = (item) => {
-    console.log("Selected language:", item);
     document.cookie = "googtrans=" + `/en/${item}`;
     console.log("Cookie set:", document.cookie);
     setSelectedLanguage(item);
   };
 
-  useEffect(() => {
-    // refetch();
-    // if (localStorage.getItem("token") != "") {
-      // userAPI()
 
-    // }
-  }, []);
 
   useEffect(() => {
     if (selectedLanguage) {

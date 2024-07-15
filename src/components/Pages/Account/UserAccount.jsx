@@ -10,9 +10,12 @@ import {
 import { toast } from "react-toastify";
 
 export default function UserAccount() {
+  const token = localStorage.getItem("token")
   const [editButton, setEditButton] = useState(false);
-  const { data: userData = [], isError } = useGetUserDataQuery();
-  console.log(isError, userData, "user porifle");
+  const { data: userData } = useGetUserDataQuery(token, {
+    skip: !token,
+  });
+  console.log(   userData, "user porifle");
   const [file, setFile] = useState(userData?.data?.image);
   function handleAccountEdit() {
     setEditButton(true);

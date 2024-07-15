@@ -9,16 +9,17 @@ export default function ProductFeatured() {
   const { data } = useGetFeaturedProductDataQuery();
   const [postWishListData] = usePostWishListDataMutation();
   const navigate = useNavigate();
-  
+
   const handleWishlistSubmit = async (p_id) => {
-    let data = await postWishListData(p_id);;
+    const token = localStorage.getItem("token");
+    let data = await postWishListData(p_id, token);
     if (data?.data?.success === true) {
       toast.success(data?.data?.message);
     } else {
       navigate("/signin");
       toast.error("Please login first");
     }
-  };  
+  };
 
   return (
     <div className="container-fluid pt-5 pb-3">
@@ -30,7 +31,12 @@ export default function ProductFeatured() {
           <div className="col-lg-3 col-md-4 col-sm-6 pb-1" key={index}>
             <div className="product-item bg-light mb-4">
               <div className="product-img position-relative overflow-hidden">
-                <img className="img-fluid w-100 object-fit-cover" src={data?.product_image} alt="" style={{height:"510px"}}/>
+                <img
+                  className="img-fluid w-100 object-fit-contain"
+                  src={data?.product_image}
+                  alt=""
+                  style={{ height: "425px" }}
+                />
                 <div className="product-action">
                   <Link
                     type="button"

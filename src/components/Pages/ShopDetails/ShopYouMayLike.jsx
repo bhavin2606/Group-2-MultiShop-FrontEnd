@@ -43,7 +43,7 @@ export default function ShopYouMayLike() {
                     className="img-fluid w-100 object-fit-cover" 
                     src={data?.product_image}
                     alt=""
-                    style={{ height: "510px" }}
+                    style={{ height: "410px" }}
                   />
                   <div className="product-action">
                     <Link

@@ -12,6 +12,7 @@ export default function ShopProduct() {
   const navigate = useNavigate();
   
   const handleWishlistSubmit = async (p_id) => {
+    const token = localStorage.getItem("token")
     let data = await postWishListData(p_id);;
     if (data?.data?.success === true) {
       toast.success(data?.data?.message);
@@ -93,7 +94,7 @@ export default function ShopProduct() {
                       <img
                         src={data?.product_image}
                         className="card-img img-fluid "
-                        style={{ height: "510px" }}
+                        style={{ height: "410px" }}
                         alt="product"
                       />
                     </div>
@@ -135,9 +136,9 @@ export default function ShopProduct() {
                 <div className="product-item bg-light mb-4">
                   <div className="product-img position-relative overflow-hidden">
                     <img
-                      className="img-fluid w-100 object-fit-cover"
+                      className="img-fluid w-100 object-fit-contain"
                       src={data.product_image}
-                      style={{ height: "510px" }}
+                      style={{ height: "425px" }}
                       alt="product"
                     />
                     <div className="product-action">

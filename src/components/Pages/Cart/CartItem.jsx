@@ -6,7 +6,10 @@ import {
   usePlusCartItemMutation,
 } from "../../../Redux/Slices/CartListApi";
 export default function CartItem() {
-  const { data: cartItem } = useGetCartProductsQuery();
+  const token = localStorage.getItem("token")
+  const { data: cartItem } = useGetCartProductsQuery(token, {
+    skip: !token,
+  });
   const [DeleteCartItem] = useDeleteCartItemMutation();
   const [MinusCartItem] = useMinusCartItemMutation();
   const [PlusCartItem] = usePlusCartItemMutation();

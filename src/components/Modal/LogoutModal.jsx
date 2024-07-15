@@ -4,6 +4,8 @@ import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { usePostLogoutDataMutation } from "../../Redux/Slices/AuthApis";
+import { useDispatch } from "react-redux";
+import { getUserToken } from "../../Redux/Slices/AuthSlice";
 
 function LogoutModal() {
   const [show, setShow] = useState(false);
@@ -11,6 +13,7 @@ function LogoutModal() {
   const [postLogoutData] = usePostLogoutDataMutation();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const dispatch = useDispatch()
 
   const handleLogout = async () => {
     let res = await postLogoutData({ token: localStorage?.getItem("token") });
@@ -19,6 +22,7 @@ function LogoutModal() {
       navigate("/", { replace: true });
       toast.success("LoggedOut successfully");
       localStorage.clear("token");
+      dispatch(getUserToken(""))
       
     } else {
       toast.error("Something went wrong");

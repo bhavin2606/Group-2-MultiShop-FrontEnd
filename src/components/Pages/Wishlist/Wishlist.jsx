@@ -1,24 +1,28 @@
 import Breadcrumbs from "../../../Routes/Breadcrumbs";
 import { Link } from "react-router-dom";
-import { useGetWishListDataQuery, usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";
+import {
+  useGetWishListDataQuery,
+  usePostWishListDataMutation,
+} from "../../../Redux/Slices/WishListApi";
 import RatingIntegration from "../../Common/RatingIntegration";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 export default function Wishlist() {
-  const { data } = useGetWishListDataQuery();
+  const token = localStorage.getItem("token");
+  console.log(token);
+  const { data } = useGetWishListDataQuery(token);
   const [postWishListData] = usePostWishListDataMutation();
 
   const handleWishlistSubmit = async (p_id) => {
-    console.log(p_id);
-    let res = await postWishListData(p_id);
-    console.log(res, "HElllllllllllllllll");
+
+    let res = await postWishListData(p_id, localStorage.getItem("token"));
     if (res?.data?.success === true) {
       toast.success(res?.data?.message);
     } else {
       toast.error(res?.data?.message);
     }
   };
-
 
   return (
     <div>
@@ -57,7 +61,7 @@ export default function Wishlist() {
                       <img
                         className="img-fluid w-100 "
                         src={product?.product_images}
-                        style={{ height: "330px" }}
+                        style={{ height: "290px" }}
                         alt={product?.products?.name}
                       />
                       <div className="product-action">
@@ -81,12 +85,10 @@ export default function Wishlist() {
                       </Link>
                       <div className="d-flex align-items-center justify-content-center mt-2">
                         {/* <h5> */}
-                        <h5>
-                          ${product?.products?.price}
-                        </h5>
+                        <h5>${product?.products?.price}</h5>
                       </div>
                       <div className="d-flex align-items-center justify-content-center mb-1">
-                       <RatingIntegration star={product?.avg_rating}/>
+                        <RatingIntegration star={product?.avg_rating} />
                         <small>({product.total_review})</small>
                       </div>
                     </div>
