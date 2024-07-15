@@ -7,7 +7,7 @@ import {
 } from "../../../Redux/Slices/CartListApi";
 export default function CartItem() {
   const token = localStorage.getItem("token")
-  const { data: cartItem } = useGetCartProductsQuery(token, {
+  const { data: cartItem } = useGetCartProductsQuery( {
     skip: !token,
   });
   const [DeleteCartItem] = useDeleteCartItemMutation();

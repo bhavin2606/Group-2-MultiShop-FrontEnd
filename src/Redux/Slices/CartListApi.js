@@ -16,9 +16,9 @@ export const CartApi = api.injectEndpoints({
             invalidatesTags: ["cart"]
         }),
         getCartProducts: bulider.query({
-            query: (auth) => ({
+            query: () => ({
                 url: "show-product/cart",
-                headers: { Authorization: `Bearer ${auth}` },
+                headers: { Authorization: `Bearer ${token}` },
             }),
             providesTags: ["cart", "minus", "plus", "multishop"]
         }),

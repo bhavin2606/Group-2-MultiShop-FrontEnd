@@ -137,26 +137,6 @@ export default function CheckOutForm({ formik }) {
             ) : null}
           </div>
           <div className="col-md-6 form-group">
-            <label>Country</label>
-            <input
-              className="form-control"
-              type="text"
-              placeholder="New York"
-              id="country"
-              name="billing.country"
-              onChange={formik.handleChange}
-              value={formik?.values?.billing?.country}
-              readOnly
-            />
-
-            {formik?.errors?.billing?.country &&
-            formik?.touched?.billing?.country ? (
-              <p className="help-block text-danger">
-                {formik?.errors?.billing?.country}
-              </p>
-            ) : null}
-          </div>
-          <div className="col-md-6 form-group">
             <label>City</label>
             <ReactSelect
               name="billing.city"
@@ -207,6 +187,27 @@ export default function CheckOutForm({ formik }) {
             ) : null}
           </div>
           <div className="col-md-6 form-group">
+            <label>Country</label>
+            <input
+              className="form-control"
+              type="text"
+              placeholder="New York"
+              id="country"
+              name="billing.country"
+              onChange={formik.handleChange}
+              value={formik?.values?.billing?.country}
+              readOnly
+            />
+
+            {formik?.errors?.billing?.country &&
+            formik?.touched?.billing?.country ? (
+              <p className="help-block text-danger">
+                {formik?.errors?.billing?.country}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="col-md-6 form-group">
             <label>ZIP Code</label>
             <input
               className="form-control"
@@ -223,7 +224,7 @@ export default function CheckOutForm({ formik }) {
               </p>
             ) : null}
           </div>
-          <div className="col-md-12">
+          <div className="col-md-12" style={{ zIndex: 0 }}>
             <div className="custom-control custom-checkbox">
               <input
                 type="checkbox"
@@ -360,25 +361,6 @@ export default function CheckOutForm({ formik }) {
               ) : null}
             </div>
             <div className="col-md-6 form-group">
-              <label>Country</label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="New York"
-                id="country"
-                name="shiping.country"
-                onChange={formik.handleChange}
-                value={formik?.values?.shiping?.country}
-                readOnly
-              />
-              {formik?.errors?.shiping?.country &&
-              formik?.touched?.shiping?.country ? (
-                <p className="help-block text-danger">
-                  {formik?.errors?.shiping?.country}
-                </p>
-              ) : null}
-            </div>
-            <div className="col-md-6 form-group">
               <label>City</label>
               <ReactSelect
                 name="shiping.city"
@@ -428,6 +410,26 @@ export default function CheckOutForm({ formik }) {
                 </p>
               ) : null}
             </div>
+            <div className="col-md-6 form-group">
+              <label>Country</label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="New York"
+                id="country"
+                name="shiping.country"
+                onChange={formik.handleChange}
+                value={formik?.values?.shiping?.country}
+                readOnly
+              />
+              {formik?.errors?.shiping?.country &&
+              formik?.touched?.shiping?.country ? (
+                <p className="help-block text-danger">
+                  {formik?.errors?.shiping?.country}
+                </p>
+              ) : null}
+            </div>
+
             <div className="col-md-6 form-group">
               <label>ZIP Code</label>
               <input

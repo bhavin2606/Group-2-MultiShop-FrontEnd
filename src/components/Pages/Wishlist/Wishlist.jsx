@@ -16,7 +16,7 @@ export default function Wishlist() {
 
   const handleWishlistSubmit = async (p_id) => {
 
-    let res = await postWishListData(p_id, localStorage.getItem("token"));
+    let res = await postWishListData(p_id, token);
     if (res?.data?.success === true) {
       toast.success(res?.data?.message);
     } else {

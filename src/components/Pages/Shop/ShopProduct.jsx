@@ -1,19 +1,30 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import RatingIntegration from "../../Common/RatingIntegration";
-import { useGetFeaturedProductDataQuery } from "../../../Redux/Slices/ProductApi";
+import {
+  useGetFeaturedProductDataQuery,
+  useLazySearchProductsQuery,
+} from "../../../Redux/Slices/ProductApi";
 import { usePostWishListDataMutation } from "../../../Redux/Slices/WishListApi";
 import { toast } from "react-toastify";
 
 export default function ShopProduct() {
   const [toggleGrid, setToggleGrid] = useState(false);
-  const { data } = useGetFeaturedProductDataQuery();
+  const { data: allData } = useGetFeaturedProductDataQuery();
+  const [viewProducts, setViewProducts] = useState(allData);
+  useEffect(() => {
+    setViewProducts(allData);
+  }, [allData]);
   const [postWishListData] = usePostWishListDataMutation();
+  const [triggerSearch, { data: searchData }] = useLazySearchProductsQuery();
   const navigate = useNavigate();
-  
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchTerm = searchParams.get("search");
+
   const handleWishlistSubmit = async (p_id) => {
-    const token = localStorage.getItem("token")
-    let data = await postWishListData(p_id);;
+    const token = localStorage.getItem("token");
+    let data = await postWishListData(p_id);
     if (data?.data?.success === true) {
       toast.success(data?.data?.message);
     } else {
@@ -21,7 +32,16 @@ export default function ShopProduct() {
       toast.error("Please login first");
     }
   };
-
+  useEffect(() => {
+    console.log(searchTerm,"seach");
+    if (searchTerm) {
+      triggerSearch(searchTerm);
+      setViewProducts(searchData?.data)
+      console.log(searchData,"searchhdata");
+    } else {
+      setViewProducts(allData);
+    }
+  }, [searchData, allData, viewProducts,searchTerm]);
   return (
     <div className="col-lg-9 col-md-8">
       <div className="row pb-3">
@@ -86,7 +106,7 @@ export default function ShopProduct() {
           </div>
         </div>
         {toggleGrid
-          ? data?.data?.map((data, index) => (
+          ? viewProducts?.data?.map((data, index) => (
               <div className="card mb-3 pt-4 pb-0" key={index}>
                 <div className="row no-gutters ">
                   <div className="col-md-4 product-item bg-light mb-4">
@@ -131,7 +151,7 @@ export default function ShopProduct() {
                 </div>
               </div>
             ))
-          : data?.data?.map((data, index) => (
+          : viewProducts?.data?.map((data, index) => (
               <div className="col-lg-4 col-md-6 col-sm-6 pb-1" key={index}>
                 <div className="product-item bg-light mb-4">
                   <div className="product-img position-relative overflow-hidden">

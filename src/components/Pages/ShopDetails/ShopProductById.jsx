@@ -5,6 +5,7 @@ import { useGetProductDataByIdQuery } from "../../../Redux/Slices/ProductApi";
 import { useFormik } from "formik";
 import { useAddCartItemMutation } from "../../../Redux/Slices/CartListApi";
 import ShopReviewPage from "./ShopReviewPage";
+import { toast } from "react-toastify";
 export default function ShopProductById() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,12 +19,17 @@ export default function ShopProductById() {
       color: "",
       quantity: 1,
     },
-    onSubmit: (values) => {
+    onSubmit:async (values) => {
       const formitem = new FormData();
       formitem.append("size", values.size);
       formitem.append("color", values.color);
       formitem.append("quantity", values.quantity);
-      AddCartItem({ id: data?.data?.id, product: formitem });
+      let res = await AddCartItem({ id: data?.data?.id, product: formitem });
+      if (res?.data?.success === false) {
+        toast.warning(res?.data?.message)
+      } else {
+        toast.success(res?.data?.message)
+      }
     },
   });
 

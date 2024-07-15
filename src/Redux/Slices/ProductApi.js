@@ -34,10 +34,14 @@ export const ProductApi = api.injectEndpoints({
             }),
             invalidatesTags: ["review"]
         }),
+        searchProducts: builder.query({
+            query:(searchTerm)=>`search-filters?search=${searchTerm}`
+        })
     })
 })
 
 export const {
+    useLazySearchProductsQuery,
     useGetProductDataByIdQuery,
     useAddReviewMutation,
     useGetProductReviewQuery,

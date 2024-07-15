@@ -9,7 +9,9 @@ import {  usePostAddOrderMutation } from "../../../Redux/Slices/CartListApi";
 // import * as Yup from "yup";
 
 export default function Checkout() {
-  const { data: userData } = useGetUserDataQuery();
+  let token = localStorage.getItem("token")
+  const { data: userData } = useGetUserDataQuery(token);
+  console.log(userData,"userdata");
   const [postAddOrder] = usePostAddOrderMutation()
   const initialValues = {
     billing: {
